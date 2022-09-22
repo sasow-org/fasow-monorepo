@@ -1,25 +1,25 @@
 {
-  "name": "fasow-monorepo",
-  "version": "0.0.0",
   "private": true,
+  "version": "1.0.0",
+  "name": "fasow-monorepo",
   "workspaces": [
-    "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "start": "cd packages/client && yarn start",
+    "build": "npx lerna run build"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "prettier": "latest",
-    "turbo": "latest"
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-node": "^0.3.6",
+    "eslint-import-resolver-typescript": "^3.5.1",
+    "eslint-plugin-import": "^2.26.0",
+    "lerna": "^5.5.2",
+    "prettier": "^2.7.1"
   },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "dependencies": {},
-  "packageManager": "yarn@1.22.19"
+  "dependencies": {
+    "is-even": "^1.0.0"
+  }
 }
