@@ -4,11 +4,8 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    "plugin:react/recommended",
     "airbnb",
-    "plugin:react/recommended",
     "airbnb-typescript",
-    "airbnb/hooks",
     "prettier",
     "plugin:import/recommended",
     "plugin:import/typescript",
@@ -16,27 +13,24 @@ module.exports = {
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
     ecmaVersion: "latest",
     sourceType: "module",
-    project: "./tsconfig.json",
+    project: ["tsconfig.json"],
     tsconfigRootDir: "./",
   },
-  plugins: ["react", "@typescript-eslint", "import"],
+  plugins: ["@typescript-eslint", "import"],
   settings: {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"],
+      "@typescript-eslint/parser": [".ts"],
     },
     "import/resolver": {
       typescript: {},
       node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
+        extensions: [".js", ".ts"],
       },
     },
   },
   rules: {
-    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/lines-between-class-members": 0,
   },
 };
