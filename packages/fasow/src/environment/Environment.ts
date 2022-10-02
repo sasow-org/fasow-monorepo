@@ -39,7 +39,10 @@ export default abstract class Environment
   public abstract run(): void;
   public abstract getCountStates(): RowData;
 
-  public initialize(): void {
+  /**
+   * Initializes the current environment.
+   */
+  initialize(): void {
     this.agentConfigs.forEach((agentConfig) => {
       this.createAgents(agentConfig);
     });
@@ -48,22 +51,19 @@ export default abstract class Environment
     this.addFollowings();
 
     if (!this.isDone()) {
-      console.log("Error in initialize environment with id: ", this._id);
-      console.log("ERROR ERROR ERROR ERROR ERROR ERROR");
-      console.log("ERROR ERROR ERROR ERROR ERROR ERROR");
-      console.log("ERROR ERROR ERROR ERROR ERROR ERROR");
-      console.log("ERROR ERROR ERROR ERROR ERROR ERROR");
+      console.error("Error in initialize environment with id: ", this.id);
     }
 
-    this._initialized = true;
+    this.initialized = true;
   }
 
-  public createAgents(agentConfig: AgentConfig): void {
-    // for (let i = 0; i < agentConfig.quantityAgent; i++) {
+  /**
+   * Populates the list of agents of the environment according to the agent config
+   * @param agentConfig the config that the agents will be based on
+   */
+  createAgents(agentConfig: AgentConfig): void {
+    // for (let i = 0; i < agentConfig.quantity; i++) {
     //   const agentReference = FactoryDynamicClass.getInstance().getAgent(agentConfig.agentType);
-    //   // eslint-disable-next-line new-cap,@typescript-eslint/ban-ts-comment
-    //   // @ts-ignore
-    //   // eslint-disable-next-line new-cap
     //   const auxAgent = new agentReference(i, agentConfig);
     //   this.users.push(auxAgent);
     //   if (auxAgent.isSeed) {
@@ -72,6 +72,70 @@ export default abstract class Environment
     //   ++this.usersQuantity;
     // }
     // console.log('End create agents.');
+  }
+
+  /**
+   * Adds followers to the agents of the environment.
+   */
+  addFollowers(): void {
+    this.agents.map((agent: Agent) => {
+      const total: number = agent.getQuantityFollowersByNetwork(
+        this.networkSize
+      );
+      while (agent.followers.length !== total) {
+        const max: number = this.agents.length;
+        const randomIndex: number = Number.parseInt(
+          `${Math.random() * (max - 1 + 1)}${0}`,
+          10
+        );
+        agent.addFollower(this.agents[randomIndex]);
+      }
+    });
+  }
+
+  /**
+   * Adds followings to the agents of the environment.
+   */
+  addFollowings(): void {
+    this.agents.map((agent: Agent) => {
+      const total: number = agent.getQuantityFollowingsByNetwork(
+        this.networkSize
+      );
+      while (agent.following.length !== total) {
+        const max: number = this.agents.length;
+        const randomIndex: number = Number.parseInt(
+          `${Math.random() * (max - 1 + 1)}${0}`,
+          10
+        );
+        agent.addFollowing(this.agents[randomIndex]);
+      }
+    });
+  }
+
+  /**
+   * Returns true agents, seeds, followers and followings are all set up.
+   */
+  isDone() {
+    if (this.agents.length !== this.networkSize) {
+      return false;
+    }
+
+    if (this.seeds.length !== this.seedSize) {
+      return false;
+    }
+
+    // eslint-disable-next-line consistent-return
+    this.agents.map((agent: Agent) => {
+      if (
+        agent.followers.length !==
+          agent.getQuantityFollowersByNetwork(this.networkSize) &&
+        agent.following.length !==
+          agent.getQuantityFollowingsByNetwork(this.networkSize)
+      ) {
+        return false;
+      }
+    });
+    return true;
   }
 
   DataEssential(): RowData {

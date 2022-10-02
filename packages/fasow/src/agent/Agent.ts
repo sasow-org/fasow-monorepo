@@ -1,3 +1,6 @@
+import RowData from "../data/RowData";
+import { IObservable } from "../interfaces";
+
 export enum AgentState {
   NOT_READ,
   READ,
@@ -13,6 +16,7 @@ export interface AgentConfig {
   followers?: Agent[];
   following?: Agent[];
   actions: any;
+  quantity: number;
   followersPercentage: number;
   followingPercentage: number;
   type: string;
@@ -20,7 +24,7 @@ export interface AgentConfig {
 
 const DEFAULT_STATE = AgentState.NOT_READ;
 
-export default abstract class Agent implements AgentConfig {
+export default abstract class Agent implements AgentConfig, IObservable {
   readonly id: number;
   name: string;
   state: AgentState = DEFAULT_STATE;
@@ -28,6 +32,7 @@ export default abstract class Agent implements AgentConfig {
   followers: Agent[] = [];
   following: Agent[] = [];
   actions: any;
+  quantity: number;
   followersPercentage: number;
   followingPercentage: number;
   type: string;
@@ -39,6 +44,7 @@ export default abstract class Agent implements AgentConfig {
     this.followersPercentage = agentConfig.followersPercentage;
     this.followingPercentage = agentConfig.followingPercentage;
     this.type = agentConfig.type;
+    this.quantity = agentConfig.quantity;
 
     if (agentConfig.state) {
       this.state = agentConfig.state;
@@ -103,16 +109,31 @@ export default abstract class Agent implements AgentConfig {
       // }
     }
   }
-}
 
-// /**
-//  * Used for updating a specific property of the class instance.
-//  * @param propertyName can be name, initialState, followersPercentage, etc.
-//  * @param value the new value of the property.
-//  */
-// updateConfigProperty<AgentConfigPropertyName extends keyof AgentConfig>(
-//   propertyName: AgentConfigPropertyName,
-//   value: AgentConfig[AgentConfigPropertyName]
-// ) {
-//   this[propertyName] = value;
-// }
+  getQuantityFollowersByNetwork(networkSize: number) {
+    return Number.parseInt(
+      `${(this.followersPercentage * networkSize) / 100}`,
+      10
+    );
+  }
+
+  getQuantityFollowingsByNetwork(networkSize: number) {
+    return Number.parseInt(
+      `${(this.followingPercentage * networkSize) / 100}`,
+      10
+    );
+  }
+
+  DataDetailed(): RowData {
+    const rd: RowData = new RowData();
+    rd.addRow(this.id, "agent_id");
+    rd.addRow(this.state, "agent_state");
+    rd.addRow(this.isSeed, "agent_is_seed");
+    rd.addRow(this.name, "agent_config_name");
+    return rd;
+  }
+
+  notifyData(): void {
+    console.log("TEXTO");
+  }
+}

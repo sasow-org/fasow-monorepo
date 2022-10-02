@@ -11,5 +11,7 @@ export default abstract class Action {
 
   abstract execute(agent: Agent): void;
 
-  // TODO: Add "getRandom"
+  public getRandom(): number {
+    return Math.random() * 100 + 1;
+  }
 }

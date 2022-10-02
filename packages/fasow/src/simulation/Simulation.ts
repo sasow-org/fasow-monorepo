@@ -1,7 +1,9 @@
 import { AgentConfig } from "../agent/Agent";
+import RowData from "../data/RowData";
 import Environment from "../environment/Environment";
+import { IDataDetailed, IDataEssential } from "../interfaces";
 
-interface SimulationConfig {
+export interface SimulationConfig {
   readonly id: number;
   networkSize: number;
   agentConfig: AgentConfig[];
@@ -11,7 +13,9 @@ interface SimulationConfig {
   seedSize: number;
 }
 
-export default abstract class Simulation implements SimulationConfig {
+export default abstract class Simulation
+  implements SimulationConfig, IDataEssential, IDataDetailed
+{
   id;
   networkSize;
   agentConfig;
@@ -31,6 +35,21 @@ export default abstract class Simulation implements SimulationConfig {
   }
 
   abstract run(): void;
+
+  DataDetailed(): RowData {
+    const rd: RowData = new RowData();
+    rd.addRow(this.id, "simulation_id");
+    return rd;
+  }
+
+  DataEssential(): RowData {
+    const rdSimulation: RowData = new RowData();
+    rdSimulation.addRow(this.id, "simulation_id");
+    rdSimulation.addRow(this.networkSize, "network_size");
+    rdSimulation.addRow(this.seedSize, "seed_size");
+    rdSimulation.addRow(this.periods, "periods");
+    return rdSimulation;
+  }
 
   initialize() {
     this.environment.initialize();
