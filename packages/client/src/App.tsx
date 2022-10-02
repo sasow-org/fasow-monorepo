@@ -1,5 +1,7 @@
 import { Grid } from "@mui/material";
 
+import AgentConfigurationBox from "./components/AgentConfigurationBox";
+import Console from "./components/Console";
 import ExperimentConfigurationBox from "./components/ExperimentConfigurationBox";
 import ExperimentControls from "./components/ExperimentControls";
 import HomeBox from "./components/HomeBox";
@@ -17,22 +19,22 @@ function App() {
               <ExperimentConfigurationBox />
             </HomeBox>
           </Grid>
-          <Grid item xs={4} sx={{ height: "60%" }}>
+          <Grid item xs={5} sx={{ height: "60%" }}>
             <HomeBox title="Agent configuration">
-              <span>Box!</span>
+              <AgentConfigurationBox />
             </HomeBox>
           </Grid>
-          <Grid item xs={4} sx={{ height: "60%" }}>
+          <Grid item xs={3} sx={{ height: "60%" }}>
             <HomeBox title="Console">
-              <span>Box!</span>
+              <Console />
             </HomeBox>
           </Grid>
-          <Grid item xs={8} sx={{ height: "40%" }}>
+          <Grid item xs={9} sx={{ height: "40%" }}>
             <HomeBox title="Output">
               <span>Box!</span>
             </HomeBox>
           </Grid>
-          <Grid item xs={4} sx={{ height: "40%" }}>
+          <Grid item xs={3} sx={{ height: "40%" }}>
             <HomeBox title="Experiment controls">
               <ExperimentControls />
             </HomeBox>
