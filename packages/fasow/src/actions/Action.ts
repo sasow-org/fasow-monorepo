@@ -1,12 +1,16 @@
+// eslint-disable-next-line import/no-cycle
 import Agent from "../agent/Agent";
+import ActionConfig from "./ActionConfig";
 
-export default abstract class Action {
+export default abstract class Action implements ActionConfig{
   name: string;
   probability: number;
+  indexMetaActionConfig: number;
 
-  constructor(name: string, probability: number) {
-    this.name = name;
-    this.probability = probability;
+  protected constructor(actionConfig: ActionConfig) {
+    this.name = actionConfig.name;
+    this.probability = actionConfig.probability;
+    this.indexMetaActionConfig = actionConfig.indexMetaActionConfig;
   }
 
   abstract execute(agent: Agent): void;
@@ -14,4 +18,6 @@ export default abstract class Action {
   public getRandom(): number {
     return Math.random() * 100 + 1;
   }
+
+
 }

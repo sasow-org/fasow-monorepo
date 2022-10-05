@@ -1,38 +1,29 @@
-import Agent, { AgentConfig } from "../agent/Agent";
+import Agent from "../agent/Agent";
 import RowData from "../data/RowData";
 import { IDataDetailed, IDataEssential, IObservable } from "../interfaces";
-
-interface EnvironmentConfig {
-  readonly id: number;
-  networkSize: number;
-  seedSize: number;
-  periods: number;
-  agentConfigs: AgentConfig[];
-  currentPeriod?: number;
-  initialized?: boolean;
-  agents?: Agent[];
-  seeds?: Agent[];
-}
+import {EnvironmentConfig} from "./EnvironmentConfig";
+import {AgentConfig} from "../agent/AgentConfig";
 
 export default abstract class Environment
   implements EnvironmentConfig, IObservable, IDataEssential, IDataDetailed
 {
-  readonly id;
-  networkSize;
-  seedSize;
-  periods;
-  agentConfigs;
-  currentPeriod = 0;
-  initialized = false;
-  agents = [];
-  seeds = [];
-
-  constructor(config: EnvironmentConfig) {
+  readonly id: number;
+  initialized: boolean;
+  currentPeriod: number;
+  periods: number;
+  seedSize: number;
+  networkSize: number;
+  seeds: Agent[];
+  agents: Agent[];
+  protected constructor(config: EnvironmentConfig) {
     this.id = config.id;
     this.networkSize = config.networkSize;
     this.seedSize = config.seedSize;
     this.periods = config.periods;
-    this.agentConfigs = config.agentConfigs;
+    this.initialized = false;
+    this.currentPeriod = -1;
+    this.agents = [];
+    this.seeds = [];
   }
 
   public abstract step(): void;
@@ -43,6 +34,7 @@ export default abstract class Environment
    * Initializes the current environment.
    */
   initialize(): void {
+    // todo : use AgentAPI to create agents.
     this.agentConfigs.forEach((agentConfig) => {
       this.createAgents(agentConfig);
     });
@@ -62,6 +54,7 @@ export default abstract class Environment
    * @param agentConfig the config that the agents will be based on
    */
   createAgents(agentConfig: AgentConfig): void {
+    // todo : use AgentAPI to create agents.
     // for (let i = 0; i < agentConfig.quantity; i++) {
     //   const agentReference = FactoryDynamicClass.getInstance().getAgent(agentConfig.agentType);
     //   const auxAgent = new agentReference(i, agentConfig);
@@ -79,6 +72,8 @@ export default abstract class Environment
    */
   addFollowers(): void {
     this.agents.map((agent: Agent) => {
+      // this.agentConfigs[agent.indexMetaAgentConfig];
+      // todo : maybe to do this you need to call the AgentAPI
       const total: number = agent.getQuantityFollowersByNetwork(
         this.networkSize
       );
@@ -101,7 +96,7 @@ export default abstract class Environment
       const total: number = agent.getQuantityFollowingsByNetwork(
         this.networkSize
       );
-      while (agent.following.length !== total) {
+      while (agent.followings.length !== total) {
         const max: number = this.agents.length;
         const randomIndex: number = Number.parseInt(
           `${Math.random() * (max - 1 + 1)}${0}`,
@@ -129,7 +124,7 @@ export default abstract class Environment
       if (
         agent.followers.length !==
           agent.getQuantityFollowersByNetwork(this.networkSize) &&
-        agent.following.length !==
+        agent.followings.length !==
           agent.getQuantityFollowingsByNetwork(this.networkSize)
       ) {
         return false;
@@ -154,4 +149,5 @@ export default abstract class Environment
   notifyData(): void {
     // DataHandler.getInstance().update();
   }
+
 }

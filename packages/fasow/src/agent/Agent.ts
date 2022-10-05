@@ -1,5 +1,7 @@
 import RowData from "../data/RowData";
 import { IObservable } from "../interfaces";
+import Action from "../actions/Action";
+import {AgentConfig} from "./AgentConfig";
 
 export enum AgentState {
   NOT_READ,
@@ -8,48 +10,32 @@ export enum AgentState {
   SHARED,
 }
 
-export interface AgentConfig {
-  readonly id: number;
-  name: string;
-  state?: AgentState;
-  isSeed: boolean;
-  followers?: Agent[];
-  following?: Agent[];
-  actions: any;
-  quantity: number;
-  followersPercentage: number;
-  followingPercentage: number;
-  type: string;
-}
-
 const DEFAULT_STATE = AgentState.NOT_READ;
 
 export default abstract class Agent implements AgentConfig, IObservable {
-  readonly id: number;
-  name: string;
-  state: AgentState = DEFAULT_STATE;
+  id: number;
+  state?: AgentState | undefined;
   isSeed: boolean;
-  followers: Agent[] = [];
-  following: Agent[] = [];
-  actions: any;
-  quantity: number;
-  followersPercentage: number;
-  followingPercentage: number;
-  type: string;
+  actions: Action[];
+  followers: Agent[];
+  followings: Agent[];
+  indexMetaAgentConfig : number;
 
-  constructor(agentConfig: AgentConfig) {
+  protected constructor(agentConfig: AgentConfig) {
     this.id = agentConfig.id;
-    this.name = agentConfig.name;
     this.isSeed = agentConfig.isSeed;
-    this.followersPercentage = agentConfig.followersPercentage;
-    this.followingPercentage = agentConfig.followingPercentage;
-    this.type = agentConfig.type;
-    this.quantity = agentConfig.quantity;
-
+    this.followers = [];
+    this.followings = [];
+    this.actions = []
+    this.indexMetaAgentConfig = agentConfig.indexMetaAgentConfig;
     if (agentConfig.state) {
       this.state = agentConfig.state;
+    }else {
+      this.state = DEFAULT_STATE;
     }
   }
+
+
 
   addFollower(agent: Agent) {
     // We need to make sure the agent id is not the same id of the current agent
@@ -68,13 +54,13 @@ export default abstract class Agent implements AgentConfig, IObservable {
     // We need to make sure the agent id is not the same id of the current agent
     if (this.id === agent.id) return;
 
-    const agentIndex = this.following.findIndex(({ id }) => id === agent.id);
+    const agentIndex = this.followings.findIndex(({ id }) => id === agent.id);
     if (agentIndex === -1) {
       return;
     }
 
     // add follower
-    this.following.push(agent);
+    this.followings.push(agent);
   }
 
   removeFollower(agentId: number) {
@@ -92,14 +78,15 @@ export default abstract class Agent implements AgentConfig, IObservable {
     // We need to make sure the agent id is not the same id of the current agent
     if (this.id === agentId) return;
 
-    const agentIndex = this.following.findIndex(({ id }) => id === agentId);
+    const agentIndex = this.followings.findIndex(({ id }) => id === agentId);
     if (agentIndex === -1) return;
 
     // remove follower
-    this.following.splice(agentIndex, 1);
+    this.followings.splice(agentIndex, 1);
   }
 
   receiveMessage(): void {
+    // todo : check this code
     if (this.state === AgentState.NOT_READ) {
       // const action : Action = this._actions.find((actionFind) => actionFind.name === 'read');
       // action.Execute(this);
@@ -109,6 +96,9 @@ export default abstract class Agent implements AgentConfig, IObservable {
       // }
     }
   }
+
+  /*
+
 
   getQuantityFollowersByNetwork(networkSize: number) {
     return Number.parseInt(
@@ -124,12 +114,13 @@ export default abstract class Agent implements AgentConfig, IObservable {
     );
   }
 
+   */
+
   DataDetailed(): RowData {
     const rd: RowData = new RowData();
     rd.addRow(this.id, "agent_id");
     rd.addRow(this.state, "agent_state");
     rd.addRow(this.isSeed, "agent_is_seed");
-    rd.addRow(this.name, "agent_config_name");
     return rd;
   }
 

@@ -13,7 +13,7 @@ export interface DataHandlerConfig {
 
 export class DataHandler implements IObserver {
   private static instance: DataHandler | null;
-
+  // todo : use Patron strategy and apply to DataHandler
   environment: Environment;
   simulation: Simulation;
   experiment: Experiment;
