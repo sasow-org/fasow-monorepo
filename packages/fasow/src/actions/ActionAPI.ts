@@ -1,5 +1,6 @@
 import {MetaActionConfig} from "./MetaActionConfig";
 import Action from "./Action";
+import {ActionRead} from "./custom-actions/ActionRead";
 
 /*
 Esta capa permite crear nuevas acciones que pueden ser ejecutadas por los agentes.
@@ -12,31 +13,33 @@ de igual forma que en las capas anteriores, esta capa utiliza la API de \co{Towe
 que permite una comunicación con las demás capas inferiores
  */
 
+
+
 export default class ActionAPI {
     // Todo: apply a factory
+    private static instance : ActionAPI;
     private actionConfigs : MetaActionConfig[]
-    private types : any[] ;
+    private actionList : Action[];
 
     constructor() {
         this.actionConfigs = []
-        this.types = []
+        this.actionList = [];
     }
 
-    addAction(actionConfig: MetaActionConfig) : void {
+    static getInstance() : ActionAPI {
+        if(this.instance === undefined){
+            this.instance = new ActionAPI();
+        }
+        return this.instance;
+    }
+
+    addAction(actionConfig: MetaActionConfig, type: Action) : void {
         this.actionConfigs.push(actionConfig);
-    }
-
-    removeAction(id : number ) : void {
-        this.actionConfigs = this.actionConfigs.filter( config => config.id !== id );
+        this.actionList.push(type)
     }
 
     createActionList() : Action[] {
         const actionList : Action[] = [];
-        this.actionConfigs.map(config => {
-            this.types[config.type]
-
-            return config;
-        })
         this.actionConfigs = []
         return actionList;
     }

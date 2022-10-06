@@ -1,6 +1,5 @@
 import {MetaAgentConfig} from "./MetaAgentConfig";
 import {MetaActionConfig} from "../actions/MetaActionConfig";
-import {AgentConfig} from "./Agent";
 
 /*
 Esta capa permite crear, agrupar y combinar tipos diferentes de agentes,
@@ -13,10 +12,19 @@ que pueden ser utilizados en los niveles inferiores de la arquitectura esto a tr
 de la API de metaprogramacion de \co{TowerHandler} que permite la comunicación.
  */
 export default class AgentAPI {
+    private static instance: AgentAPI;
     private agentConfigs : MetaAgentConfig[];
 
     constructor() {
         this.agentConfigs = [];
+
+    }
+
+    static getInstance() : AgentAPI {
+        if(this.instance === undefined ){
+            this.instance = new AgentAPI();
+        }
+        return this.instance;
     }
 
     // Create
@@ -34,11 +42,12 @@ export default class AgentAPI {
         }
     }
 
-    generateAgentConfigs() : AgentConfig[] {
+    generateAgentConfigs() : [] {
         // todo : per Meta agent config transform into a agentConfig
     }
 
-    generateAgentConfig(id: number) : AgentConfig {
+    getMetaAgentConfig(id: number) : MetaAgentConfig | undefined {
+        return this.agentConfigs[id];
         // for the id of the metaAgentConfig, return the respective AgentConfig
     }
 

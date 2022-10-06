@@ -85,6 +85,7 @@ export default abstract class Environment
         );
         agent.addFollower(this.agents[randomIndex]);
       }
+      return agent;
     });
   }
 
@@ -104,6 +105,7 @@ export default abstract class Environment
         );
         agent.addFollowing(this.agents[randomIndex]);
       }
+      return agent;
     });
   }
 
