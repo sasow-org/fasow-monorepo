@@ -1,6 +1,7 @@
 import {MetaActionConfig} from "./MetaActionConfig";
 import Action from "./Action";
 import {ActionRead} from "./custom-actions/ActionRead";
+import ActionCreator from "./factory/ActionCreator";
 
 /*
 Esta capa permite crear nuevas acciones que pueden ser ejecutadas por los agentes.
@@ -16,14 +17,18 @@ que permite una comunicación con las demás capas inferiores
 
 
 export default class ActionAPI {
-    // Todo: apply a factory
     private static instance : ActionAPI;
+    // Todo: apply a factory
+    private actionsFactories : ActionCreator[];
+
+    // todo: busca una forma de registrar las clases que puedes instanciar
     private actionConfigs : MetaActionConfig[]
     private actionList : Action[];
 
     constructor() {
         this.actionConfigs = []
         this.actionList = [];
+        this.actionsFactories = [];
     }
 
     static getInstance() : ActionAPI {

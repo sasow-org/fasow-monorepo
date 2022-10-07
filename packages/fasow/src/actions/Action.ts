@@ -7,7 +7,7 @@ export default abstract class Action implements ActionConfig{
   probability: number;
   indexMetaActionConfig: number;
 
-  protected constructor(actionConfig: ActionConfig) {
+  constructor(actionConfig: ActionConfig) {
     this.name = actionConfig.name;
     this.probability = actionConfig.probability;
     this.indexMetaActionConfig = actionConfig.indexMetaActionConfig;
