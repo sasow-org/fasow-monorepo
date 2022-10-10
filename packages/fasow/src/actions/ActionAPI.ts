@@ -71,4 +71,10 @@ export default class ActionAPI {
     });
     return auxList;
   }
+
+  getMetaConfigs(): MetaActionConfig[] {
+    const list: MetaActionConfig[] = this.actionConfigs;
+    this.actionConfigs = [];
+    return list;
+  }
 }
