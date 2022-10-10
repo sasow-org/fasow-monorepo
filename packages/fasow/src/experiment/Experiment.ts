@@ -1,23 +1,22 @@
 // eslint-disable-next-line import/no-cycle
-import { DataHandler} from "../DataHandler";
+import { DataHandler } from "../DataHandler";
 import MatrixData from "../data/MatrixData";
 import RowData from "../data/RowData";
 import { IDataEssential, IObservable } from "../interfaces";
-import ExperimentConfig from "./ExperimentConfig";
 import Simulation from "../simulation/Simulation";
-import {SimulationConfig} from "../simulation/SimulationConfig";
-
+import { SimulationConfig } from "../simulation/SimulationConfig";
+import ExperimentConfig from "./ExperimentConfig";
 
 export default abstract class Experiment
-    implements ExperimentConfig, IObservable, IDataEssential {
-
+  implements ExperimentConfig, IObservable, IDataEssential
+{
   name: string;
   description: string;
   currentRepetition: number;
   simulation: Simulation;
   maxRepetitions: number;
 
-  protected constructor(config: ExperimentConfig) {
+  constructor(config: ExperimentConfig) {
     this.name = config.name;
     this.description = config.description;
     this.currentRepetition = -1;
@@ -44,9 +43,6 @@ export default abstract class Experiment
     DataHandler.getInstance().experiment = this;
   }
 
-
-
-
   run() {
     while (this.currentRepetition < this.maxRepetitions) {
       this.initialize(this.currentRepetition);
@@ -59,7 +55,7 @@ export default abstract class Experiment
   }
 
   initialize(id: number) {
-    this.simulation.initialize(id);// todo : maybe this should be deleted
+    this.simulation.initialize(id); // todo : maybe this should be deleted
     // DataHandler.getInstance().simulation = this.simulation;
     // DataHandler.getInstance().environment = this.simulation.environment;
   }

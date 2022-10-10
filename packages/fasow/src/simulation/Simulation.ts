@@ -1,6 +1,6 @@
 import RowData from "../data/RowData";
 import { IDataDetailed, IDataEssential } from "../interfaces";
-import {SimulationConfig} from "./SimulationConfig";
+import { SimulationConfig } from "./SimulationConfig";
 
 export default abstract class Simulation
   implements SimulationConfig, IDataEssential, IDataDetailed
@@ -8,7 +8,7 @@ export default abstract class Simulation
   id;
   environment;
 
-  protected constructor(config: SimulationConfig) {
+  constructor(config: SimulationConfig) {
     this.id = config.id;
     this.environment = config.environment;
   }
@@ -35,7 +35,7 @@ export default abstract class Simulation
     return rdSimulation;
   }
 
-  initialize(id : number) {
+  initialize(id: number) {
     this.id = id;
     this.environment.initialize();
   }
