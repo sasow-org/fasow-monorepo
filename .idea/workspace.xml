@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e6b1dca-5b7c-4f00-82ac-2b1e9e7c5c16" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/packages/fasow/src/agent/factory/AgentCreator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/fasow/src/scenarios/facebook/EnvironmentFacebook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/fasow/src/scenarios/facebook/FacebookAgent.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/fasow/src/scenarios/facebook/SimulationFacebook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/fasow/src/scenarios/twitter/EnvironmentTwitter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/fasow/src/scenarios/twitter/SimulationTwitter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/fasow/src/scenarios/twitter/TwitterAgent.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/Action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/actions/Action.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/ActionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/actions/ActionAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/ActionConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/actions/ActionConfig.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/MetaActionConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/actions/MetaActionConfig.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/factory/ActionCreator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/actions/factory/ActionCreator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/custom-actions/ActionRead.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/actions/custom-actions/ActionRead.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/custom-actions/ActionShare.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/actions/custom-actions/ActionShare.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/factory/creators/ActionReadCreator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/actions/factory/creators/ActionReadCreator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/factory/creators/ActionShareCreator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/actions/factory/creators/ActionShareCreator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/agent/Agent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/agent/Agent.ts" afterDir="false" />
@@ -48,24 +41,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "js.linters.configure.manually.selectedeslint": "true",
-    "last_opened_file_path": "C:/Users/dieku/Documents/GitHub/fasow-monorepo/packages/fasow/.eslintrc.js",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.selected.package.eslint": "C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\eslint",
-    "node.js.selected.package.standard": "",
-    "nodejs_package_manager_path": "yarn",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dieku/Documents/GitHub/fasow-monorepo/packages/fasow/.eslintrc.js&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\eslint&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />

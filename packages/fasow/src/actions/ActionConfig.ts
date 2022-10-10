@@ -1,5 +1,5 @@
-
 export default interface ActionConfig {
-    name: string;
-    probability: number;
+  idMetaActionConfig: number;
+  name: string;
+  probability: number;
 }

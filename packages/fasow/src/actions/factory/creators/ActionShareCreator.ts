@@ -1,12 +1,14 @@
-import ActionCreator from "../ActionCreator";
 import Action from "../../Action";
-import {ActionShare} from "../../custom-actions/ActionShare";
-import ActionConfig from "../../ActionConfig";
+import MetaActionConfig from "../../MetaActionConfig";
+import ActionShare from "../../custom-actions/ActionShare";
+import ActionCreator from "../ActionCreator";
 
 export default class ActionShareCreator extends ActionCreator {
-
-    createAction(actionData: ActionConfig): Action {
-        return new ActionShare(actionData);
-    }
-
+  createAction(actionData: MetaActionConfig): Action {
+    return new ActionShare({
+      idMetaActionConfig: actionData.id,
+      name: actionData.name,
+      probability: actionData.probability,
+    });
+  }
 }
