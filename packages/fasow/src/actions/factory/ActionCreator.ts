@@ -1,10 +1,6 @@
 import Action from "../Action";
-import ActionConfig from "../ActionConfig";
+import MetaActionConfig from "../MetaActionConfig";
 
 export default abstract class ActionCreator{
-    public abstract factoryMethod(actionData: ActionConfig) : Action;
-
-    someOperation() : void {
-        console.log("Do some operation");
-    }
+    public abstract createAction(actionData: MetaActionConfig) : Action;
 }

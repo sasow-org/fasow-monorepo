@@ -5,7 +5,7 @@ import ActionConfig from "../../ActionConfig";
 
 export default class ActionShareCreator extends ActionCreator {
 
-    factoryMethod(actionData: ActionConfig): Action {
+    createAction(actionData: ActionConfig): Action {
         return new ActionShare(actionData);
     }
 

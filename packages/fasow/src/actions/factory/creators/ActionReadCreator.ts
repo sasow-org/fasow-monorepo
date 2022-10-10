@@ -1,12 +1,10 @@
 import ActionCreator from "../ActionCreator";
 import {ActionRead} from "../../custom-actions/ActionRead";
 import Action from "../../Action";
-import ActionConfig from "../../ActionConfig";
+import {MetaActionConfig} from "../../MetaActionConfig";
 
 export default class ActionReadCreator extends ActionCreator {
-
-    factoryMethod(actionData: ActionConfig): Action {
+    createAction(actionData: MetaActionConfig): Action {
         return new ActionRead(actionData);
     }
-
 }

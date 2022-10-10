@@ -1,5 +1,5 @@
 
-export interface MetaActionConfig {
+export default interface MetaActionConfig {
     readonly id : number;
     name : string;
     probability : number;

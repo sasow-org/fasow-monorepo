@@ -1,6 +1,5 @@
-import {MetaActionConfig} from "./MetaActionConfig";
+import MetaActionConfig from "./MetaActionConfig";
 import Action from "./Action";
-import {ActionRead} from "./custom-actions/ActionRead";
 import ActionCreator from "./factory/ActionCreator";
 
 /*
@@ -14,21 +13,16 @@ de igual forma que en las capas anteriores, esta capa utiliza la API de \co{Towe
 que permite una comunicación con las demás capas inferiores
  */
 
-
-
 export default class ActionAPI {
     private static instance : ActionAPI;
-    // Todo: apply a factory
-    private actionsFactories : ActionCreator[];
 
     // todo: busca una forma de registrar las clases que puedes instanciar
-    private actionConfigs : MetaActionConfig[]
-    private actionList : Action[];
+    private actionMaps : Map<string, ActionCreator>;
+    private actionConfigs : Map<string, MetaActionConfig>;
 
     constructor() {
-        this.actionConfigs = []
-        this.actionList = [];
-        this.actionsFactories = [];
+        this.actionMaps = new Map<string, ActionCreator>()
+        this.actionConfigs = new Map<string, MetaActionConfig>()
     }
 
     static getInstance() : ActionAPI {
@@ -38,15 +32,43 @@ export default class ActionAPI {
         return this.instance;
     }
 
-    addAction(actionConfig: MetaActionConfig, type: Action) : void {
-        this.actionConfigs.push(actionConfig);
-        this.actionList.push(type)
+    registerActionFactory(newFactory : ActionCreator, type : string ){
+        this.actionMaps.set(type, newFactory);
     }
 
-    createActionList() : Action[] {
-        const actionList : Action[] = [];
-        this.actionConfigs = []
-        return actionList;
+    registerMetaActionConfig(actionConfig: MetaActionConfig){
+        this.actionConfigs.set(actionConfig.type, actionConfig);
     }
+
+
+    // todo: to solve the eslint disable, thor an object error.
+    generateActionList() : Action[] {
+        const auxList : Action[] = [];
+        this.actionConfigs.forEach((actionConfig, type) => {
+            const action = this.actionMaps.get(type)?.createAction(actionConfig);
+            if(action) {
+                auxList.push(action);
+            }else{
+                throw new Error (`Action Type, ${ type } not exist in ActionAPI`);
+            }
+        })
+        return auxList;
+    }
+
+    generateActions(metaConfigs: MetaActionConfig[]) : Action[] {
+        const auxList : Action[] = [];
+        metaConfigs.forEach(config => {
+            const action = this.actionMaps.get(config.type)?.createAction(config);
+            if(action){
+                auxList.push(action);
+            }else{
+                // eslint-disable-next-line @typescript-eslint/no-throw-literal
+                throw new Error (`Action Type, ${ config.type } not exist in ActionAPI`);
+            }
+        })
+        return auxList;
+    }
+
+
 
 }
