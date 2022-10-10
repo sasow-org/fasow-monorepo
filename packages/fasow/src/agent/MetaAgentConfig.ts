@@ -1,7 +1,7 @@
-import {MetaActionConfig} from "../actions/MetaActionConfig";
+import MetaActionConfig from "../actions/MetaActionConfig";
 import {AgentState} from "./Agent";
 
-export interface MetaAgentConfig {
+export default interface  MetaAgentConfig {
     // Metadata
     readonly id: number;
     name : string;

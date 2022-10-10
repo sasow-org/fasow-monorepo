@@ -1,7 +1,7 @@
 import Action from "../actions/Action";
 import Agent, {AgentState} from "./Agent";
 
-export interface AgentConfig {
+export default interface AgentConfig {
     readonly id : number;
     state? : AgentState;
     isSeed : boolean;

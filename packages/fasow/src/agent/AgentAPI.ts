@@ -1,5 +1,6 @@
-import {MetaAgentConfig} from "./MetaAgentConfig";
-import {MetaActionConfig} from "../actions/MetaActionConfig";
+import Agent from "./Agent";
+import MetaAgentConfig from "./MetaAgentConfig";
+import AgentCreator from "./factory/AgentCreator";
 
 /*
 Esta capa permite crear, agrupar y combinar tipos diferentes de agentes,
@@ -12,54 +13,70 @@ que pueden ser utilizados en los niveles inferiores de la arquitectura esto a tr
 de la API de metaprogramacion de \co{TowerHandler} que permite la comunicación.
  */
 export default class AgentAPI {
-    private static instance: AgentAPI;
-    private agentConfigs : MetaAgentConfig[];
+  private static instance: AgentAPI;
+  private agentsFactories: Map<string, AgentCreator>;
+  private agentConfigs: MetaAgentConfig[];
 
-    constructor() {
-        this.agentConfigs = [];
+  constructor() {
+    this.agentsFactories = new Map<string, AgentCreator>();
+    this.agentConfigs = [];
+  }
 
+  static getInstance(): AgentAPI {
+    if (this.instance === undefined) {
+      this.instance = new AgentAPI();
     }
+    return this.instance;
+  }
 
-    static getInstance() : AgentAPI {
-        if(this.instance === undefined ){
-            this.instance = new AgentAPI();
+  registerAgentFactory(newFactory: AgentCreator, type: string) {
+    this.agentsFactories.set(type, newFactory);
+  }
+
+  registerMetaAgentConfig(agentConfig: MetaAgentConfig) {
+    this.agentConfigs.push(agentConfig);
+  }
+
+  generateAgentList(): Agent[] {
+    const auxList: Agent[] = [];
+    this.agentConfigs.forEach((config) => {
+      for (let i = 0; i < config.quantity; i += 1) {
+        const agent = this.agentsFactories
+          .get(config.type)
+          ?.createAgent(config);
+        if (agent) {
+          auxList.push(agent);
+        } else {
+          throw new Error(`Agent Type ${config.type} not exist in AgentAPI`);
         }
-        return this.instance;
-    }
+      }
+    });
+    return auxList;
+  }
 
-    // Create
-    generateEmptyConfig() : MetaAgentConfig {
-
-    }
-
-    // todo: a method to set the type of agent to create with an specific config
-    // todo: a method to order the actions config? maybe that has to been in ActionAPI
-
-    // relaciona una configuracion de agente con sus respectivas configuraciones
-    assignActionToConfig(id : number, actions : MetaActionConfig[]) : void {
-        if(this.agentConfigs[id]){
-            this.agentConfigs[id].actionsConfigs = actions;
+  generateAgentsByConfigs(metaConfigs: MetaAgentConfig[]): Agent[] {
+    const auxList: Agent[] = [];
+    metaConfigs.forEach((config) => {
+      for (let i = 0; i < config.quantity; i += 1) {
+        const agent = this.agentsFactories
+          .get(config.type)
+          ?.createAgent(config);
+        if (agent) {
+          auxList.push(agent);
+        } else {
+          throw new Error(`Agent Type ${config.type} not exist in AgentAPI`);
         }
-    }
+      }
+    });
+    return auxList;
+  }
 
-    generateAgentConfigs() : [] {
-        // todo : per Meta agent config transform into a agentConfig
-    }
+  getMetaConfigById(id: number) {
+    return this.agentConfigs.filter((config) => config.id === id)[0];
+  }
 
-    getMetaAgentConfig(id: number) : MetaAgentConfig | undefined {
-        return this.agentConfigs[id];
-        // for the id of the metaAgentConfig, return the respective AgentConfig
-    }
-
-    addAgentConfig(metaAgentConfig: MetaAgentConfig) : void {
-        this.agentConfigs.push(metaAgentConfig);
-    }
-
-    removeAgentConfig(id : number) : void {
-        this.agentConfigs = this.agentConfigs.filter(config => config.id !== id);
-    }
-
-    // todo: doActions() maybe this doesn't have to be here
-
-
+  // todo: a method to set the type of agent to create with an specific config
+  // todo: a method to order the actions config? maybe that has to been in ActionAPI
+  // todo: los agentes deben tener el indice que haga referencia a su metaconfiguracion ?
+  // todo: doActions() maybe this doesn't have to be here
 }
