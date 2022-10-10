@@ -8,9 +8,6 @@ export default class MatrixData {
   columns: [string[]];
   head: string[];
 
-  // Todo hay un problema porque tendremos repetidas las cabeceras por cada row data
-  // todo creo que javascript/typescript soluciona ese problema je.
-
   constructor() {
     this.columns = [[]];
     this.head = [];
