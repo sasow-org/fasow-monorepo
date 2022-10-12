@@ -22,6 +22,9 @@ export default function Console() {
 
   return (
     <Box sx={{ display: "flex", flex: 1, flexDirection: "column" }}>
+      <Typography variant="subtitle2" paddingBottom={2} color="GrayText">
+        This console will show the logs when the experiment is running.
+      </Typography>
       {logs.length ? (
         <>
           <Box sx={{ display: "flex", flex: 1 }}>

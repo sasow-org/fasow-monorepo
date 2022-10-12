@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Add } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Box, Button, Switch } from "@mui/material";
+import { Box, Button, Switch, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import NewAgentModal from "../NewAgentModal";
@@ -114,10 +114,14 @@ export default function AgentConfigurationBox() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: "column",
           flex: 1,
           marginBottom: 2,
         }}
       >
+        <Typography variant="subtitle2" paddingBottom={2} color="GrayText">
+          Set the agents for the current experiment.
+        </Typography>
         <DataGrid
           rows={rows}
           columns={columns}
