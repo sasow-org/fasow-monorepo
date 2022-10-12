@@ -21,10 +21,12 @@ export default function HomeBox({ children, title }: IProps) {
   return (
     <Card sx={sx}>
       <div className="home-box-content">
-        <Typography variant="h6" gutterBottom>
-          {title}
-        </Typography>
-        {children}
+        <div className="home-box-title-container">
+          <Typography variant="h6" gutterBottom>
+            {title}
+          </Typography>
+        </div>
+        <div className="home-box-inner-container">{children}</div>
       </div>
     </Card>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Box, Typography } from "@mui/material";
+import { Add } from "@mui/icons-material";
+import { Box, Button, Typography } from "@mui/material";
 import { Console as ConsoleFeed, Hook, Unhook } from "console-feed";
 import { Message as ComponentMessage } from "console-feed/lib/definitions/Component";
 import { HookedConsole, Message } from "console-feed/lib/definitions/Console";
@@ -20,9 +21,17 @@ export default function Console() {
   }, []);
 
   return (
-    <Box>
+    <Box sx={{ display: "flex", flex: 1, flexDirection: "column" }}>
       {logs.length ? (
-        <ConsoleFeed logs={logs as ComponentMessage[]} />
+        <>
+          <Box sx={{ display: "flex", flex: 1 }}>
+            <ConsoleFeed logs={logs as ComponentMessage[]} />
+          </Box>
+          <Button variant="outlined" onClick={() => setLogs([])}>
+            <Add />
+            Clear logs
+          </Button>
+        </>
       ) : (
         <Box
           sx={{
@@ -31,7 +40,6 @@ export default function Console() {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            paddingTop: "40%",
           }}
         >
           <Typography variant="body1">No logs</Typography>

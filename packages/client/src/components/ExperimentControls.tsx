@@ -32,8 +32,7 @@ export default function ExperimentControls() {
         variant="extended"
         sx={{ position: "absolute", bottom: 32, right: 32 }}
       >
-        <PlayArrow />
-        Start experiment
+        <PlayArrow /> Start experiment
       </Fab>
     </Box>
   );

@@ -1,8 +1,11 @@
 import { useState } from "react";
 
+import { Add } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Button, Switch } from "@mui/material";
+import { Box, Button, Switch } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+
+import NewAgentModal from "../NewAgentModal";
 
 // import { useExperimentConfigContext } from "../../context/ExperimentConfigProvider";
 // import ModalEditAgentConfig from "../Modals/ModalEditAgentConfig";
@@ -12,6 +15,7 @@ export default function AgentConfigurationBox() {
   // const [rows, setRows] = useState(experimentConfig.agentsConfigs);
 
   const [rows] = useState([]);
+  const [newAgentModalVisible, setNewAgentModalVisible] = useState(false);
 
   // handle the seed agent mode with from switch
   // const handleSeedAgent = (
@@ -106,13 +110,31 @@ export default function AgentConfigurationBox() {
   // }
 
   return (
-    <DataGrid
-      rows={rows}
-      columns={columns}
-      autoHeight
-      pageSize={5}
-      rowsPerPageOptions={[5]}
-      experimentalFeatures={{ newEditingApi: true }}
-    />
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flex: 1,
+          marginBottom: 2,
+        }}
+      >
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          autoHeight
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+      </Box>
+      <Button variant="contained" onClick={() => setNewAgentModalVisible(true)}>
+        <Add />
+        Add configuration
+      </Button>
+      <NewAgentModal
+        visible={newAgentModalVisible}
+        hide={() => setNewAgentModalVisible(false)}
+      />
+    </>
   );
 }
