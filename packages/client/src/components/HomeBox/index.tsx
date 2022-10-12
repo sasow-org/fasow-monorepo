@@ -14,7 +14,6 @@ const sx: SxProps = {
   height: "100%",
   backgroundColor: "white",
   borderRadius: 1,
-  overflowY: "scroll",
 };
 
 export default function HomeBox({ children, title }: IProps) {

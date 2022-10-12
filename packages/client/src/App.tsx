@@ -2,6 +2,7 @@ import { Grid, ThemeProvider, createTheme } from "@mui/material";
 
 import AgentConfigurationBox from "./components/AgentConfigurationBox";
 import Console from "./components/Console";
+import DataHandlerOutputBox from "./components/DataHandlerOutputBox";
 import ExperimentConfigurationBox from "./components/ExperimentConfigurationBox";
 import ExperimentControls from "./components/ExperimentControls";
 import HomeBox from "./components/HomeBox";
@@ -48,8 +49,8 @@ function App() {
               </HomeBox>
             </Grid>
             <Grid item xs={9} sx={{ height: "40%" }}>
-              <HomeBox title="Data hanlder output">
-                <span>Box!</span>
+              <HomeBox title="Data handler output">
+                <DataHandlerOutputBox />
               </HomeBox>
             </Grid>
             <Grid item xs={3} sx={{ height: "40%" }}>
