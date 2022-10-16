@@ -11,8 +11,7 @@ export interface DataHandlerConfig {
   hasDetailedData: boolean;
 }
 
-export class DataHandler implements IObserver {
-  private static instance: DataHandler | null;
+class IDataHandler implements IObserver {
   // todo : use Patron strategy and apply to DataHandler
   environment: Environment;
   simulation: Simulation;
@@ -57,7 +56,7 @@ export class DataHandler implements IObserver {
     const detailedDataRef = this.detailedData;
 
     // For each agent, add essential data
-    this.environment.agents.map((agent: Agent) => {
+    this.environment.agents.forEach((agent: Agent) => {
       const rd: RowData = new RowData();
 
       // Add rows
@@ -107,19 +106,11 @@ export class DataHandler implements IObserver {
   private writeFileData(data: MatrixData, mode: string): void {
     // TODO: Actually export data
   }
-
-  public static getInstance(): DataHandler {
-    if (!DataHandler.instance) {
-      // Instance data with default config
-      DataHandler.instance = new DataHandler({
-        hasDetailedData: false,
-        hasEssentialData: true,
-      });
-    }
-    return DataHandler.instance;
-  }
-
-  public static clearInstance(): void {
-    this.instance = null;
-  }
 }
+
+const DataHandler: IDataHandler = new IDataHandler({
+  hasDetailedData: false,
+  hasEssentialData: true,
+});
+
+export default DataHandler;

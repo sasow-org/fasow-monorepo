@@ -13,7 +13,7 @@ import Environment from "../environment/Environment";
 import IEnvironmentCreator from "../environment/IEnvironmentCreator";
 import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
 
-export default class ScenarioAPI {
+class IScenarioAPI {
   private environmentFactories: Map<string, IEnvironmentCreator>;
 
   constructor() {
@@ -36,3 +36,6 @@ export default class ScenarioAPI {
     );
   }
 }
+
+const ScenarioAPI: IScenarioAPI = new IScenarioAPI();
+export default ScenarioAPI;
