@@ -1,6 +1,6 @@
 import Action from "./Action";
+import IActionCreator from "./IActionCreator";
 import MetaActionConfig from "./MetaActionConfig";
-import ActionCreator from "./factory/ActionCreator";
 
 /*
 Esta capa permite crear nuevas acciones que pueden ser ejecutadas por los agentes.
@@ -16,12 +16,11 @@ que permite una comunicación con las demás capas inferiores
 export default class ActionAPI {
   private static instance: ActionAPI;
 
-  // todo: busca una forma de registrar las clases que puedes instanciar
-  private actionFactories: Map<string, ActionCreator>;
+  private actionFactories: Map<string, IActionCreator>;
   private actionConfigs: MetaActionConfig[];
 
   constructor() {
-    this.actionFactories = new Map<string, ActionCreator>();
+    this.actionFactories = new Map<string, IActionCreator>();
     this.actionConfigs = [];
   }
 
@@ -32,8 +31,8 @@ export default class ActionAPI {
     return this.instance;
   }
 
-  registerActionFactory(newFactory: ActionCreator, type: string) {
-    this.actionFactories.set(type, newFactory);
+  registerNewAction(newAction: IActionCreator, type: string) {
+    this.actionFactories.set(type, newAction);
   }
 
   registerMetaActionConfig(actionConfig: MetaActionConfig) {
