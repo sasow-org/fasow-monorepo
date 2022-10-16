@@ -1,8 +1,6 @@
-// eslint-disable-next-line import/no-cycle
-import Agent from "../agent/Agent";
+import type Agent from "../agent/Agent";
 import ActionConfig from "./ActionConfig";
-// eslint-disable-next-line import/no-cycle
-import IActionCreator from "./IActionCreator";
+import type IActionCreator from "./IActionCreator";
 import MetaActionConfig from "./MetaActionConfig";
 
 export default abstract class Action implements ActionConfig, IActionCreator {
@@ -10,10 +8,10 @@ export default abstract class Action implements ActionConfig, IActionCreator {
   probability: number;
   idMetaActionConfig: number;
 
-  constructor(actionConfig: ActionConfig) {
+  constructor(actionConfig: MetaActionConfig) {
     this.name = actionConfig.name;
     this.probability = actionConfig.probability;
-    this.idMetaActionConfig = actionConfig.idMetaActionConfig;
+    this.idMetaActionConfig = actionConfig.id;
   }
 
   abstract execute(agent: Agent): void;

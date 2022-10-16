@@ -1,6 +1,5 @@
 import MetaActionConfig from "../actions/MetaActionConfig";
-// eslint-disable-next-line import/no-cycle
-import { AgentState } from "./Agent";
+import type { AgentState } from "./Agent";
 
 export default interface MetaAgentConfig {
   // Metadata

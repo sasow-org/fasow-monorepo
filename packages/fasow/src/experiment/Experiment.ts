@@ -1,15 +1,9 @@
-// eslint-disable-next-line import/no-cycle
-import { DataHandler } from "../DataHandler";
-import MatrixData from "../data/MatrixData";
+import DataHandler from "../IDataHandler";
 import RowData from "../data/RowData";
-import { IDataEssential, IObservable } from "../interfaces";
 import Simulation from "../simulation/Simulation";
-import { SimulationConfig } from "../simulation/SimulationConfig";
 import ExperimentConfig from "./ExperimentConfig";
 
-export default abstract class Experiment
-  implements ExperimentConfig, IObservable, IDataEssential
-{
+export default abstract class Experiment implements ExperimentConfig {
   name: string;
   description: string;
   currentRepetition: number;
@@ -21,26 +15,11 @@ export default abstract class Experiment
     this.description = config.description;
     this.currentRepetition = -1;
     this.maxRepetitions = config.maxRepetitions;
+    this.simulation = config.simulation;
     // this.currentRepetition = config.currentRepetition;
     // this.maxRepetitions = config.maxRepetitions;
     // this.type = config.type;
     // this.dataHandlerConfig = config.dataHandlerConfig;
-    this.simulation = config.simulation;
-    // this.agentConfigs = []
-    /*
-    todo: the conditionals here should be moved because the datahandler
-     configuration must be set in another way, perhaps with the ExperimentAPI
-     */
-    if (config.dataHandlerConfig.hasDetailedData) {
-      DataHandler.getInstance().detailedData = new MatrixData();
-    }
-
-    if (config.dataHandlerConfig.hasEssentialData) {
-      DataHandler.getInstance().essentialData = new MatrixData();
-    }
-
-    // assign Experiment instance to DataHandler reference
-    DataHandler.getInstance().experiment = this;
   }
 
   run() {
@@ -54,15 +33,12 @@ export default abstract class Experiment
     }
   }
 
-  initialize(id: number) {
+  private initialize(id: number) {
+    DataHandler.experiment = this;
     this.simulation.initialize(id); // todo : maybe this should be deleted
+    DataHandler.simulation = this.simulation;
     // DataHandler.getInstance().simulation = this.simulation;
     // DataHandler.getInstance().environment = this.simulation.environment;
-  }
-
-  // todo : this not to be necesary becouse the ScenarioAPI and ExperimentAPI configure this
-  public configure(doConfig: Function): SimulationConfig {
-    return doConfig();
   }
 
   DataEssential(): RowData {
@@ -72,9 +48,5 @@ export default abstract class Experiment
     rd.addRow(this.maxRepetitions, "experiment_max_repetitions");
     rd.addRow(this.currentRepetition, "experiment_repetition_number");
     return rd;
-  }
-
-  notifyData(): void {
-    // do nothin ? todo: --> XD
   }
 }

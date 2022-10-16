@@ -12,8 +12,7 @@ al modelo y si la situación lo requiere. Podemos crear nuevos agentes especiali
 que pueden ser utilizados en los niveles inferiores de la arquitectura esto a través
 de la API de metaprogramacion de \co{TowerHandler} que permite la comunicación.
  */
-export default class AgentAPI {
-  private static instance: AgentAPI;
+class IAgentAPI {
   private agentsFactories: Map<string, IAgentCreator>;
   private agentConfigs: MetaAgentConfig[];
 
@@ -22,18 +21,11 @@ export default class AgentAPI {
     this.agentConfigs = [];
   }
 
-  static getInstance(): AgentAPI {
-    if (this.instance === undefined) {
-      this.instance = new AgentAPI();
-    }
-    return this.instance;
-  }
-
-  registerAgentFactory(newFactory: IAgentCreator, type: string) {
+  registerNewAgent(newFactory: IAgentCreator, type: string) {
     this.agentsFactories.set(type, newFactory);
   }
 
-  registerMetaAgentConfig(agentConfig: MetaAgentConfig) {
+  registerNewMetaAgentConfig(agentConfig: MetaAgentConfig) {
     this.agentConfigs.push(agentConfig);
   }
 
@@ -43,7 +35,7 @@ export default class AgentAPI {
       for (let i = 0; i < config.quantity; i += 1) {
         const agent = this.agentsFactories
           .get(config.type)
-          ?.createAgent(config);
+          ?.createAgent(auxList.length, config);
         if (agent) {
           auxList.push(agent);
         } else {
@@ -60,7 +52,7 @@ export default class AgentAPI {
       for (let i = 0; i < config.quantity; i += 1) {
         const agent = this.agentsFactories
           .get(config.type)
-          ?.createAgent(config);
+          ?.createAgent(auxList.length, config);
         if (agent) {
           auxList.push(agent);
         } else {
@@ -80,3 +72,6 @@ export default class AgentAPI {
   // todo: los agentes deben tener el indice que haga referencia a su metaconfiguracion ?
   // todo: doActions() maybe this doesn't have to be here
 }
+
+const AgentAPI: IAgentAPI = new IAgentAPI();
+export default AgentAPI;

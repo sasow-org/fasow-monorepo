@@ -13,10 +13,6 @@ export default class ActionRead extends Action {
 
   // eslint-disable-next-line class-methods-use-this
   createAction(actionData: MetaActionConfig): Action {
-    return new ActionRead({
-      probability: actionData.probability,
-      idMetaActionConfig: actionData.id,
-      name: actionData.name,
-    });
+    return new ActionRead(actionData);
   }
 }

@@ -1,10 +1,9 @@
 import Agent from "../agent/Agent";
-import AgentAPI from "../agent/AgentAPI";
+import AgentAPI from "../agent/IAgentAPI";
 import RowData from "../data/RowData";
 import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
 import { EnvironmentConfig } from "./EnvironmentConfig";
-// eslint-disable-next-line import/no-cycle
-import IEnvironmentCreator from "./IEnvironmentCreator";
+import type IEnvironmentCreator from "./IEnvironmentCreator";
 
 export default abstract class Environment
   implements EnvironmentConfig, IEnvironmentCreator
@@ -30,7 +29,6 @@ export default abstract class Environment
 
   public abstract step(): void;
   public abstract run(): void;
-
   public abstract getCountStates(): RowData;
 
   /**
@@ -54,7 +52,7 @@ export default abstract class Environment
    * @param agentConfig the config that the agents will be based on
    */
   createAgents(): void {
-    this.agents = AgentAPI.getInstance().generateAgentList();
+    this.agents = AgentAPI.generateAgentList();
   }
 
   /**
@@ -65,7 +63,7 @@ export default abstract class Environment
       // this.agentConfigs[agent.indexMetaAgentConfig];
       // todo : maybe to do this you need to call the AgentAPI
       const total: number = Math.round(
-        (AgentAPI.getInstance().getMetaConfigById(agent.indexMetaAgentConfig)
+        (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
           .followersPercentage *
           this.networkSize) /
           100
@@ -89,7 +87,7 @@ export default abstract class Environment
   addFollowings(): void {
     this.agents.map((agent: Agent) => {
       const total: number = Math.round(
-        (AgentAPI.getInstance().getMetaConfigById(agent.indexMetaAgentConfig)
+        (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
           .followingsPercentage *
           this.networkSize) /
           100
@@ -123,17 +121,15 @@ export default abstract class Environment
       if (
         agent.followers.length !==
           Math.round(
-            (AgentAPI.getInstance().getMetaConfigById(
-              agent.indexMetaAgentConfig
-            ).followersPercentage *
+            (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+              .followersPercentage *
               this.networkSize) /
               100
           ) &&
         agent.followings.length !==
           Math.round(
-            (AgentAPI.getInstance().getMetaConfigById(
-              agent.indexMetaAgentConfig
-            ).followingsPercentage *
+            (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+              .followingsPercentage *
               this.networkSize) /
               100
           )

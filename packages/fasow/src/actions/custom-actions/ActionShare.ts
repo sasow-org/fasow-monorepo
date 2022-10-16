@@ -13,10 +13,6 @@ export default class ActionShare extends Action {
 
   // eslint-disable-next-line class-methods-use-this
   createAction(actionData: MetaActionConfig): Action {
-    return new ActionShare({
-      probability: actionData.probability,
-      idMetaActionConfig: actionData.id,
-      name: actionData.name,
-    });
+    return new ActionShare(actionData);
   }
 }

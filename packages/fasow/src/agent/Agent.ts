@@ -1,10 +1,9 @@
-// eslint-disable-next-line import/no-cycle
-import Action from "../actions/Action";
-import ActionAPI from "../actions/ActionAPI";
+import type Action from "../actions/Action";
+import ActionAPI from "../actions/IActionAPI";
 import RowData from "../data/RowData";
-import AgentAPI from "./AgentAPI";
-// eslint-disable-next-line import/no-cycle
-import AgentConfig from "./AgentConfig";
+import type AgentConfig from "./AgentConfig";
+import type IAgentCreator from "./IAgentCreator";
+import MetaAgentConfig from "./MetaAgentConfig";
 
 export enum AgentState {
   NOT_READ,
@@ -15,7 +14,7 @@ export enum AgentState {
 
 const DEFAULT_STATE = AgentState.NOT_READ;
 
-export default abstract class Agent implements AgentConfig {
+export default abstract class Agent implements AgentConfig, IAgentCreator {
   id: number;
   state?: AgentState | undefined;
   isSeed: boolean;
@@ -24,22 +23,21 @@ export default abstract class Agent implements AgentConfig {
   followings: Agent[];
   indexMetaAgentConfig: number;
 
-  constructor(agentConfig: AgentConfig) {
-    this.id = agentConfig.id;
+  constructor(id: number, agentConfig: MetaAgentConfig) {
+    this.id = id;
     this.isSeed = agentConfig.isSeed;
     this.followers = [];
     this.followings = [];
-    this.actions = ActionAPI.getInstance().generateActions(
-      AgentAPI.getInstance().getMetaConfigById(agentConfig.indexMetaAgentConfig)
-        .actionsConfigs
-    );
-    this.indexMetaAgentConfig = agentConfig.indexMetaAgentConfig;
+    this.actions = ActionAPI.generateActions(agentConfig.actionsConfigs);
+    this.indexMetaAgentConfig = agentConfig.id;
     if (agentConfig.state) {
       this.state = agentConfig.state;
     } else {
       this.state = DEFAULT_STATE;
     }
   }
+
+  abstract doActions(): void;
 
   addFollower(agent: Agent) {
     // We need to make sure the agent id is not the same id of the current agent
@@ -108,4 +106,6 @@ export default abstract class Agent implements AgentConfig {
     rd.addRow(this.isSeed, "agent_is_seed");
     return rd;
   }
+
+  abstract createAgent(id: number, agentData: MetaAgentConfig): Agent;
 }

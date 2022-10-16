@@ -13,22 +13,13 @@ de igual forma que en las capas anteriores, esta capa utiliza la API de \co{Towe
 que permite una comunicación con las demás capas inferiores
  */
 
-export default class ActionAPI {
-  private static instance: ActionAPI;
-
+class IActionAPI {
   private actionFactories: Map<string, IActionCreator>;
   private actionConfigs: MetaActionConfig[];
 
   constructor() {
     this.actionFactories = new Map<string, IActionCreator>();
     this.actionConfigs = [];
-  }
-
-  static getInstance(): ActionAPI {
-    if (this.instance === undefined) {
-      this.instance = new ActionAPI();
-    }
-    return this.instance;
   }
 
   registerNewAction(newAction: IActionCreator, type: string) {
@@ -77,3 +68,6 @@ export default class ActionAPI {
     return list;
   }
 }
+
+const ActionAPI: IActionAPI = new IActionAPI();
+export default ActionAPI;
