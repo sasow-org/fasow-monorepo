@@ -2,7 +2,7 @@ import RowData from "../data/RowData";
 import { IDataDetailed, IDataEssential } from "../interfaces";
 import { SimulationConfig } from "./SimulationConfig";
 
-export default abstract class Simulation
+export default class Simulation
   implements SimulationConfig, IDataEssential, IDataDetailed
 {
   id;
@@ -13,7 +13,9 @@ export default abstract class Simulation
     this.environment = config.environment;
   }
 
-  abstract run(): void;
+  run(): void {
+    this.environment.run();
+  }
 
   DataDetailed(): RowData {
     const rd: RowData = new RowData();
