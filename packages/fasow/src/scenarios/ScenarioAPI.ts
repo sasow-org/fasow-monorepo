@@ -10,19 +10,17 @@ al agregar cambios en la torre de reflexión para agregar nuevas característica
  se deben realizar cambios en este nivel de la torre si el modelo lo requiere.
  */
 import Environment from "../environment/Environment";
-import EnvironmentCreator from "../environment/factory/EnvironmentCreator";
+import IEnvironmentCreator from "../environment/IEnvironmentCreator";
 import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
 
 export default class ScenarioAPI {
-  private static instance: ScenarioAPI;
-
-  private environmentFactories: Map<string, EnvironmentCreator>;
+  private environmentFactories: Map<string, IEnvironmentCreator>;
 
   constructor() {
-    this.environmentFactories = new Map<string, EnvironmentCreator>();
+    this.environmentFactories = new Map<string, IEnvironmentCreator>();
   }
 
-  registerEnvironmentFactory(newFactory: EnvironmentCreator, type: string) {
+  registerEnvironmentFactory(newFactory: IEnvironmentCreator, type: string) {
     this.environmentFactories.set(type, newFactory);
   }
 
@@ -36,12 +34,5 @@ export default class ScenarioAPI {
     throw new Error(
       `Environment Type ${config.environmentType} not exist in ScenarioAPI`
     );
-  }
-
-  static getInstance(): ScenarioAPI {
-    if (this.instance === undefined) {
-      this.instance = new ScenarioAPI();
-    }
-    return this.instance;
   }
 }

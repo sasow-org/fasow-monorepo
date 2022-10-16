@@ -1,11 +1,13 @@
 import Agent from "../agent/Agent";
 import AgentAPI from "../agent/AgentAPI";
 import RowData from "../data/RowData";
-import { IDataDetailed, IDataEssential, IObservable } from "../interfaces";
+import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
 import { EnvironmentConfig } from "./EnvironmentConfig";
+// eslint-disable-next-line import/no-cycle
+import IEnvironmentCreator from "./IEnvironmentCreator";
 
 export default abstract class Environment
-  implements EnvironmentConfig, IObservable, IDataEssential, IDataDetailed
+  implements EnvironmentConfig, IEnvironmentCreator
 {
   readonly id: number;
   initialized: boolean;
@@ -28,6 +30,7 @@ export default abstract class Environment
 
   public abstract step(): void;
   public abstract run(): void;
+
   public abstract getCountStates(): RowData;
 
   /**
@@ -154,7 +157,7 @@ export default abstract class Environment
     return rdEnvironment;
   }
 
-  notifyData(): void {
-    // DataHandler.getInstance().update();
-  }
+  abstract createEnvironment(
+    environmentConfig: MetaExperimentConfig
+  ): Environment;
 }
