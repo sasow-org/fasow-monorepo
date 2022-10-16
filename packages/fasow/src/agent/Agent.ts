@@ -1,6 +1,9 @@
+// eslint-disable-next-line import/no-cycle
 import Action from "../actions/Action";
+import ActionAPI from "../actions/ActionAPI";
 import RowData from "../data/RowData";
-import { IObservable } from "../interfaces";
+import AgentAPI from "./AgentAPI";
+// eslint-disable-next-line import/no-cycle
 import AgentConfig from "./AgentConfig";
 
 export enum AgentState {
@@ -12,7 +15,7 @@ export enum AgentState {
 
 const DEFAULT_STATE = AgentState.NOT_READ;
 
-export default abstract class Agent implements AgentConfig, IObservable {
+export default abstract class Agent implements AgentConfig {
   id: number;
   state?: AgentState | undefined;
   isSeed: boolean;
@@ -26,7 +29,10 @@ export default abstract class Agent implements AgentConfig, IObservable {
     this.isSeed = agentConfig.isSeed;
     this.followers = [];
     this.followings = [];
-    this.actions = [];
+    this.actions = ActionAPI.getInstance().generateActions(
+      AgentAPI.getInstance().getMetaConfigById(agentConfig.indexMetaAgentConfig)
+        .actionsConfigs
+    );
     this.indexMetaAgentConfig = agentConfig.indexMetaAgentConfig;
     if (agentConfig.state) {
       this.state = agentConfig.state;
@@ -101,9 +107,5 @@ export default abstract class Agent implements AgentConfig, IObservable {
     rd.addRow(this.state, "agent_state");
     rd.addRow(this.isSeed, "agent_is_seed");
     return rd;
-  }
-
-  notifyData(): void {
-    console.log("TEXTO");
   }
 }

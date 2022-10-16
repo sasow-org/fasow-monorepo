@@ -1,6 +1,6 @@
 import Agent from "./Agent";
+import IAgentCreator from "./IAgentCreator";
 import MetaAgentConfig from "./MetaAgentConfig";
-import AgentCreator from "./factory/AgentCreator";
 
 /*
 Esta capa permite crear, agrupar y combinar tipos diferentes de agentes,
@@ -14,11 +14,11 @@ de la API de metaprogramacion de \co{TowerHandler} que permite la comunicación.
  */
 export default class AgentAPI {
   private static instance: AgentAPI;
-  private agentsFactories: Map<string, AgentCreator>;
+  private agentsFactories: Map<string, IAgentCreator>;
   private agentConfigs: MetaAgentConfig[];
 
   constructor() {
-    this.agentsFactories = new Map<string, AgentCreator>();
+    this.agentsFactories = new Map<string, IAgentCreator>();
     this.agentConfigs = [];
   }
 
@@ -29,7 +29,7 @@ export default class AgentAPI {
     return this.instance;
   }
 
-  registerAgentFactory(newFactory: AgentCreator, type: string) {
+  registerAgentFactory(newFactory: IAgentCreator, type: string) {
     this.agentsFactories.set(type, newFactory);
   }
 
