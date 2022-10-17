@@ -1,23 +1,26 @@
-// eslint-disable-next-line import/no-cycle
-import Agent from "../agent/Agent";
+import type Agent from "../agent/Agent";
 import ActionConfig from "./ActionConfig";
+import type IActionCreator from "./IActionCreator";
+import MetaActionConfig from "./MetaActionConfig";
 
-export default abstract class Action implements ActionConfig{
+export default abstract class Action implements ActionConfig, IActionCreator {
   name: string;
   probability: number;
-  indexMetaActionConfig: number;
+  idMetaActionConfig: number;
 
-  constructor(actionConfig: ActionConfig) {
+  constructor(actionConfig: MetaActionConfig) {
     this.name = actionConfig.name;
     this.probability = actionConfig.probability;
-    this.indexMetaActionConfig = actionConfig.indexMetaActionConfig;
+    this.idMetaActionConfig = actionConfig.id;
   }
 
   abstract execute(agent: Agent): void;
 
+  // todo : maybe this can move to other class to handle maths like NumberHandler ... to handle and get random type numbers
+  // eslint-disable-next-line class-methods-use-this
   public getRandom(): number {
     return Math.random() * 100 + 1;
   }
 
-
+  abstract createAction(actionData: MetaActionConfig): Action;
 }

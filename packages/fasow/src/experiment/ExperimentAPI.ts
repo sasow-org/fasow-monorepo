@@ -1,11 +1,29 @@
+import IExperimentStrategy from "./IExperimentStrategy";
 
-export default class ExperimentAPI {
-    private static instance: ExperimentAPI;
+class IExperimentAPI {
+  private experiments: IExperimentStrategy[];
+  private strategy?: IExperimentStrategy;
 
-    static getInstance() : ExperimentAPI {
-        if (this.instance === undefined) {
-            this.instance = new ExperimentAPI()
-        }
-        return this.instance;
+  constructor() {
+    this.experiments = [];
+  }
+
+  setStrategy(strategy: IExperimentStrategy) {
+    this.strategy = strategy;
+  }
+
+  addNewExperiment(strategy: IExperimentStrategy) {
+    this.experiments.push(strategy);
+  }
+
+  // todo : method to search in experiments array and set the strategy
+
+  run() {
+    if (this.strategy) {
+      this.strategy.doStrategy().run();
     }
+  }
 }
+
+const ExperimentAPI: IExperimentAPI = new IExperimentAPI();
+export default ExperimentAPI;

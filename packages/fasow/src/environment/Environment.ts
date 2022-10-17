@@ -1,11 +1,12 @@
 import Agent from "../agent/Agent";
+import AgentAPI from "../agent/IAgentAPI";
 import RowData from "../data/RowData";
-import { IDataDetailed, IDataEssential, IObservable } from "../interfaces";
-import {EnvironmentConfig} from "./EnvironmentConfig";
-import {AgentConfig} from "../agent/AgentConfig";
+import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
+import { EnvironmentConfig } from "./EnvironmentConfig";
+import type IEnvironmentCreator from "./IEnvironmentCreator";
 
 export default abstract class Environment
-  implements EnvironmentConfig, IObservable, IDataEssential, IDataDetailed
+  implements EnvironmentConfig, IEnvironmentCreator
 {
   readonly id: number;
   initialized: boolean;
@@ -15,7 +16,7 @@ export default abstract class Environment
   networkSize: number;
   seeds: Agent[];
   agents: Agent[];
-  protected constructor(config: EnvironmentConfig) {
+  constructor(config: EnvironmentConfig) {
     this.id = config.id;
     this.networkSize = config.networkSize;
     this.seedSize = config.seedSize;
@@ -35,10 +36,7 @@ export default abstract class Environment
    */
   initialize(): void {
     // todo : use AgentAPI to create agents.
-    this.agentConfigs.forEach((agentConfig) => {
-      this.createAgents(agentConfig);
-    });
-
+    this.createAgents();
     this.addFollowers();
     this.addFollowings();
 
@@ -53,18 +51,8 @@ export default abstract class Environment
    * Populates the list of agents of the environment according to the agent config
    * @param agentConfig the config that the agents will be based on
    */
-  createAgents(agentConfig: AgentConfig): void {
-    // todo : use AgentAPI to create agents.
-    // for (let i = 0; i < agentConfig.quantity; i++) {
-    //   const agentReference = FactoryDynamicClass.getInstance().getAgent(agentConfig.agentType);
-    //   const auxAgent = new agentReference(i, agentConfig);
-    //   this.users.push(auxAgent);
-    //   if (auxAgent.isSeed) {
-    //     this.seeds.push(auxAgent);
-    //   }
-    //   ++this.usersQuantity;
-    // }
-    // console.log('End create agents.');
+  createAgents(): void {
+    this.agents = AgentAPI.generateAgentList();
   }
 
   /**
@@ -74,9 +62,13 @@ export default abstract class Environment
     this.agents.map((agent: Agent) => {
       // this.agentConfigs[agent.indexMetaAgentConfig];
       // todo : maybe to do this you need to call the AgentAPI
-      const total: number = agent.getQuantityFollowersByNetwork(
-        this.networkSize
+      const total: number = Math.round(
+        (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+          .followersPercentage *
+          this.networkSize) /
+          100
       );
+
       while (agent.followers.length !== total) {
         const max: number = this.agents.length;
         const randomIndex: number = Number.parseInt(
@@ -94,8 +86,11 @@ export default abstract class Environment
    */
   addFollowings(): void {
     this.agents.map((agent: Agent) => {
-      const total: number = agent.getQuantityFollowingsByNetwork(
-        this.networkSize
+      const total: number = Math.round(
+        (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+          .followingsPercentage *
+          this.networkSize) /
+          100
       );
       while (agent.followings.length !== total) {
         const max: number = this.agents.length;
@@ -122,12 +117,22 @@ export default abstract class Environment
     }
 
     // eslint-disable-next-line consistent-return
-    this.agents.map((agent: Agent) => {
+    this.agents.forEach((agent: Agent) => {
       if (
         agent.followers.length !==
-          agent.getQuantityFollowersByNetwork(this.networkSize) &&
+          Math.round(
+            (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+              .followersPercentage *
+              this.networkSize) /
+              100
+          ) &&
         agent.followings.length !==
-          agent.getQuantityFollowingsByNetwork(this.networkSize)
+          Math.round(
+            (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+              .followingsPercentage *
+              this.networkSize) /
+              100
+          )
       ) {
         return false;
       }
@@ -148,8 +153,7 @@ export default abstract class Environment
     return rdEnvironment;
   }
 
-  notifyData(): void {
-    // DataHandler.getInstance().update();
-  }
-
+  abstract createEnvironment(
+    environmentConfig: MetaExperimentConfig
+  ): Environment;
 }

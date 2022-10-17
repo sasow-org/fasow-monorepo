@@ -1,7 +1,9 @@
+import type Action from "../actions/Action";
+import ActionAPI from "../actions/IActionAPI";
 import RowData from "../data/RowData";
-import { IObservable } from "../interfaces";
-import Action from "../actions/Action";
-import {AgentConfig} from "./AgentConfig";
+import type AgentConfig from "./AgentConfig";
+import type IAgentCreator from "./IAgentCreator";
+import MetaAgentConfig from "./MetaAgentConfig";
 
 export enum AgentState {
   NOT_READ,
@@ -12,30 +14,30 @@ export enum AgentState {
 
 const DEFAULT_STATE = AgentState.NOT_READ;
 
-export default abstract class Agent implements AgentConfig, IObservable {
+export default abstract class Agent implements AgentConfig, IAgentCreator {
   id: number;
   state?: AgentState | undefined;
   isSeed: boolean;
   actions: Action[];
   followers: Agent[];
   followings: Agent[];
-  indexMetaAgentConfig : number;
+  indexMetaAgentConfig: number;
 
-  protected constructor(agentConfig: AgentConfig) {
-    this.id = agentConfig.id;
+  constructor(id: number, agentConfig: MetaAgentConfig) {
+    this.id = id;
     this.isSeed = agentConfig.isSeed;
     this.followers = [];
     this.followings = [];
-    this.actions = []
-    this.indexMetaAgentConfig = agentConfig.indexMetaAgentConfig;
+    this.actions = ActionAPI.generateActions(agentConfig.actionsConfigs);
+    this.indexMetaAgentConfig = agentConfig.id;
     if (agentConfig.state) {
       this.state = agentConfig.state;
-    }else {
+    } else {
       this.state = DEFAULT_STATE;
     }
   }
 
-
+  abstract doActions(): void;
 
   addFollower(agent: Agent) {
     // We need to make sure the agent id is not the same id of the current agent
@@ -86,7 +88,7 @@ export default abstract class Agent implements AgentConfig, IObservable {
   }
 
   receiveMessage(): void {
-    // todo : check this code
+    // todo : check this code --> maybe this can be abstract
     if (this.state === AgentState.NOT_READ) {
       // const action : Action = this._actions.find((actionFind) => actionFind.name === 'read');
       // action.Execute(this);
@@ -97,25 +99,6 @@ export default abstract class Agent implements AgentConfig, IObservable {
     }
   }
 
-  /*
-
-
-  getQuantityFollowersByNetwork(networkSize: number) {
-    return Number.parseInt(
-      `${(this.followersPercentage * networkSize) / 100}`,
-      10
-    );
-  }
-
-  getQuantityFollowingsByNetwork(networkSize: number) {
-    return Number.parseInt(
-      `${(this.followingPercentage * networkSize) / 100}`,
-      10
-    );
-  }
-
-   */
-
   DataDetailed(): RowData {
     const rd: RowData = new RowData();
     rd.addRow(this.id, "agent_id");
@@ -124,7 +107,5 @@ export default abstract class Agent implements AgentConfig, IObservable {
     return rd;
   }
 
-  notifyData(): void {
-    console.log("TEXTO");
-  }
+  abstract createAgent(id: number, agentData: MetaAgentConfig): Agent;
 }
