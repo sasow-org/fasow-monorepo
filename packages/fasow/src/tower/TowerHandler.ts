@@ -10,16 +10,16 @@ import ScenarioAPI from "../scenarios/IScenarioAPI";
 class ITowerHandler {
   // todo : add all the others methods per API or introspection layer
 
-  registerNewAction(newAction: Action) {
-    ActionAPI.registerNewAction(newAction, "example");
+  registerNewAction(newActionType: typeof Action) {
+    ActionAPI.registerNewAction(newActionType);
   }
 
-  registerNewAgent(newAgent: Agent) {
-    AgentAPI.registerNewAgent(newAgent, "example");
+  registerNewAgent(newAgentType: typeof Agent) {
+    AgentAPI.registerNewAgent(newAgentType);
   }
 
-  registerNewEnvironment(newEnvironment: Environment) {
-    ScenarioAPI.registerEnvironmentFactory(newEnvironment, "example");
+  registerNewEnvironment(newEnvironmentType: typeof Environment) {
+    ScenarioAPI.registerNewEnvironment(newEnvironmentType);
   }
 
   addNewExperiment(newExperiment: IExperimentStrategy) {

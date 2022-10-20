@@ -9,8 +9,8 @@ para comunicar los niveles de las capas. De igual forma que en Experiment
 al agregar cambios en la torre de reflexión para agregar nuevas características,
  se deben realizar cambios en este nivel de la torre si el modelo lo requiere.
  */
-import Environment from "../environment/Environment";
-import IEnvironmentCreator from "../environment/IEnvironmentCreator";
+import type Environment from "../environment/Environment";
+import type IEnvironmentCreator from "../environment/IEnvironmentCreator";
 import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
 
 class IScenarioAPI {
@@ -20,8 +20,13 @@ class IScenarioAPI {
     this.environmentFactories = new Map<string, IEnvironmentCreator>();
   }
 
-  registerEnvironmentFactory(newFactory: IEnvironmentCreator, type: string) {
-    this.environmentFactories.set(type, newFactory);
+  registerNewEnvironment(newEnvironmentType: typeof Environment) {
+    this.environmentFactories.set(
+      newEnvironmentType.name,
+      // @ts-ignore
+      // eslint-disable-next-line new-cap
+      new newEnvironmentType()
+    );
   }
 
   generateEnvironment(config: MetaExperimentConfig): Environment {

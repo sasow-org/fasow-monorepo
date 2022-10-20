@@ -1,4 +1,6 @@
 import { Grid, ThemeProvider, createTheme } from "@mui/material";
+import Experiment from "fasow-monorepo/packages/fasow/src/experiment/Experiment";
+import GenericExperiment from "fasow-monorepo/packages/fasow/src/experiment/GenericExperiment";
 
 import AgentConfigurationBox from "./components/AgentConfigurationBox";
 import Console from "./components/Console";
@@ -25,6 +27,12 @@ const theme = createTheme({
     },
   },
 });
+
+const handleClick = () => {
+  {
+  }
+  const experiment: GenericExperiment = new GenericExperiment();
+};
 
 function App() {
   return (

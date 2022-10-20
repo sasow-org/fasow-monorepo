@@ -21,12 +21,19 @@ class IAgentAPI {
     this.agentConfigs = [];
   }
 
-  registerNewAgent(newFactory: IAgentCreator, type: string) {
-    this.agentsFactories.set(type, newFactory);
+  registerNewAgent(type: typeof Agent) {
+    // eslint-disable-next-line new-cap
+    // @ts-ignore
+    // eslint-disable-next-line new-cap
+    this.agentsFactories.set(type.name, new type());
   }
 
   registerNewMetaAgentConfig(agentConfig: MetaAgentConfig) {
     this.agentConfigs.push(agentConfig);
+  }
+
+  registerMetaConfigs(agentConfigs: MetaAgentConfig[]) {
+    this.agentConfigs = agentConfigs;
   }
 
   generateAgentList(): Agent[] {
@@ -34,7 +41,7 @@ class IAgentAPI {
     this.agentConfigs.forEach((config) => {
       for (let i = 0; i < config.quantity; i += 1) {
         const agent = this.agentsFactories
-          .get(config.type)
+          .get(config.type.name)
           ?.createAgent(auxList.length, config);
         if (agent) {
           auxList.push(agent);
@@ -51,7 +58,7 @@ class IAgentAPI {
     metaConfigs.forEach((config) => {
       for (let i = 0; i < config.quantity; i += 1) {
         const agent = this.agentsFactories
-          .get(config.type)
+          .get(config.type.name)
           ?.createAgent(auxList.length, config);
         if (agent) {
           auxList.push(agent);

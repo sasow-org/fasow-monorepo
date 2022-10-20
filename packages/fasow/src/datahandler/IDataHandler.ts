@@ -1,21 +1,27 @@
-import Agent from "./agent/Agent";
-import MatrixData from "./data/MatrixData";
-import RowData from "./data/RowData";
-import Environment from "./environment/Environment";
-import Experiment from "./experiment/Experiment";
-import { IObserver } from "./interfaces";
-import Simulation from "./simulation/Simulation";
-
-export interface DataHandlerConfig {
-  hasEssentialData: boolean;
-  hasDetailedData: boolean;
-}
+import Agent from "../agent/Agent";
+import MatrixData from "../data/MatrixData";
+import RowData from "../data/RowData";
+// eslint-disable-next-line import/no-cycle
+import Environment from "../environment/Environment";
+// eslint-disable-next-line import/no-cycle
+import Experiment from "../experiment/Experiment";
+import { IObserver } from "../interfaces";
+// eslint-disable-next-line import/no-cycle
+import Simulation from "../simulation/Simulation";
+import DataHandlerConfig from "./DataHandlerConfig";
+// eslint-disable-next-line import/namespace
+import { Model } from "./types/types";
 
 class IDataHandler implements IObserver {
   // todo : use Patron strategy and apply to DataHandler
-  environment: Environment;
-  simulation: Simulation;
-  experiment: Experiment;
+  environment?: Environment;
+  simulation?: Simulation;
+  experiment?: Experiment;
+
+  envModel: Model<Environment> = new Model<Environment>();
+  simuModel: Model<Simulation> = new Model<Simulation>();
+  agentModel: Model<Agent> = new Model<Agent>();
+  experimentModel: Model<Experiment> = new Model<Experiment>();
 
   essentialData: MatrixData | null = null;
   detailedData: MatrixData | null = null;
@@ -50,12 +56,15 @@ class IDataHandler implements IObserver {
   public addLineDetailed(): void {
     if (this.detailedData === null) return;
 
+    // @ts-ignore
     const rdSimulation: RowData = this.simulation.DataEssential();
+    // @ts-ignore
     const rdEnvironment: RowData = this.environment.DataEssential();
 
     const detailedDataRef = this.detailedData;
 
     // For each agent, add essential data
+    // @ts-ignore
     this.environment.agents.forEach((agent: Agent) => {
       const rd: RowData = new RowData();
 
@@ -72,7 +81,9 @@ class IDataHandler implements IObserver {
     if (this.essentialData === null) return;
 
     const rd: RowData = new RowData();
+    // @ts-ignore
     const rdSimulation: RowData = this.simulation.DataEssential();
+    // @ts-ignore
     const rdEnvironment: RowData = this.environment.DataEssential();
 
     // Add rows

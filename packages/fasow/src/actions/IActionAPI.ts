@@ -22,8 +22,11 @@ class IActionAPI {
     this.actionConfigs = [];
   }
 
-  registerNewAction(newAction: IActionCreator, type: string) {
-    this.actionFactories.set(type, newAction);
+  registerNewAction(newActionType: typeof Action) {
+    // eslint-disable-next-line new-cap
+    // @ts-ignore
+    // eslint-disable-next-line new-cap
+    this.actionFactories.set(newActionType.name, new newActionType());
   }
 
   registerMetaActionConfig(actionConfig: MetaActionConfig) {
@@ -34,7 +37,7 @@ class IActionAPI {
     const auxList: Action[] = [];
     this.actionConfigs.forEach((actionConfig) => {
       const action = this.actionFactories
-        .get(actionConfig.type)
+        .get(actionConfig.type.name)
         ?.createAction(actionConfig);
       if (action) {
         auxList.push(action);
@@ -51,7 +54,7 @@ class IActionAPI {
     const auxList: Action[] = [];
     metaConfigs.forEach((config) => {
       const action = this.actionFactories
-        .get(config.type)
+        .get(config.type.name)
         ?.createAction(config);
       if (action) {
         auxList.push(action);

@@ -1,5 +1,7 @@
 import RowData from "../data/RowData";
+import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
 import { IDataDetailed, IDataEssential } from "../interfaces";
+import ScenarioAPI from "../scenarios/IScenarioAPI";
 import { SimulationConfig } from "./SimulationConfig";
 
 export default class Simulation
@@ -7,10 +9,12 @@ export default class Simulation
 {
   id;
   environment;
+  config: MetaExperimentConfig;
 
-  constructor(config: SimulationConfig) {
-    this.id = config.id;
-    this.environment = config.environment;
+  constructor(id: number, config: MetaExperimentConfig) {
+    this.id = id;
+    this.config = config;
+    this.environment = ScenarioAPI.generateEnvironment(config);
   }
 
   run(): void {
@@ -39,6 +43,7 @@ export default class Simulation
 
   initialize(id: number) {
     this.id = id;
+    this.environment = ScenarioAPI.generateEnvironment(this.config);
     this.environment.initialize();
   }
 }

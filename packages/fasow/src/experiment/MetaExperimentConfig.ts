@@ -13,7 +13,7 @@ export default interface MetaExperimentConfig {
   periods: number;
   environmentType: string;
   // Agents Metadata
-  metaAgentConfig: MetaAgentConfig[];
+  metaAgentConfigs: MetaAgentConfig[];
   // DataHandler Metadata
   essentialData: boolean;
   detailedData: boolean;
