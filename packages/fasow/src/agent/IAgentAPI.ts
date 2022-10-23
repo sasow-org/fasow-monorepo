@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-cycle
 import Agent from "./Agent";
+// eslint-disable-next-line import/no-cycle
 import IAgentCreator from "./IAgentCreator";
 import MetaAgentConfig from "./MetaAgentConfig";
 
@@ -13,19 +15,18 @@ que pueden ser utilizados en los niveles inferiores de la arquitectura esto a tr
 de la API de metaprogramacion de \co{TowerHandler} que permite la comunicación.
  */
 class IAgentAPI {
-  private agentsFactories: Map<string, IAgentCreator>;
+  private agentsFactories: Map<typeof Agent, IAgentCreator>;
   private agentConfigs: MetaAgentConfig[];
 
   constructor() {
-    this.agentsFactories = new Map<string, IAgentCreator>();
+    this.agentsFactories = new Map<typeof Agent, IAgentCreator>();
     this.agentConfigs = [];
   }
 
   registerNewAgent(type: typeof Agent) {
-    // eslint-disable-next-line new-cap
     // @ts-ignore
     // eslint-disable-next-line new-cap
-    this.agentsFactories.set(type.name, new type());
+    this.agentsFactories.set(type, new type());
   }
 
   registerNewMetaAgentConfig(agentConfig: MetaAgentConfig) {
@@ -36,13 +37,18 @@ class IAgentAPI {
     this.agentConfigs = agentConfigs;
   }
 
+  private getAgent(type: typeof Agent) {
+    return this.agentsFactories.get(type);
+  }
+
   generateAgentList(): Agent[] {
     const auxList: Agent[] = [];
     this.agentConfigs.forEach((config) => {
       for (let i = 0; i < config.quantity; i += 1) {
-        const agent = this.agentsFactories
-          .get(config.type.name)
-          ?.createAgent(auxList.length, config);
+        const agent = this.getAgent(config.type)?.createAgent(
+          auxList.length,
+          config
+        );
         if (agent) {
           auxList.push(agent);
         } else {
@@ -57,9 +63,10 @@ class IAgentAPI {
     const auxList: Agent[] = [];
     metaConfigs.forEach((config) => {
       for (let i = 0; i < config.quantity; i += 1) {
-        const agent = this.agentsFactories
-          .get(config.type.name)
-          ?.createAgent(auxList.length, config);
+        const agent = this.getAgent(config.type)?.createAgent(
+          auxList.length,
+          config
+        );
         if (agent) {
           auxList.push(agent);
         } else {
@@ -70,7 +77,7 @@ class IAgentAPI {
     return auxList;
   }
 
-  getMetaConfigById(id: number) {
+  getMetaAgentConfigById(id: number) {
     return this.agentConfigs.filter((config) => config.id === id)[0];
   }
 

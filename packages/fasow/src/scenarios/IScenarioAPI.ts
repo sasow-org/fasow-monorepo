@@ -1,3 +1,9 @@
+import MetaAgentConfig from "../agent/MetaAgentConfig";
+import type Environment from "../environment/Environment";
+import type IEnvironmentCreator from "../environment/IEnvironmentCreator";
+import type MetaExperimentConfig from "../experiment/MetaExperimentConfig";
+import MetaScenarioConfig from "./MetaScenarioConfig";
+
 /*
 Esta capa es el nivel siguiente de Experiment.
 Dado que esta capa permite configurar escenarios aquí se encuentra una
@@ -9,36 +15,88 @@ para comunicar los niveles de las capas. De igual forma que en Experiment
 al agregar cambios en la torre de reflexión para agregar nuevas características,
  se deben realizar cambios en este nivel de la torre si el modelo lo requiere.
  */
-import type Environment from "../environment/Environment";
-import type IEnvironmentCreator from "../environment/IEnvironmentCreator";
-import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
-
 class IScenarioAPI {
-  private environmentFactories: Map<string, IEnvironmentCreator>;
+  private environmentFactories: Map<typeof Environment, IEnvironmentCreator>;
+  private scenarioConfig: any | MetaScenarioConfig;
 
   constructor() {
-    this.environmentFactories = new Map<string, IEnvironmentCreator>();
+    // Setting up the environment Factories
+    this.environmentFactories = new Map<
+      typeof Environment,
+      IEnvironmentCreator
+    >();
+
+    // Setting up the scenario config.
+    this.scenarioConfig = {
+      metaAgentsConfigs: [],
+      networkSize: 0,
+      periods: 0,
+      seedSize: 0,
+      environmentType: undefined,
+    };
   }
+
+  /*
+  Metodos para registrar clases?
+   */
 
   registerNewEnvironment(newEnvironmentType: typeof Environment) {
     this.environmentFactories.set(
-      newEnvironmentType.name,
+      newEnvironmentType,
       // @ts-ignore
       // eslint-disable-next-line new-cap
       new newEnvironmentType()
     );
   }
 
-  generateEnvironment(config: MetaExperimentConfig): Environment {
-    const envi = this.environmentFactories
-      .get(config.environmentType)
-      ?.createEnvironment(config);
+  private getEnvironment(env: typeof Environment): Environment {
+    // @ts-ignore
+    return this.environmentFactories.get(env);
+  }
+
+  generateEnvironment(config: MetaScenarioConfig): Environment {
+    const envi = this.getEnvironment(config.environmentType).createEnvironment(
+      config
+    );
     if (envi) {
       return envi;
     }
     throw new Error(
       `Environment Type ${config.environmentType} not exist in ScenarioAPI`
     );
+  }
+
+  /*
+  Metodos para configurar el scenario?
+   */
+
+  setNetworkToScenario(environment: typeof Environment) {
+    this.scenarioConfig.environmentType = environment;
+  }
+
+  addAgentToScenario(agentConfig: MetaAgentConfig) {
+    this.scenarioConfig.agentConfigs.push(agentConfig);
+  }
+
+  setNetworkSizeToScenario(size: number) {
+    this.scenarioConfig.networkSize = size;
+  }
+
+  setPeriodsToScenario(max: number) {
+    this.scenarioConfig.periods = max;
+  }
+
+  setScenarioConfig(scenarioConfig: MetaScenarioConfig) {
+    this.scenarioConfig = scenarioConfig;
+  }
+
+  getScenarioConfig(): MetaScenarioConfig {
+    return this.scenarioConfig;
+  }
+
+  resetScenarioConfig(): MetaScenarioConfig {
+    this.scenarioConfig = {};
+    return this.scenarioConfig;
   }
 }
 

@@ -1,10 +1,12 @@
 import Agent from "../agent/Agent";
-import AgentAPI from "../agent/IAgentAPI";
 import RowData from "../data/RowData";
+// eslint-disable-next-line import/no-cycle
 import DataHandler from "../datahandler/IDataHandler";
 import EssentialAPI from "../essential/IEssentialAPI";
-import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
-import { EnvironmentConfig } from "./EnvironmentConfig";
+import MetaScenarioConfig from "../scenarios/MetaScenarioConfig";
+// eslint-disable-next-line import/no-cycle
+import TowerHandler from "../tower/TowerHandler";
+import type EnvironmentConfig from "./EnvironmentConfig";
 import type IEnvironmentCreator from "./IEnvironmentCreator";
 
 export default abstract class Environment
@@ -19,7 +21,7 @@ export default abstract class Environment
   seeds: Agent[];
   agents: Agent[];
 
-  metaConfig?: MetaExperimentConfig;
+  metaConfig?: MetaScenarioConfig;
 
   constructor() {
     this.id = -1;
@@ -33,16 +35,16 @@ export default abstract class Environment
     this.metaConfig = undefined;
   }
 
-  setConfig(config: MetaExperimentConfig): Environment {
-    this.id = config.id;
+  setConfig(config: MetaScenarioConfig): Environment {
+    this.id = -1;
     this.networkSize = config.networkSize;
     this.seedSize = config.seedSize;
     this.periods = config.periods;
     this.initialized = false;
-    this.currentPeriod = EssentialAPI.getTick();
+    this.currentPeriod = TowerHandler.getTick();
     this.agents = [];
     this.seeds = [];
-    AgentAPI.registerMetaConfigs(config.metaAgentConfigs);
+    TowerHandler.registerMetaConfigs(config.metaAgentsConfigs);
     this.metaConfig = config;
     // console.log("on Environment, config: ", config);
     return this;
@@ -66,7 +68,7 @@ export default abstract class Environment
     console.log("Create agents passed");
     this.addFollowers();
     console.log("add followers passed");
-    // this.addFollowings();
+    this.addFollowings();
     // console.log("add followings passed");
 
     console.log(
@@ -88,7 +90,7 @@ export default abstract class Environment
    * @param agentConfig the config that the agents will be based on
    */
   createAgents(): void {
-    this.agents = AgentAPI.generateAgentList();
+    this.agents = TowerHandler.generateAgentList();
     this.agents.forEach((agent) => {
       if (agent.isSeed) {
         this.seeds.push(agent);
@@ -104,7 +106,7 @@ export default abstract class Environment
     this.agents.map((agent: Agent) => {
       // todo : maybe to do this you need to call the AgentAPI
       const total: number = Math.round(
-        (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+        (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
           .followersPercentage *
           this.networkSize) /
           100
@@ -127,7 +129,7 @@ export default abstract class Environment
   addFollowings(): void {
     this.agents.map((agent: Agent) => {
       const total: number = Math.round(
-        (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+        (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
           .followingsPercentage *
           this.networkSize) /
           100
@@ -161,14 +163,14 @@ export default abstract class Environment
       if (
         agent.followers.length !==
           Math.round(
-            (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+            (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
               .followersPercentage *
               this.networkSize) /
               100
           ) &&
         agent.followings.length !==
           Math.round(
-            (AgentAPI.getMetaConfigById(agent.indexMetaAgentConfig)
+            (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
               .followingsPercentage *
               this.networkSize) /
               100
@@ -196,10 +198,41 @@ export default abstract class Environment
   }
 
   abstract createEnvironment(
-    environmentConfig: MetaExperimentConfig
+    environmentConfig: MetaScenarioConfig
   ): Environment;
 
   updateTick() {
     this.currentPeriod = EssentialAPI.nextTick();
   }
+
+  /*
+  getData<S extends QuerySelection<EnvironmentConfig>, A extends QuerySelection<AgentConfig>
+  >(selectionScenario: S, selectionAgents: A): any {
+    const output = {
+      env: {},
+      rows: [],
+    };
+    this.agents.forEach((agent) => {
+      const row = {};
+      // eslint-disable-next-line guard-for-in,no-restricted-syntax
+      for (const x in selectionAgents) {
+        // @ts-ignore
+        console.log(x, ":", agent[x]);
+        // @ts-ignore
+        row[x] = agent[x];
+      }
+      // @ts-ignore
+      output.rows.push(row);
+    });
+    // eslint-disable-next-line guard-for-in,no-restricted-syntax
+    for (const x in selectionScenario) {
+      // @ts-ignore
+      console.log(x, ":", this[x]);
+      // @ts-ignore
+      row[x] = this[x];
+    }
+    return output;
+  }
+
+   */
 }

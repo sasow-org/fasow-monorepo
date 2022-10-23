@@ -1,6 +1,6 @@
 import Agent from "../agent/Agent";
 
-export interface EnvironmentConfig {
+export default interface EnvironmentConfig {
   id: number;
   networkSize: number;
   seedSize: number;

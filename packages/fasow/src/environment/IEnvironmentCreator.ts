@@ -1,6 +1,6 @@
-import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
+import MetaScenarioConfig from "../scenarios/MetaScenarioConfig";
 import type Environment from "./Environment";
 
 export default interface IEnvironmentCreator {
-  createEnvironment(environmentConfig: MetaExperimentConfig): Environment;
+  createEnvironment(environmentConfig: MetaScenarioConfig): Environment;
 }

@@ -1,8 +1,10 @@
+// eslint-disable-next-line import/no-cycle
 import { AgentState } from "../../agent/Agent";
 import RowData from "../../data/RowData";
+// eslint-disable-next-line import/no-cycle
 import Environment from "../../environment/Environment";
 import EssentialAPI from "../../essential/IEssentialAPI";
-import MetaExperimentConfig from "../../experiment/MetaExperimentConfig";
+import MetaScenarioConfig from "../MetaScenarioConfig";
 
 export default class EnvironmentTwitter extends Environment {
   run(): void {
@@ -26,8 +28,8 @@ export default class EnvironmentTwitter extends Environment {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  createEnvironment(environmentConfig: MetaExperimentConfig): Environment {
-    return new EnvironmentTwitter().setConfig(environmentConfig);
+  createEnvironment(scenarioConfig: MetaScenarioConfig): Environment {
+    return new EnvironmentTwitter().setConfig(scenarioConfig);
   }
 
   // eslint-disable-next-line class-methods-use-this

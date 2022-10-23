@@ -1,20 +1,20 @@
 import RowData from "../data/RowData";
 import MetaExperimentConfig from "../experiment/MetaExperimentConfig";
 import { IDataDetailed, IDataEssential } from "../interfaces";
-import ScenarioAPI from "../scenarios/IScenarioAPI";
-import { SimulationConfig } from "./SimulationConfig";
+// eslint-disable-next-line import/no-cycle
+import TowerHandler from "../tower/TowerHandler";
+import type SimulationConfig from "./SimulationConfig";
 
 export default class Simulation
   implements SimulationConfig, IDataEssential, IDataDetailed
 {
   id;
   environment;
-  config: MetaExperimentConfig;
-
-  constructor(id: number, config: MetaExperimentConfig) {
-    this.id = id;
+  config;
+  constructor(config: MetaExperimentConfig) {
+    this.id = -1;
     this.config = config;
-    this.environment = ScenarioAPI.generateEnvironment(config);
+    this.environment = TowerHandler.generateEnvironment(config.scenarioConfig);
   }
 
   run(): void {
@@ -43,7 +43,9 @@ export default class Simulation
 
   initialize(id: number) {
     this.id = id;
-    this.environment = ScenarioAPI.generateEnvironment(this.config);
+    this.environment = TowerHandler.generateEnvironment(
+      this.config.scenarioConfig
+    );
     this.environment.initialize();
   }
 }
