@@ -1,7 +1,10 @@
 // eslint-disable-next-line import/no-cycle
 import RowData from "../data/RowData";
+// eslint-disable-next-line import/no-cycle
 import DataHandler from "../datahandler/IDataHandler";
+// eslint-disable-next-line import/no-cycle
 import Simulation from "../simulation/Simulation";
+// eslint-disable-next-line import/no-cycle
 import ExperimentConfig from "./ExperimentConfig";
 import MetaExperimentConfig from "./MetaExperimentConfig";
 
@@ -17,11 +20,7 @@ export default abstract class Experiment implements ExperimentConfig {
     this.description = config.description;
     this.currentRepetition = -1;
     this.maxRepetitions = config.maxRepetitions;
-    this.simulation = new Simulation(-1, config);
-    // this.currentRepetition = config.currentRepetition;
-    // this.maxRepetitions = config.maxRepetitions;
-    // this.type = config.type;
-    // this.dataHandlerConfig = config.dataHandlerConfig;
+    this.simulation = new Simulation();
   }
 
   run() {
@@ -35,12 +34,12 @@ export default abstract class Experiment implements ExperimentConfig {
         break;
       }
       this.simulation.run();
-      this.currentRepetition += 1;
     }
   }
 
   private initialize() {
     this.currentRepetition += 1;
+    this.simulation.initialize(this.currentRepetition);
     DataHandler.experiment = this;
     this.simulation.initialize(this.currentRepetition); // todo : maybe this should be deleted
     DataHandler.simulation = this.simulation;

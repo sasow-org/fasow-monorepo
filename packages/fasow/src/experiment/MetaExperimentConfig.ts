@@ -1,19 +1,15 @@
-import MetaAgentConfig from "../agent/MetaAgentConfig";
+import MetaScenarioConfig from "../scenarios/MetaScenarioConfig";
+import type Experiment from "./Experiment";
 
 export default interface MetaExperimentConfig {
   // Experiment Metadata
   readonly id: number;
   name: string;
   description: string;
-  type: string;
+  type: typeof Experiment;
   maxRepetitions: number;
   // Scenario Metadata
-  networkSize: number;
-  seedSize: number;
-  periods: number;
-  environmentType: string;
-  // Agents Metadata
-  metaAgentConfigs: MetaAgentConfig[];
+  scenarioConfig: MetaScenarioConfig;
   // DataHandler Metadata
   essentialData: boolean;
   detailedData: boolean;

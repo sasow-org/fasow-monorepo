@@ -1,5 +1,7 @@
-import Experiment from "./Experiment";
+export default abstract class IExperimentStrategy {
+  abstract Strategy(): void;
 
-export default interface IExperimentStrategy {
-  doStrategy(): Experiment;
+  executeStrategy(): void {
+    this.Strategy();
+  }
 }
