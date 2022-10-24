@@ -1,0 +1,59 @@
+{
+  "networks": [
+    {
+      "name": "Facebook",
+      "other": "properties"
+    },
+    {
+      "name": "Twitter",
+      "other": "properties"
+    }
+  ],
+  "experiment": {
+    "name": "Test experiment",
+    "repetitions": 50,
+    "periods": 50,
+    "seedSize": 50,
+    "description": "Lorem ipsum dolor sit amet.",
+    "network": {
+      "name": "Facebook",
+      "size": 100
+    },
+    "output": ["essential", "detailed"]
+  },
+  "agent": {
+    "types": [
+      {
+        "name": "FacebookAgent",
+        "other": "properties"
+      },
+      {
+        "name": "TwitterAgent",
+        "other": "properties"
+      }
+    ],
+    "actions": [
+      {
+        "name": "read",
+        "probability": 0.5
+      },
+      {
+        "name": "share",
+        "probability": 0.5
+      }
+    ],
+    "states": ["NOT_READ", "READ", "READY_TO_SHARE", "SHARED"],
+    "agents": [
+      {
+        "configuration": {
+          "name": "Agent config 1",
+          "initialState": 0,
+          "type": "FacebookAgent",
+          "followersPercentage": 0.45,
+          "followingPercentage": 0.55
+        },
+        "actions": ["read", "share"]
+      }
+    ]
+  }
+}

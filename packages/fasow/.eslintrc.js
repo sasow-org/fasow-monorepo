@@ -10,13 +10,14 @@ module.exports = {
     "plugin:import/recommended",
     "plugin:import/typescript",
     "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
-    project: ["tsconfig.json"],
-    tsconfigRootDir: "./",
+    project: ["./tsconfig.json"],
   },
   plugins: ["@typescript-eslint", "import"],
   settings: {
