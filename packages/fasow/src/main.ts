@@ -1,9 +1,6 @@
-import GenericExperiment from "./experiment/GenericExperiment";
 import MessageRepetitionStrategy from "./experiment/strategies/message-repetition-strategy";
-import ScenarioAPI from "./scenarios/IScenarioAPI";
-import loadScenarios from "./scenarios/ScenarioLoader";
-import EnvironmentTwitter from "./scenarios/twitter/EnvironmentTwitter";
 import TowerHandler from "./tower/TowerHandler";
+import loadScenarios from "./util/ScenarioLoader";
 
 /*
 class Factory {
@@ -67,7 +64,6 @@ const doExperimentExample = () => {
     scenarioConfig: {
       environmentType: EnvironmentTwitter,
       networkSize: 1000,
-      seedSize: 50,
       periods: 20,
       metaAgentsConfigs: [
         {

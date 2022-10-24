@@ -2,9 +2,9 @@ import ActionAPI from "../actions/IActionAPI";
 import ActionRead from "../actions/custom-actions/ActionRead";
 import ActionShare from "../actions/custom-actions/ActionShare";
 import AgentAPI from "../agent/IAgentAPI";
-import ScenarioAPI from "./IScenarioAPI";
-import EnvironmentTwitter from "./twitter/EnvironmentTwitter";
-import TwitterAgent from "./twitter/TwitterAgent";
+import ScenarioAPI from "../scenarios/IScenarioAPI";
+import EnvironmentTwitter from "../scenarios/twitter/EnvironmentTwitter";
+import TwitterAgent from "../scenarios/twitter/TwitterAgent";
 
 function loadActions(): void {
   console.log("Loading Actions...");
