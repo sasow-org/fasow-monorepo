@@ -6,7 +6,9 @@ export default class FacebookAgent extends Agent {
     this.receiveMessage();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   createAgent(id: number, agentData: MetaAgentConfig): Agent {
+    // @ts-ignore
     return new FacebookAgent(id, agentData);
   }
 }

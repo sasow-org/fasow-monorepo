@@ -1,7 +1,9 @@
-import DataHandler from "../IDataHandler";
+// eslint-disable-next-line import/no-cycle
 import RowData from "../data/RowData";
+import DataHandler from "../datahandler/IDataHandler";
 import Simulation from "../simulation/Simulation";
 import ExperimentConfig from "./ExperimentConfig";
+import MetaExperimentConfig from "./MetaExperimentConfig";
 
 export default abstract class Experiment implements ExperimentConfig {
   name: string;
@@ -10,12 +12,12 @@ export default abstract class Experiment implements ExperimentConfig {
   simulation: Simulation;
   maxRepetitions: number;
 
-  constructor(config: ExperimentConfig) {
+  constructor(config: MetaExperimentConfig) {
     this.name = config.name;
     this.description = config.description;
     this.currentRepetition = -1;
     this.maxRepetitions = config.maxRepetitions;
-    this.simulation = config.simulation;
+    this.simulation = new Simulation(-1, config);
     // this.currentRepetition = config.currentRepetition;
     // this.maxRepetitions = config.maxRepetitions;
     // this.type = config.type;
@@ -24,7 +26,11 @@ export default abstract class Experiment implements ExperimentConfig {
 
   run() {
     while (this.currentRepetition < this.maxRepetitions) {
-      this.initialize(this.currentRepetition);
+      this.initialize();
+      console.log(
+        "On Experiment.run(), currentRepetition is: ",
+        this.currentRepetition
+      );
       if (!this.simulation.environment.isDone()) {
         break;
       }
@@ -33,12 +39,11 @@ export default abstract class Experiment implements ExperimentConfig {
     }
   }
 
-  private initialize(id: number) {
+  private initialize() {
+    this.currentRepetition += 1;
     DataHandler.experiment = this;
-    this.simulation.initialize(id); // todo : maybe this should be deleted
+    this.simulation.initialize(this.currentRepetition); // todo : maybe this should be deleted
     DataHandler.simulation = this.simulation;
-    // DataHandler.getInstance().simulation = this.simulation;
-    // DataHandler.getInstance().environment = this.simulation.environment;
   }
 
   DataEssential(): RowData {

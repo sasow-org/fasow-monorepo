@@ -1,5 +1,6 @@
 import MetaActionConfig from "../actions/MetaActionConfig";
 import type { AgentState } from "./Agent";
+import type Agent from "./Agent";
 
 export default interface MetaAgentConfig {
   // Metadata
@@ -9,7 +10,7 @@ export default interface MetaAgentConfig {
   followersPercentage: number;
   followingsPercentage: number;
   actionsConfigs: MetaActionConfig[];
-  type: string;
+  type: typeof Agent;
   // Normal data to create a agentConfig ?
   state?: AgentState;
   isSeed: boolean;

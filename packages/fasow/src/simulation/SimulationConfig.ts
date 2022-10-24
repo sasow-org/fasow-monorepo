@@ -1,6 +1,6 @@
-import Environment from "../environment/Environment";
+import type Environment from "../environment/Environment";
 
-export interface SimulationConfig {
+export default interface SimulationConfig {
   readonly id: number;
-  environment: Environment;
+  environment?: Environment;
 }

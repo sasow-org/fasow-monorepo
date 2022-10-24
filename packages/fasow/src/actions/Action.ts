@@ -8,10 +8,10 @@ export default abstract class Action implements ActionConfig, IActionCreator {
   probability: number;
   idMetaActionConfig: number;
 
-  constructor(actionConfig: MetaActionConfig) {
-    this.name = actionConfig.name;
-    this.probability = actionConfig.probability;
-    this.idMetaActionConfig = actionConfig.id;
+  constructor() {
+    this.name = "";
+    this.probability = -1;
+    this.idMetaActionConfig = -1;
   }
 
   abstract execute(agent: Agent): void;
@@ -20,6 +20,13 @@ export default abstract class Action implements ActionConfig, IActionCreator {
   // eslint-disable-next-line class-methods-use-this
   public getRandom(): number {
     return Math.random() * 100 + 1;
+  }
+
+  setConfig(actionConfig: MetaActionConfig): Action {
+    this.name = actionConfig.name;
+    this.probability = actionConfig.probability;
+    this.idMetaActionConfig = actionConfig.id;
+    return this;
   }
 
   abstract createAction(actionData: MetaActionConfig): Action;

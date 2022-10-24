@@ -14,50 +14,50 @@ que permite una comunicación con las demás capas inferiores
  */
 
 class IActionAPI {
-  private actionFactories: Map<string, IActionCreator>;
+  private actionFactories: Map<typeof Action, IActionCreator>;
   private actionConfigs: MetaActionConfig[];
 
   constructor() {
-    this.actionFactories = new Map<string, IActionCreator>();
+    this.actionFactories = new Map<typeof Action, IActionCreator>();
     this.actionConfigs = [];
   }
 
-  registerNewAction(newAction: IActionCreator, type: string) {
-    this.actionFactories.set(type, newAction);
+  registerNewAction(newActionType: typeof Action) {
+    // @ts-ignore
+    // eslint-disable-next-line new-cap
+    this.actionFactories.set(newActionType, new newActionType());
   }
 
   registerMetaActionConfig(actionConfig: MetaActionConfig) {
     this.actionConfigs.push(actionConfig);
   }
 
+  private getAction(type: typeof Action): IActionCreator {
+    const action = this.actionFactories.get(type);
+    if (action) {
+      return action;
+    }
+    throw Error(`Action Type, ${type.name} not exist in ActionAPI`);
+  }
+
   generateActionList(): Action[] {
     const auxList: Action[] = [];
     this.actionConfigs.forEach((actionConfig) => {
-      const action = this.actionFactories
-        .get(actionConfig.type)
-        ?.createAction(actionConfig);
-      if (action) {
-        auxList.push(action);
-      } else {
-        throw new Error(
-          `Action Type, ${actionConfig.type} not exist in ActionAPI`
-        );
-      }
+      auxList.push(
+        // @ts-ignore
+        this.getAction(actionConfig.type).createAction(actionConfig)
+      );
     });
     return auxList;
   }
 
   generateActions(metaConfigs: MetaActionConfig[]): Action[] {
     const auxList: Action[] = [];
-    metaConfigs.forEach((config) => {
-      const action = this.actionFactories
-        .get(config.type)
-        ?.createAction(config);
-      if (action) {
-        auxList.push(action);
-      } else {
-        throw new Error(`Action Type, ${config.type} not exist in ActionAPI`);
-      }
+    metaConfigs.forEach((actionConfig) => {
+      auxList.push(
+        // @ts-ignore
+        this.getAction(actionConfig.type).createAction(actionConfig)
+      );
     });
     return auxList;
   }

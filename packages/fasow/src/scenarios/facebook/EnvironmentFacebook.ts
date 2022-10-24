@@ -1,6 +1,6 @@
 import RowData from "../../data/RowData";
 import Environment from "../../environment/Environment";
-import MetaExperimentConfig from "../../experiment/MetaExperimentConfig";
+import MetaScenarioConfig from "../MetaScenarioConfig";
 
 export default class EnvironmentFacebook extends Environment {
   // eslint-disable-next-line class-methods-use-this
@@ -20,7 +20,7 @@ export default class EnvironmentFacebook extends Environment {
     });
   }
 
-  createEnvironment(environmentConfig: MetaExperimentConfig): Environment {
-    return new EnvironmentFacebook(environmentConfig);
+  createEnvironment(environmentConfig: MetaScenarioConfig): Environment {
+    return new EnvironmentFacebook().setConfig(environmentConfig);
   }
 }
