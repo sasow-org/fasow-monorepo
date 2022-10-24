@@ -38,7 +38,13 @@ export default abstract class Environment
   setConfig(config: MetaScenarioConfig): Environment {
     this.id = -1;
     this.networkSize = config.networkSize;
-    this.seedSize = config.seedSize;
+    let value = 0;
+    config.metaAgentsConfigs.forEach((agent) => {
+      if (agent.isSeed) {
+        value += agent.quantity;
+      }
+    });
+    this.seedSize = value;
     this.periods = config.periods;
     this.initialized = false;
     this.currentPeriod = TowerHandler.getTick();

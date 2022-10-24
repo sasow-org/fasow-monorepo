@@ -1,7 +1,6 @@
 import MetaAgentConfig from "../agent/MetaAgentConfig";
 import type Environment from "../environment/Environment";
 import type IEnvironmentCreator from "../environment/IEnvironmentCreator";
-import type MetaExperimentConfig from "../experiment/MetaExperimentConfig";
 import MetaScenarioConfig from "./MetaScenarioConfig";
 
 /*
@@ -75,7 +74,7 @@ class IScenarioAPI {
   }
 
   addAgentToScenario(agentConfig: MetaAgentConfig) {
-    this.scenarioConfig.agentConfigs.push(agentConfig);
+    this.scenarioConfig.metaAgentsConfigs.push(agentConfig);
   }
 
   setNetworkSizeToScenario(size: number) {
