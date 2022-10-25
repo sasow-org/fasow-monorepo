@@ -1,6 +1,6 @@
 import ActionRead from "../../actions/custom-actions/ActionRead";
 import ActionShare from "../../actions/custom-actions/ActionShare";
-import { AgentState } from "../../agent/Agent";
+import { AgentState } from "../../agent/AgentState";
 import EnvironmentTwitter from "../../scenarios/twitter/EnvironmentTwitter";
 import TwitterAgent from "../../scenarios/twitter/TwitterAgent";
 import TowerHandler from "../../tower/TowerHandler";

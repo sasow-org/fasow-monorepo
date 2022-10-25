@@ -136,6 +136,9 @@ class ITowerHandler {
   }
 
   /* Experiment API */
+  registerMetaAgentsConfigs(metaAgentsConfigs: MetaAgentConfig[]) {
+    AgentAPI.registerMetaConfigs(metaAgentsConfigs);
+  }
 }
 
 const TowerHandler: ITowerHandler = new ITowerHandler();
