@@ -16,7 +16,7 @@ export default class EnvironmentFacebook extends Environment {
 
   step(): void {
     this.seeds.forEach((agent) => {
-      agent.doActions();
+      agent.step();
     });
   }
 

@@ -1,6 +1,6 @@
 import MetaActionConfig from "../actions/MetaActionConfig";
-import type { AgentState } from "./Agent";
 import type Agent from "./Agent";
+import { AgentState } from "./AgentState";
 
 export default interface MetaAgentConfig {
   // Metadata

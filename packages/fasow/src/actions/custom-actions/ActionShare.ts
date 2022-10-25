@@ -1,9 +1,20 @@
-import Agent, { AgentState } from "../../agent/Agent";
+import Agent from "../../agent/Agent";
+import { AgentState } from "../../agent/AgentState";
 import Action from "../Action";
 import MetaActionConfig from "../MetaActionConfig";
 
 export default class ActionShare extends Action {
+  /*
+  Maybe this action can named CalculateCanShare
+   */
   execute(agent: Agent): void {
+    /*
+    Para calcular si se puede compartir basicamente pasa lo siguiente:
+      1.- Asegurarse de que se haya leido un mensaje, de tal forma que el estado del agente sea leido.
+      2.- Obtener un numero random
+      3.- Calcular la probabilidad
+      4.- Cambiar estado a listo para compartir
+     */
     if (agent.state === AgentState.READ) {
       const aux: Agent = agent;
       const p1: number = this.getRandom();

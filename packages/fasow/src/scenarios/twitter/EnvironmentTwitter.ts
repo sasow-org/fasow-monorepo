@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { AgentState } from "../../agent/Agent";
+import { AgentState } from "../../agent/AgentState";
 import RowData from "../../data/RowData";
 // eslint-disable-next-line import/no-cycle
 import Environment from "../../environment/Environment";
@@ -17,11 +17,11 @@ export default class EnvironmentTwitter extends Environment {
     this.getCountStates();
     if (EssentialAPI.getTick() === 0) {
       this.seeds.forEach((seed) => {
-        seed.doActions();
+        seed.step();
       });
     } else {
       this.agents.forEach((agent) => {
-        agent.doActions();
+        agent.step();
       });
     }
     this.updateTick();

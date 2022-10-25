@@ -1,5 +1,6 @@
 import Action from "../actions/Action";
-import Agent, { AgentState } from "./Agent";
+import Agent from "./Agent";
+import { AgentState } from "./AgentState";
 
 export default interface AgentConfig {
   readonly id: number;

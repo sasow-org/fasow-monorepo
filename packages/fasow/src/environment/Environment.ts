@@ -21,8 +21,6 @@ export default abstract class Environment
   seeds: Agent[];
   agents: Agent[];
 
-  metaConfig?: MetaScenarioConfig;
-
   constructor() {
     this.id = -1;
     this.networkSize = -1;
@@ -32,7 +30,6 @@ export default abstract class Environment
     this.currentPeriod = -1;
     this.agents = [];
     this.seeds = [];
-    this.metaConfig = undefined;
   }
 
   setConfig(config: MetaScenarioConfig): Environment {
@@ -50,8 +47,7 @@ export default abstract class Environment
     this.currentPeriod = TowerHandler.getTick();
     this.agents = [];
     this.seeds = [];
-    TowerHandler.registerMetaConfigs(config.metaAgentsConfigs);
-    this.metaConfig = config;
+    TowerHandler.registerMetaAgentsConfigs(config.metaAgentsConfigs);
     // console.log("on Environment, config: ", config);
     return this;
   }
@@ -210,35 +206,4 @@ export default abstract class Environment
   updateTick() {
     this.currentPeriod = EssentialAPI.nextTick();
   }
-
-  /*
-  getData<S extends QuerySelection<EnvironmentConfig>, A extends QuerySelection<AgentConfig>
-  >(selectionScenario: S, selectionAgents: A): any {
-    const output = {
-      env: {},
-      rows: [],
-    };
-    this.agents.forEach((agent) => {
-      const row = {};
-      // eslint-disable-next-line guard-for-in,no-restricted-syntax
-      for (const x in selectionAgents) {
-        // @ts-ignore
-        console.log(x, ":", agent[x]);
-        // @ts-ignore
-        row[x] = agent[x];
-      }
-      // @ts-ignore
-      output.rows.push(row);
-    });
-    // eslint-disable-next-line guard-for-in,no-restricted-syntax
-    for (const x in selectionScenario) {
-      // @ts-ignore
-      console.log(x, ":", this[x]);
-      // @ts-ignore
-      row[x] = this[x];
-    }
-    return output;
-  }
-
-   */
 }

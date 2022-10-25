@@ -2,7 +2,7 @@ import Agent from "../../agent/Agent";
 import MetaAgentConfig from "../../agent/MetaAgentConfig";
 
 export default class FacebookAgent extends Agent {
-  doActions(): void {
+  step(): void {
     this.receiveMessage();
   }
 

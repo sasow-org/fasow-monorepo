@@ -3,19 +3,17 @@ import RowData from "../data/RowData";
 // eslint-disable-next-line import/no-cycle
 import TowerHandler from "../tower/TowerHandler";
 import type AgentConfig from "./AgentConfig";
+import { AgentState } from "./AgentState";
 import type IAgentCreator from "./IAgentCreator";
 import MetaAgentConfig from "./MetaAgentConfig";
-
-export enum AgentState {
-  NOT_READ,
-  READ,
-  READY_TO_SHARE,
-  SHARED,
-}
+import Observer from "./Observer/Observer";
+import Subject from "./Observer/Subject";
 
 const DEFAULT_STATE = AgentState.NOT_READ;
 
-export default abstract class Agent implements AgentConfig, IAgentCreator {
+export default abstract class Agent
+  implements AgentConfig, IAgentCreator, Observer, Subject
+{
   id: number;
   state?: AgentState | undefined;
   isSeed: boolean;
@@ -34,7 +32,7 @@ export default abstract class Agent implements AgentConfig, IAgentCreator {
     this.actions = [];
   }
 
-  abstract doActions(): void;
+  abstract step(): void;
 
   addFollower(agent: Agent) {
     // We need to make sure the agent id is not the same id of the current agent
@@ -80,6 +78,9 @@ export default abstract class Agent implements AgentConfig, IAgentCreator {
     this.followings.splice(agentIndex, 1);
   }
 
+  /*
+  Receive Message lo unico que esta haciendo es ejecutar la lista de acc iones
+   */
   receiveMessage(): void {
     this.actions.forEach((action) => {
       action.execute(this);
@@ -106,7 +107,21 @@ export default abstract class Agent implements AgentConfig, IAgentCreator {
     this.state = config.state;
     return this;
   }
+
+  /*
+  todo: Notify is like share, and when notify, maybe you can send a message : any object
+   */
+  share(): void {
+    this.followers.forEach((follower) => follower.update(this));
+    this.state = AgentState.SHARED;
+  }
+
+  /*
+  update is like a receive message
+   */
+  abstract update(message: any): any;
 }
+
 /*
     notify(data: typeof Agent, config: MetaAgentConfig): Agent {
       console.log("agent: ", data.name);
@@ -140,17 +155,6 @@ export default abstract class Agent implements AgentConfig, IAgentCreator {
 
     query: any = undefined;
     setQuery<S extends QuerySelection<Agent>>(selection: S): void {
-      this.query = selection;
+      this.query = selectio n;
     }
-    */
-
-/*
-interface AgentI {
-  readonly id?: number;
-  state?: AgentState;
-  isSeed?: boolean;
-  actions?: Action[];
-  followers?: Agent[];
-  followings?: Agent[];
-  readonly indexMetaAgentConfig?: number;
-} */
+*/

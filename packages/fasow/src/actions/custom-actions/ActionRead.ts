@@ -1,4 +1,5 @@
-import Agent, { AgentState } from "../../agent/Agent";
+import Agent from "../../agent/Agent";
+import { AgentState } from "../../agent/AgentState";
 import Action from "../Action";
 import MetaActionConfig from "../MetaActionConfig";
 
