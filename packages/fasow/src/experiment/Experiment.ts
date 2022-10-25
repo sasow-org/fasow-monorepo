@@ -45,7 +45,6 @@ export default abstract class Experiment implements ExperimentConfig {
   private initialize() {
     this.currentRepetition = EssentialAPI.nextRepetition();
     this.simulation.initialize(this.currentRepetition);
-    // this.simulation.initialize(this.currentRepetition); // todo : maybe this should be deleted
   }
 
   DataEssential(): RowData {

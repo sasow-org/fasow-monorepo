@@ -59,6 +59,11 @@ class ITowerHandler {
     AgentAPI.registerNewAgent(newAgentType);
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  registerMetaAgentsConfigs(metaAgentsConfigs: MetaAgentConfig[]) {
+    AgentAPI.registerMetaConfigs(metaAgentsConfigs);
+  }
+
   /* Agent API */
 
   /* Scenario API */
@@ -78,22 +83,27 @@ class ITowerHandler {
     ScenarioAPI.registerNewEnvironment(newEnvironmentType);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setNetworkToScenario(environment: typeof Environment) {
     ScenarioAPI.setNetworkToScenario(environment);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   addAgentToScenario(agentConfig: MetaAgentConfig) {
     ScenarioAPI.addAgentToScenario(agentConfig);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setNetworkSizeToScenario(size: number) {
     ScenarioAPI.setNetworkSizeToScenario(size);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setPeriodsToScenario(max: number) {
     ScenarioAPI.setPeriodsToScenario(max);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setScenarioConfig(scenarioConfig: MetaScenarioConfig) {
     ScenarioAPI.setScenarioConfig(scenarioConfig);
   }
@@ -107,38 +117,42 @@ class ITowerHandler {
     ExperimentAPI.addNewExperiment(newExperiment);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setExperiment(strategyRef: IExperimentStrategy) {
     ExperimentAPI.setExperiment(strategyRef);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   run() {
     ExperimentAPI.run();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setExperimentName(name: string) {
     ExperimentAPI.setExperimentName(name);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setExperimentMaxRepetitions(maxRepetitions: number) {
     ExperimentAPI.setExperimentMaxRepetitions(maxRepetitions);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setExperimentDescription(description: string) {
     ExperimentAPI.setExperimentDescription(description);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setEssentialData(state: boolean) {
     ExperimentAPI.setEssentialData(state);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setDetailedData(state: boolean) {
     ExperimentAPI.setDetailedData(state);
   }
 
   /* Experiment API */
-  registerMetaAgentsConfigs(metaAgentsConfigs: MetaAgentConfig[]) {
-    AgentAPI.registerMetaConfigs(metaAgentsConfigs);
-  }
 }
 
 const TowerHandler: ITowerHandler = new ITowerHandler();

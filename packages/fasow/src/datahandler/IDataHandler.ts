@@ -8,7 +8,7 @@ import DataHandlerConfig from "./DataHandlerConfig";
 const fs = require("fs");
 
 class IDataHandler implements IObserver, DataHandlerConfig {
-  // todo : use Patron strategy and apply to DataHandler
+  // todo : use Patron strategy and apply to DataHandler --> hardest to apply
   experiment?: Experiment;
 
   /*

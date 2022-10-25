@@ -68,7 +68,6 @@ export default abstract class Environment
     console.log("Seeds: ", this.seedSize);
     console.log("Real agents quantity: ", this.agents.length);
     console.log("Real seeds quantity: ", this.seeds.length);
-    // todo : use AgentAPI to create agents.
     this.createAgents();
     console.log("Create agents passed");
     this.addFollowers();
@@ -109,7 +108,6 @@ export default abstract class Environment
    */
   addFollowers(): void {
     this.agents.map((agent: Agent) => {
-      // todo : maybe to do this you need to call the AgentAPI
       const total: number = Math.round(
         (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
           .followersPercentage *

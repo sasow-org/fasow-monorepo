@@ -83,8 +83,6 @@ class IAgentAPI {
 
   // todo: a method to set the type of agent to create with an specific config
   // todo: a method to order the actions config? maybe that has to been in ActionAPI
-  // todo: los agentes deben tener el indice que haga referencia a su metaconfiguracion ?
-  // todo: doActions() maybe this doesn't have to be here
 }
 
 const AgentAPI: IAgentAPI = new IAgentAPI();
