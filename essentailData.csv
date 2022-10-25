@@ -1,0 +1,6 @@
+max_repetitions,repetition,tick,max_tick,NOT_READ,READ,READY_TO_SHARE,SHARED
+1,0,0,5,897,51,2,50
+1,0,1,5,895,53,0,52
+1,0,2,5,895,53,0,52
+1,0,3,5,895,53,0,52
+1,0,4,5,895,53,0,52

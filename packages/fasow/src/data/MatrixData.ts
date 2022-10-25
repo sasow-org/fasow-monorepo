@@ -5,11 +5,11 @@ function arrayToString(array: string[]) {
 }
 
 export default class MatrixData {
-  columns: [string[]];
+  columns: string[][];
   head: string[];
 
   constructor() {
-    this.columns = [[]];
+    this.columns = [];
     this.head = [];
   }
 

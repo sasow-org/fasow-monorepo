@@ -1,3 +1,4 @@
+import DataHandler from "../datahandler/IDataHandler";
 import TowerHandler from "../tower/TowerHandler";
 import GenericExperiment from "./GenericExperiment";
 import IExperimentStrategy from "./IExperimentStrategy";
@@ -103,7 +104,9 @@ class IExperimentAPI {
         scenarioConfig: TowerHandler.getScenarioConfig(),
       };
       const experiment: GenericExperiment = new GenericExperiment(expConfig);
+      DataHandler.experiment = experiment;
       experiment.run();
+      DataHandler.writeCSVFile();
     }
   }
 

@@ -8,7 +8,9 @@ import MetaScenarioConfig from "../MetaScenarioConfig";
 
 export default class EnvironmentTwitter extends Environment {
   run(): void {
-    while (EssentialAPI.getTick() < this.periods) {
+    console.log("ENVIRONMENT PERIOD ON RUN: ", this.currentPeriod);
+    console.log("Period in API: ", EssentialAPI.getTick());
+    while (EssentialAPI.canNextTick()) {
       this.step();
     }
   }
@@ -24,7 +26,7 @@ export default class EnvironmentTwitter extends Environment {
         agent.step();
       });
     }
-    this.updateTick();
+    this.nextTick();
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -34,6 +36,10 @@ export default class EnvironmentTwitter extends Environment {
 
   // eslint-disable-next-line class-methods-use-this
   getCountStates(): RowData {
+    /*
+    Este metodo puede volver a la clase abstracta environment, si encontramos una forma de gestionar los estados,
+    registrarlos y en base a eso se ejecuta el metodo de abajo.
+     */
     const states = [0, 0, 0, 0];
     this.agents.forEach((agent) => {
       switch (agent.state) {
@@ -59,6 +65,11 @@ export default class EnvironmentTwitter extends Environment {
       PREARE: states[2],
       SHARED: states[3],
     });
-    return new RowData();
+    const rdStates: RowData = new RowData();
+    rdStates.addRow(states[0], "NOT_READ");
+    rdStates.addRow(states[1], "READ");
+    rdStates.addRow(states[2], "READY_TO_SHARE");
+    rdStates.addRow(states[3], "SHARED");
+    return rdStates;
   }
 }

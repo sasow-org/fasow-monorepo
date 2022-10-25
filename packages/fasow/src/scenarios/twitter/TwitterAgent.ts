@@ -9,15 +9,6 @@ export default class TwitterAgent extends Agent {
     }
   }
 
-  share2(): void {
-    if (this.state === AgentState.READY_TO_SHARE) {
-      this.followers.forEach((agent: Agent): void => {
-        agent.receiveMessage();
-      });
-      this.state = AgentState.SHARED;
-    }
-  }
-
   // eslint-disable-next-line class-methods-use-this
   createAgent(id: number, agentData: MetaAgentConfig): Agent {
     return new TwitterAgent().setConfig(id, agentData);

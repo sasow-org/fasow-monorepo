@@ -36,7 +36,7 @@ export default class Simulation
 
      */
     const rdSimulation: RowData = new RowData();
-    rdSimulation.addRow(this.id, "simulation_id");
+    rdSimulation.addRow(this.id, "repetition");
     return rdSimulation;
   }
 

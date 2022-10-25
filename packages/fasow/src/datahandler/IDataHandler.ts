@@ -1,51 +1,42 @@
-import Agent from "../agent/Agent";
 import MatrixData from "../data/MatrixData";
 import RowData from "../data/RowData";
 // eslint-disable-next-line import/no-cycle
-import Environment from "../environment/Environment";
-// eslint-disable-next-line import/no-cycle
 import Experiment from "../experiment/Experiment";
 import { IObserver } from "../interfaces";
-// eslint-disable-next-line import/no-cycle
-import Simulation from "../simulation/Simulation";
 import DataHandlerConfig from "./DataHandlerConfig";
-// eslint-disable-next-line import/namespace
-import { Model } from "./types/types";
 
-class IDataHandler implements IObserver {
+const fs = require("fs");
+
+class IDataHandler implements IObserver, DataHandlerConfig {
   // todo : use Patron strategy and apply to DataHandler
-  environment?: Environment;
-  simulation?: Simulation;
   experiment?: Experiment;
+
+  /*
+  UNNECESARY FOR NOW
 
   envModel: Model<Environment> = new Model<Environment>();
   simuModel: Model<Simulation> = new Model<Simulation>();
   agentModel: Model<Agent> = new Model<Agent>();
   experimentModel: Model<Experiment> = new Model<Experiment>();
-
-  essentialData: MatrixData | null = null;
-  detailedData: MatrixData | null = null;
+  */
+  essentialData: MatrixData = new MatrixData();
+  detailedData: MatrixData = new MatrixData();
+  hasEssentialData: boolean;
+  hasDetailedData: boolean;
 
   constructor(dataHandlerConfig: DataHandlerConfig) {
-    const { hasDetailedData, hasEssentialData } = dataHandlerConfig;
-
-    if (hasEssentialData) {
-      this.essentialData = new MatrixData();
-    }
-
-    if (hasDetailedData) {
-      this.detailedData = new MatrixData();
-    }
+    this.hasEssentialData = dataHandlerConfig.hasEssentialData;
+    this.hasDetailedData = dataHandlerConfig.hasDetailedData;
   }
 
   /**
    * TODO: ADD DOC
    */
   update(): void {
-    if (this.essentialData !== null) {
+    if (this.hasEssentialData) {
       this.addLineEssential();
     }
-    if (this.detailedData !== null) {
+    if (this.hasDetailedData) {
       this.addLineDetailed();
     }
   }
@@ -55,14 +46,14 @@ class IDataHandler implements IObserver {
    */
   public addLineDetailed(): void {
     if (this.detailedData === null) return;
-
     // @ts-ignore
-    const rdSimulation: RowData = this.simulation.DataEssential();
-    // @ts-ignore
-    const rdEnvironment: RowData = this.environment.DataEssential();
+    const rdExperiment: RowData = this.experiment.DataEssential();
+    console.log("rdExperimernt: \n", rdExperiment);
+    // const rdSimulation: RowData = this.simulation.DataEssential();
+    // const rdEnvironment: RowData = this.environment.DataEssential();
+    this.detailedData.addRow(rdExperiment);
 
-    const detailedDataRef = this.detailedData;
-
+    /*
     // For each agent, add essential data
     // @ts-ignore
     this.environment.agents.forEach((agent: Agent) => {
@@ -75,11 +66,19 @@ class IDataHandler implements IObserver {
 
       detailedDataRef.addRow(rd);
     });
+
+     */
   }
 
   public addLineEssential(): void {
     if (this.essentialData === null) return;
-
+    // @ts-ignore
+    const rdExperiment: RowData = this.experiment.DataEssential();
+    console.log("rdExperimernt: \n", rdExperiment);
+    // console.log("ON ADDLINEESSENTIAL: ");
+    // console.log(rdExperiment);
+    this.essentialData.addRow(rdExperiment);
+    /*
     const rd: RowData = new RowData();
     // @ts-ignore
     const rdSimulation: RowData = this.simulation.DataEssential();
@@ -91,6 +90,7 @@ class IDataHandler implements IObserver {
     rd.addRows(rdEnvironment);
 
     this.essentialData.addRow(rd);
+    */
   }
 
   public writeCSVFile(): void {
@@ -101,12 +101,15 @@ class IDataHandler implements IObserver {
       this.essentialData = new MatrixData();
     }
 
+    /*
     if (this.detailedData !== null) {
       this.writeFileData(this.detailedData, "detailed");
 
       // reset data
       this.detailedData = new MatrixData();
     }
+
+     */
   }
 
   /**
@@ -114,8 +117,13 @@ class IDataHandler implements IObserver {
    * @param data the data to be exported
    * @param mode the mode of the data. Can be essential or detailed.
    */
-  private writeFileData(data: MatrixData, mode: string): void {
-    // TODO: Actually export data
+  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  private writeFileData(data: MatrixData, mode: string) {
+    // TODO: ? export data
+    const final: string = data.toCSVFormat();
+    console.log("Final ?");
+    fs.writeFileSync("essentailData.csv", final);
+    console.log("Writing File", data);
   }
 }
 

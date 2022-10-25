@@ -155,10 +155,10 @@ export default class MessageRepetitionStrategy extends IExperimentStrategy {
     };
 
      */
-    console.log("ScenarioConfig BEFORE: ", TowerHandler.getScenarioConfig());
+    // console.log("ScenarioConfig BEFORE: ", TowerHandler.getScenarioConfig());
     TowerHandler.setNetworkToScenario(EnvironmentTwitter);
     TowerHandler.setNetworkSizeToScenario(1000);
-    TowerHandler.setPeriodsToScenario(20);
+    TowerHandler.setPeriodsToScenario(5);
     TowerHandler.addAgentToScenario({
       id: 0,
       name: "seed",
@@ -212,6 +212,6 @@ export default class MessageRepetitionStrategy extends IExperimentStrategy {
     TowerHandler.setExperimentDescription("Nothing");
     TowerHandler.setEssentialData(true);
     TowerHandler.setDetailedData(true);
-    console.log("ScenarioConfig After: ", TowerHandler.getScenarioConfig());
+    // console.log("ScenarioConfig After: ", TowerHandler.getScenarioConfig());
   }
 }

@@ -14,9 +14,10 @@ export default class RowData {
   }
 
   public addRows(rowsData: RowData): RowData {
-    const { rows, head } = rowsData;
+    const { rows } = rowsData;
+    const heads: string[] = rowsData.head;
     for (let i = 0; i < rows.length; i++) {
-      this.head.push(head[i]);
+      this.head.push(heads[i]);
       this.rows.push(rows[i]);
     }
     return this;

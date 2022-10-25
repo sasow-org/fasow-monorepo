@@ -1,7 +1,7 @@
+// eslint-disable-next-line import/no-cycle
 import Agent from "../agent/Agent";
 import RowData from "../data/RowData";
 // eslint-disable-next-line import/no-cycle
-import DataHandler from "../datahandler/IDataHandler";
 import EssentialAPI from "../essential/IEssentialAPI";
 import MetaScenarioConfig from "../scenarios/MetaScenarioConfig";
 // eslint-disable-next-line import/no-cycle
@@ -44,7 +44,10 @@ export default abstract class Environment
     this.seedSize = value;
     this.periods = config.periods;
     this.initialized = false;
-    this.currentPeriod = TowerHandler.getTick();
+    this.currentPeriod = -1;
+
+    EssentialAPI.setMaxTick(config.periods);
+
     this.agents = [];
     this.seeds = [];
     TowerHandler.registerMetaAgentsConfigs(config.metaAgentsConfigs);
@@ -83,8 +86,8 @@ export default abstract class Environment
     if (!this.isDone()) {
       console.error("Error in initialize environment with id: ", this.id);
     }
-    DataHandler.environment = this;
     this.initialized = true;
+    this.currentPeriod = EssentialAPI.setTick(0);
   }
 
   /**
@@ -98,7 +101,7 @@ export default abstract class Environment
         this.seeds.push(agent);
       }
     });
-    DataHandler.agentModel.props = this.agents;
+    // DataHandler.agentModel.props = this.agents;
   }
 
   /**
@@ -188,7 +191,8 @@ export default abstract class Environment
 
   DataEssential(): RowData {
     const rdEnvironment: RowData = new RowData();
-    rdEnvironment.addRow(this.currentPeriod, "simulation_period");
+    rdEnvironment.addRow(this.currentPeriod, "tick");
+    rdEnvironment.addRow(this.periods, "max_tick");
     rdEnvironment.addRows(this.getCountStates());
     return rdEnvironment;
   }
@@ -203,7 +207,7 @@ export default abstract class Environment
     environmentConfig: MetaScenarioConfig
   ): Environment;
 
-  updateTick() {
+  nextTick() {
     this.currentPeriod = EssentialAPI.nextTick();
   }
 }
