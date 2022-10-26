@@ -1,7 +1,3 @@
-import MessageRepetitionStrategy from "./experiment/strategies/message-repetition-strategy";
-import TowerHandler from "./tower/TowerHandler";
-import loadScenarios from "./util/ScenarioLoader";
-
 /*
 class Factory {
   list: Map<string, IAgentCreator> = new Map<string, IAgentCreator>();
@@ -125,9 +121,16 @@ const doExperimentExample = () => {
 doExperimentExample();
 
  */
+// const strategyRef = new MessageRepetitionStrategy();
+// TowerHandler.addNewExperiment(strategyRef);
+// ExperimentAPI.registerNewExperiment(GenericExperiment);
+import FASOW from "./FASOW";
+import IDataHandler from "./datahandler/IDataHandler";
+import GenericExperiment from "./experiment/GenericExperiment";
+import ITowerHandler from "./tower/ITowerHandler";
 
-loadScenarios();
-const strategyRef = new MessageRepetitionStrategy();
-TowerHandler.addNewExperiment(strategyRef);
-TowerHandler.setExperiment(strategyRef);
+const fasow: FASOW = new FASOW();
+export const DataHandler: IDataHandler = fasow.getDataHandler();
+export const TowerHandler: ITowerHandler = fasow.getTowerHandler();
+TowerHandler.selectExperiment(GenericExperiment);
 TowerHandler.run();
