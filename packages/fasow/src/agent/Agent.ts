@@ -1,7 +1,6 @@
 import type Action from "../actions/Action";
 import RowData from "../data/RowData";
-// eslint-disable-next-line import/no-cycle
-import TowerHandler from "../tower/TowerHandler";
+import { TowerHandler } from "../main";
 import type AgentConfig from "./AgentConfig";
 import { AgentState } from "./AgentState";
 import type IAgentCreator from "./IAgentCreator";

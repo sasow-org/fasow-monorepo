@@ -3,21 +3,33 @@ import { AgentState } from "../../agent/AgentState";
 import RowData from "../../data/RowData";
 // eslint-disable-next-line import/no-cycle
 import Environment from "../../environment/Environment";
-import EssentialAPI from "../../essential/IEssentialAPI";
 import MetaScenarioConfig from "../MetaScenarioConfig";
 
 export default class EnvironmentTwitter extends Environment {
   run(): void {
-    console.log("ENVIRONMENT PERIOD ON RUN: ", this.currentPeriod);
-    console.log("Period in API: ", EssentialAPI.getTick());
-    while (EssentialAPI.canNextTick()) {
+    // console.log("ENVIRONMENT PERIOD ON RUN: ", this.currentPeriod);
+    // console.log("Period in API: ", TowerHandler.getTick());
+    console.log(
+      "ENVIRONMENT PERIOD ON RUN: ",
+      this.getTick(),
+      "of (",
+      this.getMaxTick(),
+      ")"
+    );
+    while (this.canNextTick()) {
+      console.log(
+        "ENVIRONMENT PERIOD ON RUN: ",
+        this.getTick(),
+        this.getMaxTick()
+      );
       this.step();
     }
   }
 
   step(): void {
+    console.log("On Step: ", this.getTick(), " of(", this.getMaxTick(), ")");
     this.getCountStates();
-    if (EssentialAPI.getTick() === 0) {
+    if (this.getTick() === 0) {
       this.seeds.forEach((seed) => {
         seed.step();
       });
@@ -59,7 +71,7 @@ export default class EnvironmentTwitter extends Environment {
           throw new Error("In getCountStates() readed an not registered state");
       }
     });
-    console.log("Environment.period: ", this.currentPeriod, " \n states: ", {
+    console.log("Environment.period: ", this.getTick(), " \n states: ", {
       NOREAD: states[0],
       READ: states[1],
       PREARE: states[2],

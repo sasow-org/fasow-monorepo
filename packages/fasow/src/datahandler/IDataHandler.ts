@@ -7,7 +7,7 @@ import DataHandlerConfig from "./DataHandlerConfig";
 
 const fs = require("fs");
 
-class IDataHandler implements IObserver, DataHandlerConfig {
+export default class IDataHandler implements IObserver, DataHandlerConfig {
   // todo : use Patron strategy and apply to DataHandler --> hardest to apply
   experiment?: Experiment;
 
@@ -48,7 +48,7 @@ class IDataHandler implements IObserver, DataHandlerConfig {
     if (this.detailedData === null) return;
     // @ts-ignore
     const rdExperiment: RowData = this.experiment.DataEssential();
-    console.log("rdExperimernt: \n", rdExperiment);
+    // console.log("rdExperimernt: \n", rdExperiment);
     // const rdSimulation: RowData = this.simulation.DataEssential();
     // const rdEnvironment: RowData = this.environment.DataEssential();
     this.detailedData.addRow(rdExperiment);
@@ -74,7 +74,7 @@ class IDataHandler implements IObserver, DataHandlerConfig {
     if (this.essentialData === null) return;
     // @ts-ignore
     const rdExperiment: RowData = this.experiment.DataEssential();
-    console.log("rdExperimernt: \n", rdExperiment);
+    // console.log("rdExperimernt: \n", rdExperiment);
     // console.log("ON ADDLINEESSENTIAL: ");
     // console.log(rdExperiment);
     this.essentialData.addRow(rdExperiment);
@@ -126,10 +126,3 @@ class IDataHandler implements IObserver, DataHandlerConfig {
     console.log("Writing File", data);
   }
 }
-
-const DataHandler: IDataHandler = new IDataHandler({
-  hasDetailedData: false,
-  hasEssentialData: true,
-});
-
-export default DataHandler;

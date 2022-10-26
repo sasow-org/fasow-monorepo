@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import DataHandler from "../datahandler/IDataHandler";
+import { DataHandler } from "../main";
 
 /*
 Es la capa n ́ucleo y la capa m ́as alta de la
@@ -10,7 +9,7 @@ modificar los par ́ametros internos de la capa, pero si posee
 m ́etodos para servir de informaci ́on a las capas inferiores como
 por ejemplo para obtener el tick actual de la simulaci ́on.
  */
-class IEssentialAPI {
+export default class EssentialAPI {
   private tick: number;
   private maxTick: number;
 
@@ -35,8 +34,8 @@ class IEssentialAPI {
   }
 
   nextTick(): number {
-    this.tick += 1;
     DataHandler.update();
+    this.tick += 1;
     return this.tick;
   }
 
@@ -77,7 +76,3 @@ class IEssentialAPI {
     return this.maxRepetition;
   }
 }
-
-const EssentialAPI: IEssentialAPI = new IEssentialAPI();
-
-export default EssentialAPI;

@@ -1,9 +1,9 @@
 import ActionRead from "../actions/custom-actions/ActionRead";
 import ActionShare from "../actions/custom-actions/ActionShare";
 import { AgentState } from "../agent/AgentState";
+import { TowerHandler } from "../main";
 import EnvironmentTwitter from "../scenarios/twitter/EnvironmentTwitter";
 import TwitterAgent from "../scenarios/twitter/TwitterAgent";
-import TowerHandler from "../tower/TowerHandler";
 import Experiment from "./Experiment";
 
 export default class GenericExperiment extends Experiment {

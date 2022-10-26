@@ -1,8 +1,7 @@
 import RowData from "../data/RowData";
 import Environment from "../environment/Environment";
 import { IDataDetailed, IDataEssential } from "../interfaces";
-// eslint-disable-next-line import/no-cycle
-import TowerHandler from "../tower/TowerHandler";
+import { TowerHandler } from "../main";
 import type SimulationConfig from "./SimulationConfig";
 
 export default class Simulation
@@ -44,5 +43,9 @@ export default class Simulation
       TowerHandler.getScenarioConfig()
     );
     this.environment.initialize();
+  }
+
+  isDone(): boolean {
+    return this.environment.isDone();
   }
 }

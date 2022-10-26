@@ -14,7 +14,7 @@ al modelo y si la situación lo requiere. Podemos crear nuevos agentes especiali
 que pueden ser utilizados en los niveles inferiores de la arquitectura esto a través
 de la API de metaprogramacion de \co{TowerHandler} que permite la comunicación.
  */
-class IAgentAPI {
+export default class AgentAPI {
   private agentsFactories: Map<typeof Agent, IAgentCreator>;
   private agentConfigs: MetaAgentConfig[];
 
@@ -84,6 +84,3 @@ class IAgentAPI {
   // todo: a method to set the type of agent to create with an specific config
   // todo: a method to order the actions config? maybe that has to been in ActionAPI
 }
-
-const AgentAPI: IAgentAPI = new IAgentAPI();
-export default AgentAPI;

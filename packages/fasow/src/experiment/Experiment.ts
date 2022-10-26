@@ -1,12 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import RowData from "../data/RowData";
-import DataHandler from "../datahandler/IDataHandler";
-// eslint-disable-next-line import/no-cycle
-import EssentialAPI from "../essential/IEssentialAPI";
-// eslint-disable-next-line import/no-cycle
+import { TowerHandler } from "../main";
 import Simulation from "../simulation/Simulation";
-// eslint-disable-next-line import/no-cycle
-import ExperimentAPI from "./ExperimentAPI";
 // eslint-disable-next-line import/no-cycle
 import ExperimentConfig from "./ExperimentConfig";
 import IExperimentCreator from "./IExperimentCreator";
@@ -39,41 +34,44 @@ export default abstract class Experiment
 
   run() {
     console.log(
-      "On Experiment.run(), currentRepetition is: ",
-      EssentialAPI.getRepetition()
+      "At Start --> On Experiment.run(), currentRepetition is: ",
+      this.getRepetition()
     );
     this.initialize();
     console.log(
       "On Experiment.run(), currentRepetition is: ",
-      EssentialAPI.getRepetition(),
-      " , ",
-      EssentialAPI.getMaxRepetition()
+      this.getRepetition(),
+      " of(",
+      this.getMaxRepetition(),
+      ")"
     );
-    while (EssentialAPI.canNextRepetition()) {
-      if (!this.simulation.environment.isDone()) {
+    while (this.canNextRepetition()) {
+      if (!this.simulation.isDone()) {
         break;
       }
-
+      console.log("Before Simulation.run()");
       this.simulation.run();
       this.initialize();
       console.log(
         "On Experiment.run(), currentRepetition is: ",
-        EssentialAPI.getRepetition()
+        this.getRepetition(),
+        "Off (",
+        this.getMaxRepetition(),
+        ")"
       );
     }
   }
 
   initialize() {
     this.loadConfig();
-    this.simulation.initialize(EssentialAPI.nextRepetition());
-    console.log("On Experiment Initialice: ", EssentialAPI.getRepetition());
+    this.simulation.initialize(this.nextRepetition());
   }
 
   DataEssential(): RowData {
     const rd: RowData = new RowData();
     // rd.addRow(this.name, "experiment_name");
     // rd.addRow(this.description, "experiment_description");
-    rd.addRow(EssentialAPI.getMaxRepetition(), "max_repetitions");
+    rd.addRow(this.getMaxRepetition(), "max_repetitions");
     rd.addRows(this.simulation.DataEssential());
     rd.addRows(this.simulation.environment.DataEssential());
     return rd;
@@ -85,12 +83,11 @@ export default abstract class Experiment
     this.name = config.name;
     this.description = config.description;
     this.simulation = new Simulation();
-    DataHandler.experiment = this;
-    EssentialAPI.setMaxRepetition(config.maxRepetitions);
+    this.setMaxRepetition(config.maxRepetitions);
   }
 
   loadConfig(): void {
-    const config: MetaExperimentConfig = ExperimentAPI.getExperimentConfig();
+    const config: MetaExperimentConfig = TowerHandler.getExperimentConfig();
     this.setConfig(config);
   }
 
@@ -99,5 +96,30 @@ export default abstract class Experiment
   executeStrategy(): void {
     console.log();
     this.Strategy();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getRepetition(): number {
+    return TowerHandler.getRepetition();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getMaxRepetition(): number {
+    return TowerHandler.getMaxRepetition();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  canNextRepetition(): boolean {
+    return TowerHandler.canNextRepetition();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  nextRepetition(): number {
+    return TowerHandler.nextRepetition();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  setMaxRepetition(maxRepetitions: number) {
+    TowerHandler.setMaxRepetition(maxRepetitions);
   }
 }

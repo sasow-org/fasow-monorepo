@@ -1,11 +1,8 @@
 // eslint-disable-next-line import/no-cycle
 import Agent from "../agent/Agent";
 import RowData from "../data/RowData";
-// eslint-disable-next-line import/no-cycle
-import EssentialAPI from "../essential/IEssentialAPI";
+import { TowerHandler } from "../main";
 import MetaScenarioConfig from "../scenarios/MetaScenarioConfig";
-// eslint-disable-next-line import/no-cycle
-import TowerHandler from "../tower/TowerHandler";
 import type EnvironmentConfig from "./EnvironmentConfig";
 import type IEnvironmentCreator from "./IEnvironmentCreator";
 
@@ -14,8 +11,7 @@ export default abstract class Environment
 {
   id: number;
   initialized: boolean;
-  currentPeriod: number;
-  periods: number;
+  // currentPeriod: number;
   seedSize: number;
   networkSize: number;
   seeds: Agent[];
@@ -25,9 +21,9 @@ export default abstract class Environment
     this.id = -1;
     this.networkSize = -1;
     this.seedSize = -1;
-    this.periods = -1;
+    // this.periods = -1;
     this.initialized = false;
-    this.currentPeriod = -1;
+    // this.currentPeriod = -1;
     this.agents = [];
     this.seeds = [];
   }
@@ -42,12 +38,11 @@ export default abstract class Environment
       }
     });
     this.seedSize = value;
-    this.periods = config.periods;
     this.initialized = false;
-    this.currentPeriod = -1;
-
-    EssentialAPI.setMaxTick(config.periods);
-
+    // this.currentPeriod = -1;
+    console.log("Setting MaxTick to --> ", config.periods);
+    this.setMaxTick(config.periods);
+    console.log("MaxTick is : ", this.getMaxTick());
     this.agents = [];
     this.seeds = [];
     TowerHandler.registerMetaAgentsConfigs(config.metaAgentsConfigs);
@@ -86,7 +81,8 @@ export default abstract class Environment
       console.error("Error in initialize environment with id: ", this.id);
     }
     this.initialized = true;
-    this.currentPeriod = EssentialAPI.setTick(0);
+    this.setTick(0);
+    console.log("All done on environment, Ending initialization....");
   }
 
   /**
@@ -189,15 +185,15 @@ export default abstract class Environment
 
   DataEssential(): RowData {
     const rdEnvironment: RowData = new RowData();
-    rdEnvironment.addRow(this.currentPeriod, "tick");
-    rdEnvironment.addRow(this.periods, "max_tick");
+    rdEnvironment.addRow(this.getTick(), "tick");
+    rdEnvironment.addRow(this.getMaxTick(), "max_tick");
     rdEnvironment.addRows(this.getCountStates());
     return rdEnvironment;
   }
 
   DataDetailed(): RowData {
     const rdEnvironment: RowData = new RowData();
-    rdEnvironment.addRow(this.currentPeriod, "simulation_period");
+    rdEnvironment.addRow(this.getTick(), "simulation_period");
     return rdEnvironment;
   }
 
@@ -205,7 +201,33 @@ export default abstract class Environment
     environmentConfig: MetaScenarioConfig
   ): Environment;
 
+  // eslint-disable-next-line class-methods-use-this
+  setTick(tick: number) {
+    TowerHandler.setTick(tick);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
   nextTick() {
-    this.currentPeriod = EssentialAPI.nextTick();
+    TowerHandler.nextTick();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getTick(): number {
+    return TowerHandler.getTick();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  canNextTick(): boolean {
+    return TowerHandler.canNextTick();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getMaxTick(): number {
+    return TowerHandler.getMaxTick();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  setMaxTick(maxTick: number) {
+    TowerHandler.setMaxTick(maxTick);
   }
 }

@@ -2,12 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e6b1dca-5b7c-4f00-82ac-2b1e9e7c5c16" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/packages/fasow/src/FASOW.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/fasow/src/actions/ActionAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/fasow/src/agent/AgentAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/fasow/src/essential/EssentialAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/fasow/src/scenarios/ScenarioAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/fasow/src/tower/ITowerHandler.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/agent/IAgentAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/agent/IAgentAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/essentailData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/essentailData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/actions/IActionAPI.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/agent/Agent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/agent/Agent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/agent/IAgentAPI.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/datahandler/ExperimentData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/datahandler/types/ExperimentData.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/datahandler/IDataHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/datahandler/IDataHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/datahandler/QueryDataHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/datahandler/types/QueryDataHandler.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/environment/Environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/environment/Environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/environment/EnvironmentConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/environment/EnvironmentConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/essential/IEssentialAPI.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiment/Experiment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiment/Experiment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/tower/TowerHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/tower/TowerHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiment/ExperimentAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiment/ExperimentAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiment/GenericExperiment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiment/GenericExperiment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/scenarios/IScenarioAPI.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/scenarios/twitter/EnvironmentTwitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/scenarios/twitter/EnvironmentTwitter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/simulation/Simulation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/simulation/Simulation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/tower/TowerHandler.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/util/ScenarioLoader.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,33 +56,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dieku/Documents/GitHub/fasow-monorepo/packages/fasow/.eslintrc.js&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\eslint&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.tslint&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "js.linters.configure.manually.selectedeslint": "true",
+    "last_opened_file_path": "C:/Users/dieku/Documents/GitHub/fasow-monorepo/packages/fasow/.eslintrc.js",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\eslint",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo",
+    "nodejs_package_manager_path": "yarn",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\datahandler\types" />
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\util" />
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\datahandler" />
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\scenarios\facebook" />
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\environment" />
-      <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\agent" />
     </key>
   </component>
   <component name="RunManager" selected="npm.debug-backend">
@@ -144,19 +164,20 @@
         <option value="$PROJECT_DIR$/packages/fasow/src/interfaces/IObservable.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/interfaces/IDataDetailed.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/experiment/ExperimentAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/scenarios/IScenarioAPI.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/scenarios/MetaScenarioConfig.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/experiment/ExperimentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/scenarios/ScenarioAPI.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/experiment/IExperimentStrategy.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/essential/EssentialAPI.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/experiment/Experiment.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/actions/ActionAPI.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/experiment/MetaExperimentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/agent/AgentAPI.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/actions/ActionConfig.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/actions/Action.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/tower/TowerHandler.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/agent/IAgentCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/essential/IEssentialAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiment/IExperimentCreator.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/actions/IActionCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/actions/IActionAPI.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/actions/MetaActionConfig.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/data/MatrixData.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/data/RowData.js" />
@@ -164,19 +185,63 @@
         <option value="$PROJECT_DIR$/packages/fasow/src/agent/MetaAgentConfig.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/agent/Agent.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/agent/AgentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/agent/IAgentAPI.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/datahandler/types/types.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiment/strategies/message-repetition-strategy.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/scenarios/twitter/TwitterAgent.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/scenarios/twitter/EnvironmentTwitter.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/environment/IEnvironmentCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/datahandler/IDataHandler.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/datahandler/DataHandlerConfig.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/simulation/SimulationConfig.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/actions/custom-actions/ActionShare.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/actions/custom-actions/ActionRead.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/environment/Environment.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/environment/EnvironmentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/tower/ITowerHandler.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/datahandler/IDataHandler.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/main.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/FASOW.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/data/RowData.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/data/MatrixData.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/agent/AgentAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/agent/AgentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/agent/Agent.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/agent/MetaAgentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/agent/IAgentCreator.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/agent/AgentState.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/tower/ITowerHandler.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/actions/Action.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/actions/ActionConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/actions/MetaActionConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/actions/ActionAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/actions/IActionCreator.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/essential/EssentialAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/scenarios/ScenarioAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/scenarios/MetaScenarioConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiment/ExperimentAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiment/MetaExperimentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiment/Experiment.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiment/IExperimentCreator.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiment/IExperimentStrategy.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiment/ExperimentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiment/GenericExperiment.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/interfaces/IDataEssential.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/interfaces/index.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/interfaces/IData.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/interfaces/IDataDetailed.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/interfaces/IObservable.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/interfaces/IObserver.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/simulation/Simulation.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/simulation/SimulationConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/datahandler/DataHandlerConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/datahandler/IDataHandler.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/environment/IEnvironmentCreator.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/environment/EnvironmentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/environment/Environment.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/agent/Observer/Observer.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/agent/Observer/Subject.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/actions/custom-actions/ActionRead.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/actions/custom-actions/ActionShare.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/scenarios/twitter/EnvironmentTwitter.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/scenarios/twitter/TwitterAgent.js" />
       </list>
     </option>
   </component>

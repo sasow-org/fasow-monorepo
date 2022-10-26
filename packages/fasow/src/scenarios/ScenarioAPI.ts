@@ -14,7 +14,7 @@ para comunicar los niveles de las capas. De igual forma que en Experiment
 al agregar cambios en la torre de reflexión para agregar nuevas características,
  se deben realizar cambios en este nivel de la torre si el modelo lo requiere.
  */
-class IScenarioAPI {
+export default class ScenarioAPI {
   private environmentFactories: Map<typeof Environment, IEnvironmentCreator>;
   private scenarioConfig: any | MetaScenarioConfig;
 
@@ -94,10 +94,13 @@ class IScenarioAPI {
   }
 
   resetScenarioConfig(): MetaScenarioConfig {
-    this.scenarioConfig = {};
+    this.scenarioConfig = {
+      metaAgentsConfigs: [],
+      networkSize: 0,
+      periods: 0,
+      seedSize: 0,
+      environmentType: undefined,
+    };
     return this.scenarioConfig;
   }
 }
-
-const ScenarioAPI: IScenarioAPI = new IScenarioAPI();
-export default ScenarioAPI;

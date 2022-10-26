@@ -1,7 +1,6 @@
-import { DataHandler, TowerHandler } from "../util/SystemLoader";
+import { DataHandler, TowerHandler } from "../main";
 import Experiment from "./Experiment";
 import GenericExperiment from "./GenericExperiment";
-import IExperimentStrategy from "./IExperimentStrategy";
 import MetaExperimentConfig from "./MetaExperimentConfig";
 
 interface IConfigExperimentAPI {
@@ -31,13 +30,10 @@ Experiment para luego a medida que sea necesario ir efectuando
 estos cambios en las capas superiores de la torre de reflexion
 haciendo uso del TowerHandler.
  */
-class IExperimentAPI {
-  private expArray: Map<string, typeof Experiment>;
-  private strategies: Map<IExperimentStrategy, IExperimentStrategy>;
+export default class IExperimentAPI {
+  private experimentList: Map<string, typeof Experiment>;
   private selectedExperiment: Experiment | any;
 
-  private experiments: IExperimentStrategy[];
-  private strategy?: IExperimentStrategy;
   private experimentConfig: IConfigExperimentAPI = {
     id: 0,
     name: "",
@@ -48,27 +44,15 @@ class IExperimentAPI {
   };
 
   constructor() {
-    this.expArray = new Map<string, typeof Experiment>();
-
-    this.strategies = new Map<IExperimentStrategy, IExperimentStrategy>();
-    this.experiments = [];
+    this.experimentList = new Map<string, typeof Experiment>();
   }
 
   /* Strategy Handlers */
 
-  setExperiment(strategy: IExperimentStrategy) {
-    this.strategy = strategy;
-  }
-
-  addNewExperiment(strategy: IExperimentStrategy) {
-    this.experiments.push(strategy);
-    this.strategies.set(strategy, strategy);
-  }
-
   registerNewExperiment(exp: typeof Experiment) {
     // @ts-ignore
     // eslint-disable-next-line new-cap
-    this.expArray.set(exp.name, exp);
+    this.experimentList.set(exp.name, exp);
   }
 
   /* Strategy Handlers */
@@ -104,33 +88,10 @@ class IExperimentAPI {
     // todo handle with a trycatch if the experiment is undefined
     console.log("Selected Experiment: ", this.selectedExperiment);
     const exp = this.createSelectedExperiment();
+    DataHandler.experiment = exp;
     exp.executeStrategy();
     exp.run();
     DataHandler.writeCSVFile();
-
-    /*
-    if (this.strategy) {
-      this.strategy.executeStrategy();
-
-      const expConfig: MetaExperimentConfig = {
-        id: this.experimentConfig.id,
-        name: this.experimentConfig.name,
-        type: GenericExperiment,
-        description: this.experimentConfig.description,
-        essentialData: this.experimentConfig.essentialData,
-        detailedData: this.experimentConfig.detailedData,
-        maxRepetitions: this.experimentConfig.maxRepetitions,
-        scenarioConfig: TowerHandler.getScenarioConfig(),
-      };
-
-      // const experiment: GenericExperiment = new GenericExperiment();
-
-      DataHandler.experiment = experiment;
-      experiment.run();
-      DataHandler.writeCSVFile();
-    }
-
-    */
   }
 
   getExperimentConfig(): MetaExperimentConfig {
@@ -149,7 +110,7 @@ class IExperimentAPI {
   createExperiment(type: typeof Experiment): Experiment {
     // @ts-ignore
     // eslint-disable-next-line new-cap
-    return this.expArray.get(type).createExperiment();
+    return this.experimentList.get(type).createExperiment();
   }
 
   createSelectedExperiment(): Experiment {
@@ -158,9 +119,6 @@ class IExperimentAPI {
   }
 
   selectExperiment(selected: typeof Experiment) {
-    this.selectedExperiment = this.expArray.get(selected.name);
+    this.selectedExperiment = this.experimentList.get(selected.name);
   }
 }
-
-const ExperimentAPI: IExperimentAPI = new IExperimentAPI();
-export default ExperimentAPI;

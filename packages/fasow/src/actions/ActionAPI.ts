@@ -13,7 +13,7 @@ de igual forma que en las capas anteriores, esta capa utiliza la API de \co{Towe
 que permite una comunicación con las demás capas inferiores
  */
 
-class IActionAPI {
+export default class ActionAPI {
   private actionFactories: Map<typeof Action, IActionCreator>;
   private actionConfigs: MetaActionConfig[];
 
@@ -68,6 +68,3 @@ class IActionAPI {
     return list;
   }
 }
-
-const ActionAPI: IActionAPI = new IActionAPI();
-export default ActionAPI;
