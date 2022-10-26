@@ -1,4 +1,5 @@
 import RowData from "../data/RowData";
+import Environment from "../environment/Environment";
 import { IDataDetailed, IDataEssential } from "../interfaces";
 // eslint-disable-next-line import/no-cycle
 import TowerHandler from "../tower/TowerHandler";
@@ -8,12 +9,9 @@ export default class Simulation
   implements SimulationConfig, IDataEssential, IDataDetailed
 {
   id;
-  environment;
+  environment: Environment | any;
   constructor() {
     this.id = -1;
-    this.environment = TowerHandler.generateEnvironment(
-      TowerHandler.getScenarioConfig()
-    );
   }
 
   run(): void {
