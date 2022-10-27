@@ -47,90 +47,165 @@ ayuda({ keyA: "hello", keyB: 123 }, "keyA"); // OK
 // const agent1 = new TwitterAgent().setConfig(1, config.metaAgentConfigs[0]);
 // const result = agent1.getData({ id: true, state: true, followings: true });
 // console.log(result);
-
-/*
-
-const doExperimentExample = () => {
-  const config: MetaExperimentConfig = {
-    id: -1,
-    name: "test experiments",
-    description: "test description",
-    maxRepetitions: 1,
-    type: GenericExperiment,
-    scenarioConfig: {
-      environmentType: EnvironmentTwitter,
-      networkSize: 1000,
-      periods: 20,
-      metaAgentsConfigs: [
-        {
-          id: 0,
-          name: "hub",
-          followingsPercentage: 0,
-          followersPercentage: 5,
-          type: TwitterAgent,
-          quantity: 50,
-          isSeed: true,
-          state: AgentState.READY_TO_SHARE,
-          actionsConfigs: [
-            {
-              id: 0,
-              name: "ActionRead",
-              type: ActionRead,
-              probability: 0.05,
-            },
-            {
-              id: 1,
-              name: "ActionShare",
-              type: ActionShare,
-              probability: 0.05,
-            },
-          ],
-        },
-        {
-          id: 1,
-          name: "avr",
-          followingsPercentage: 0,
-          followersPercentage: 3,
-          type: TwitterAgent,
-          quantity: 950,
-          isSeed: false,
-          state: AgentState.NOT_READ,
-          actionsConfigs: [
-            {
-              id: 0,
-              name: "ActionRead",
-              type: ActionRead,
-              probability: 0.03,
-            },
-            {
-              id: 1,
-              name: "ActionShare",
-              type: ActionShare,
-              probability: 0.05,
-            },
-          ],
-        },
-      ],
-    },
-    detailedData: true,
-    essentialData: true,
-  };
-  const exp: GenericExperiment = new GenericExperiment(config);
-  exp.run();
-};
-doExperimentExample();
-
- */
-// const strategyRef = new MessageRepetitionStrategy();
-// TowerHandler.addNewExperiment(strategyRef);
-// ExperimentAPI.registerNewExperiment(GenericExperiment);
-import ExampleExperiment from "./experiments/ExampleExperiment";
+import ExperimentAgentCombination from "./experiments/ExperimentAgentCombinatio/ExperimentAgentCombination";
 import FASOW from "./fasow/FASOW";
+import { AgentState } from "./fasow/abm/interfaces/Agent/AgentState";
+import ActionRead from "./fasow/abm/wom/custom-actions/ActionRead";
+import ActionShare from "./fasow/abm/wom/custom-actions/ActionShare";
+import MetaActionConfig from "./fasow/config/metaconfig/MetaActionConfig";
+import MetaAgentConfig from "./fasow/config/metaconfig/MetaAgentConfig";
 import IDataHandler from "./fasow/datahandler/IDataHandler";
 import ITowerHandler from "./fasow/reflection/tower/ITowerHandler";
+import EnvironmentTwitter from "./fasow/scenarios/twitter/EnvironmentTwitter";
+import TwitterAgent from "./fasow/scenarios/twitter/TwitterAgent";
 
 const fasow: FASOW = new FASOW();
 export const DataHandler: IDataHandler = fasow.getDataHandler();
 export const TowerHandler: ITowerHandler = fasow.getTowerHandler();
+TowerHandler.registerNewExperiment(ExperimentAgentCombination);
+
+for (let i: number = 10; i < 100; i += 10) {
+  const percentageHub: number = i;
+  const percentageLeader: number = 100 - i;
+  console.log("Hub: ", percentageHub, "Leader: ", percentageLeader);
+
+  ExperimentAgentCombination.prototype.Strategy = () => {
+    const configRead: MetaActionConfig = {
+      id: 0,
+      name: "default-read",
+      type: ActionRead,
+      probability: 0.5,
+    };
+    const configHub: MetaAgentConfig = {
+      id: 0,
+      name: "hub",
+      type: TwitterAgent,
+      percentage: 95,
+      isSeed: false,
+      state: AgentState.NOT_READ,
+      followersPercentage: 1.14225,
+      followingsPercentage: 0,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-hub",
+          type: ActionShare,
+          probability: 19.3,
+        },
+      ],
+    };
+    const configLeader: MetaAgentConfig = {
+      id: 1,
+      name: "leader",
+      type: TwitterAgent,
+      percentage: 95,
+      isSeed: false,
+      state: AgentState.NOT_READ,
+      followingsPercentage: 0,
+      followersPercentage: 1.08,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-leader",
+          type: ActionShare,
+          probability: 25.09,
+        },
+      ],
+    };
+    const configAvr: MetaAgentConfig = {
+      id: 2,
+      type: TwitterAgent,
+      percentage: 95,
+      isSeed: false,
+      state: AgentState.NOT_READ,
+      name: "average",
+      followersPercentage: 0.057,
+      followingsPercentage: 0,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-avr",
+          type: ActionShare,
+          probability: 19.3,
+        },
+      ],
+    };
+    const configHubSeed: MetaAgentConfig = {
+      id: 0,
+      name: "hub-seed",
+      type: TwitterAgent,
+      percentage: 5,
+      isSeed: true,
+      state: AgentState.READY_TO_SHARE,
+      followersPercentage: 1.14225,
+      followingsPercentage: 0,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-hub",
+          type: ActionShare,
+          probability: 19.3,
+        },
+      ],
+    };
+    const configLeaderSeed: MetaAgentConfig = {
+      id: 1,
+      name: "leader-seed",
+      type: TwitterAgent,
+      percentage: 5,
+      isSeed: true,
+      state: AgentState.READY_TO_SHARE,
+      followingsPercentage: 0,
+      followersPercentage: 1.08,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-leader",
+          type: ActionShare,
+          probability: 25.09,
+        },
+      ],
+    };
+    const configAvrSeed: MetaAgentConfig = {
+      id: 2,
+      name: "average-seed",
+      type: TwitterAgent,
+      percentage: 5,
+      isSeed: true,
+      state: AgentState.READY_TO_SHARE,
+      followersPercentage: 0.057,
+      followingsPercentage: 0,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-avr",
+          type: ActionShare,
+          probability: 19.3,
+        },
+      ],
+    };
+
+    TowerHandler.setExperimentName(`Experiment Agent Combination-hub-${i}`);
+    TowerHandler.setMaxRepetition(10);
+    TowerHandler.setScenarioConfig({
+      networkSize: 10000,
+      maxTick: 20,
+      environmentType: EnvironmentTwitter,
+      metaAgentsConfigs: [configAvr, configAvrSeed],
+    });
+  };
+  TowerHandler.selectExperiment(ExperimentAgentCombination);
+  TowerHandler.run();
+}
+
+/*
 TowerHandler.selectExperiment(ExampleExperiment);
 TowerHandler.run();
+
+ */

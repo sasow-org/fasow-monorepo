@@ -63,7 +63,18 @@ export default class ITowerHandler {
   }
 
   setMaxRepetition(maxRepetitions: number) {
+    console.log(
+      "Setting up MaxRepetitions from (",
+      this.getMaxRepetition(),
+      ") to (",
+      maxRepetitions,
+      "). "
+    );
     this.EssentialAPI.setMaxRepetition(maxRepetitions);
+  }
+
+  setRepetition(repetition: number) {
+    this.EssentialAPI.setRepetition(repetition);
   }
 
   /* Essential API */

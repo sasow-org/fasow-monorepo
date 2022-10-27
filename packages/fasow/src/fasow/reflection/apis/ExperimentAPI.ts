@@ -68,6 +68,7 @@ export default class IExperimentAPI {
   }
 
   setExperimentMaxRepetitions(maxRepetitions: number) {
+    TowerHandler.setMaxRepetition(maxRepetitions);
     this.experimentConfig.maxRepetitions = maxRepetitions;
   }
 
@@ -102,7 +103,7 @@ export default class IExperimentAPI {
       description: this.experimentConfig.description,
       essentialData: this.experimentConfig.essentialData,
       detailedData: this.experimentConfig.detailedData,
-      maxRepetitions: this.experimentConfig.maxRepetitions,
+      maxRepetitions: TowerHandler.getMaxRepetition(),
       scenarioConfig: TowerHandler.getScenarioConfig(),
     };
   }

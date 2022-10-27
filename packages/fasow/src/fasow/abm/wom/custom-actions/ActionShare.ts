@@ -18,7 +18,11 @@ export default class ActionShare extends Action {
     if (agent.state === AgentState.READ) {
       const aux: Agent = agent;
       const p1: number = this.getRandom();
-      if (p1 / 100 > 1 - this.probability) {
+      // console.log("randomProbability1 (SHARE): ", p1);
+      // console.log("OwnProbability (SHARE): ", this.probability);
+      // console.log("P1/100: ", p1 / 100);
+      // console.log("P1/100>1-this.probability", p1 / 100 > 1 - this.probability);
+      if (p1 > 100 - this.probability) {
         aux.state = AgentState.READY_TO_SHARE;
       }
     }

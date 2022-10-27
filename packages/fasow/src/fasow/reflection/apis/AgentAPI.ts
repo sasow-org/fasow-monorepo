@@ -1,4 +1,5 @@
 // eslint-disable-next-line import/no-cycle
+import { TowerHandler } from "../../../main";
 import Agent from "../../abm/Agent";
 // eslint-disable-next-line import/no-cycle
 import IAgentCreator from "../../abm/interfaces/Agent/IAgentCreator";
@@ -42,9 +43,10 @@ export default class AgentAPI {
   }
 
   generateAgentList(): Agent[] {
-    const auxList: Agent[] = [];
+    const auxList: Agent[] = this.generateAgentsByConfigs(this.agentConfigs);
+    /*
     this.agentConfigs.forEach((config) => {
-      for (let i = 0; i < config.quantity; i += 1) {
+      for (let i = 0; i < config.percentage; i += 1) {
         const agent = this.getAgent(config.type)?.createAgent(
           auxList.length,
           config
@@ -56,13 +58,26 @@ export default class AgentAPI {
         }
       }
     });
+    
+     */
     return auxList;
   }
 
   generateAgentsByConfigs(metaConfigs: MetaAgentConfig[]): Agent[] {
     const auxList: Agent[] = [];
     metaConfigs.forEach((config) => {
-      for (let i = 0; i < config.quantity; i += 1) {
+      const quantity: number = Math.round(
+        (TowerHandler.getScenarioConfig().networkSize * config.percentage) / 100
+      );
+      console.log(
+        "Config Name: ",
+        config.name,
+        " Starting to creating (",
+        quantity,
+        ") agents with this config: \n",
+        config
+      );
+      for (let i = 0; i < quantity; i += 1) {
         const agent = this.getAgent(config.type)?.createAgent(
           auxList.length,
           config

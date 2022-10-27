@@ -34,14 +34,14 @@ export default abstract class Environment
     let value = 0;
     config.metaAgentsConfigs.forEach((agent) => {
       if (agent.isSeed) {
-        value += agent.quantity;
+        value += agent.percentage;
       }
     });
-    this.seedSize = value;
+    this.seedSize = Math.round((value * this.networkSize) / 100);
     this.initialized = false;
     // this.currentPeriod = -1;
-    console.log("Setting MaxTick to --> ", config.periods);
-    this.setMaxTick(config.periods);
+    console.log("Setting MaxTick to --> ", config.maxTick);
+    this.setMaxTick(config.maxTick);
     console.log("MaxTick is : ", this.getMaxTick());
     this.agents = [];
     this.seeds = [];
@@ -104,12 +104,13 @@ export default abstract class Environment
    */
   addFollowers(): void {
     this.agents.map((agent: Agent) => {
-      const total: number = Math.round(
+      const toRound =
         (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
           .followersPercentage *
           this.networkSize) /
-          100
-      );
+        100;
+      const total: number = Math.round(toRound);
+      // console.log("Total de Seguidores: ", total);
       while (agent.followers.length !== total) {
         const max: number = this.agents.length;
         const randomIndex: number = Number.parseInt(
@@ -126,6 +127,7 @@ export default abstract class Environment
    * Adds followings to the agents of the environment.
    */
   addFollowings(): void {
+    // todo: fix, Add Followings no funciona asi, seguir a alguien, te convierte en un seguidor de ese alguien
     this.agents.map((agent: Agent) => {
       const total: number = Math.round(
         (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
@@ -155,18 +157,25 @@ export default abstract class Environment
     }
 
     if (this.seeds.length !== this.seedSize) {
-      throw new Error("Seeds is not equal to seedSize");
+      const errorMsg: string =
+        `Seeds is not equal to seedSize: ` +
+        `\n` +
+        `seedSize: ${this.seedSize}\n` +
+        `seeds.length: ${this.seeds.length}`;
+      throw new Error(errorMsg);
     }
 
     this.agents.forEach((agent: Agent) => {
+      const toRoundAgentFollowersQuantity: number =
+        (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
+          .followersPercentage *
+          this.networkSize) /
+        100;
+      const roundedAgentFollowersQuantity: number = Math.round(
+        toRoundAgentFollowersQuantity
+      );
       if (
-        agent.followers.length !==
-          Math.round(
-            (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
-              .followersPercentage *
-              this.networkSize) /
-              100
-          ) &&
+        agent.followers.length !== roundedAgentFollowersQuantity &&
         agent.followings.length !==
           Math.round(
             (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)

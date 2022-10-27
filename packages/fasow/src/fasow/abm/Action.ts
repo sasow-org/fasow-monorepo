@@ -19,7 +19,7 @@ export default abstract class Action implements ActionConfig, IActionCreator {
   // todo : maybe this can move to other class to handle maths like NumberHandler ... to handle and get random type numbers
   // eslint-disable-next-line class-methods-use-this
   public getRandom(): number {
-    return Math.random() * 100 + 1;
+    return Math.random() * 99 + 1;
   }
 
   setConfig(actionConfig: MetaActionConfig): Action {

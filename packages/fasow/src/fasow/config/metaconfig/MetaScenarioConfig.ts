@@ -3,7 +3,7 @@ import MetaAgentConfig from "./MetaAgentConfig";
 
 export default interface MetaScenarioConfig {
   networkSize: number;
-  periods: number;
+  maxTick: number;
   environmentType: typeof Environment;
   metaAgentsConfigs: MetaAgentConfig[];
 }

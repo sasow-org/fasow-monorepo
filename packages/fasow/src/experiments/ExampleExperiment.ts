@@ -18,7 +18,7 @@ export default class ExampleExperiment extends Experiment {
       isSeed: true,
       state: AgentState.READY_TO_SHARE,
       type: TwitterAgent,
-      quantity: 50,
+      percentage: 5,
       followersPercentage: 3,
       followingsPercentage: 0,
       actionsConfigs: [
@@ -42,7 +42,7 @@ export default class ExampleExperiment extends Experiment {
       isSeed: false,
       state: AgentState.NOT_READ,
       type: TwitterAgent,
-      quantity: 950,
+      percentage: 95,
       followingsPercentage: 3,
       followersPercentage: 3,
       actionsConfigs: [
@@ -63,8 +63,6 @@ export default class ExampleExperiment extends Experiment {
     TowerHandler.setExperimentName("Experiment Message Repetition");
     TowerHandler.setExperimentMaxRepetitions(1);
     TowerHandler.setExperimentDescription("Nothing");
-    TowerHandler.setEssentialData(true);
-    TowerHandler.setDetailedData(true);
   }
 
   // eslint-disable-next-line class-methods-use-this

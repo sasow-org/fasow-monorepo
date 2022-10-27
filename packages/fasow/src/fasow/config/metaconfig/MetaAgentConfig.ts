@@ -6,7 +6,7 @@ export default interface MetaAgentConfig {
   // Metadata
   readonly id: number;
   name: string;
-  quantity: number;
+  percentage: number;
   followersPercentage: number;
   followingsPercentage: number;
   actionsConfigs: MetaActionConfig[];

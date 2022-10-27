@@ -9,7 +9,7 @@ const fs = require("fs");
 
 export default class IDataHandler implements IObserver, DataHandlerConfig {
   // todo : use Patron strategy and apply to DataHandler --> hardest to apply
-  experiment?: Experiment;
+  experiment: Experiment | any;
 
   /*
   UNNECESARY FOR NOW
@@ -122,7 +122,7 @@ export default class IDataHandler implements IObserver, DataHandlerConfig {
     // TODO: ? export data
     const final: string = data.toCSVFormat();
     console.log("Final ?");
-    fs.writeFileSync("essentailData.csv", final);
+    fs.writeFileSync(`essentailData_${this.experiment.name}.csv`, final);
     console.log("Writing File", data);
   }
 }

@@ -8,7 +8,9 @@ export default class ActionRead extends Action {
     if (agent.state === AgentState.NOT_READ) {
       const aux: Agent = agent;
       const p1: number = this.getRandom();
-      if (p1 / 100 > 1 - this.probability) {
+      // console.log("randomProbability1 (READ): ", p1);
+      // console.log("OwnProbability (READ): ", this.probability);
+      if (p1 > 100 - this.probability) {
         aux.state = AgentState.READ;
       }
     }

@@ -18,6 +18,7 @@ export default abstract class Experiment
   constructor() {
     this.name = "";
     this.description = "";
+    TowerHandler.setRepetition(-1);
     // this.simulation = new Simulation();
     /*
     this.name = config.name;
@@ -93,7 +94,7 @@ export default abstract class Experiment
   abstract Strategy(): void;
 
   executeStrategy(): void {
-    console.log();
+    console.log("Executing Strategy");
     this.Strategy();
   }
 
