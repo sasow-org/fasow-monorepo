@@ -1,6 +1,6 @@
-max_repetitions,repetition,tick,max_tick,NOT_READ,READ,READY_TO_SHARE,SHARED
-1,0,0,5,891,54,5,50
-1,0,1,5,881,63,1,55
-1,0,2,5,880,63,0,57
-1,0,3,5,880,63,0,57
-1,0,4,5,880,63,0,57
+max_repetitions,repetition,max_tick,tick,NOT_READ,READ,READY_TO_SHARE,SHARED
+1,0,5,0,892,53,5,50
+1,0,5,1,888,56,1,55
+1,0,5,2,887,57,0,56
+1,0,5,3,887,57,0,56
+1,0,5,4,887,57,0,56

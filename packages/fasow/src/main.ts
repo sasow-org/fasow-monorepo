@@ -53,7 +53,7 @@ ayuda({ keyA: "hello", keyB: 123 }, "keyA"); // OK
 const doExperimentExample = () => {
   const config: MetaExperimentConfig = {
     id: -1,
-    name: "test experiment",
+    name: "test experiments",
     description: "test description",
     maxRepetitions: 1,
     type: GenericExperiment,
@@ -124,13 +124,13 @@ doExperimentExample();
 // const strategyRef = new MessageRepetitionStrategy();
 // TowerHandler.addNewExperiment(strategyRef);
 // ExperimentAPI.registerNewExperiment(GenericExperiment);
-import FASOW from "./FASOW";
-import IDataHandler from "./datahandler/IDataHandler";
-import GenericExperiment from "./experiment/GenericExperiment";
-import ITowerHandler from "./tower/ITowerHandler";
+import ExampleExperiment from "./experiments/ExampleExperiment";
+import FASOW from "./fasow/FASOW";
+import IDataHandler from "./fasow/datahandler/IDataHandler";
+import ITowerHandler from "./fasow/reflection/tower/ITowerHandler";
 
 const fasow: FASOW = new FASOW();
 export const DataHandler: IDataHandler = fasow.getDataHandler();
 export const TowerHandler: ITowerHandler = fasow.getTowerHandler();
-TowerHandler.selectExperiment(GenericExperiment);
+TowerHandler.selectExperiment(ExampleExperiment);
 TowerHandler.run();
