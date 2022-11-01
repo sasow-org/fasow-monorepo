@@ -47,17 +47,17 @@ ayuda({ keyA: "hello", keyB: 123 }, "keyA"); // OK
 // const agent1 = new TwitterAgent().setConfig(1, config.metaAgentConfigs[0]);
 // const result = agent1.getData({ id: true, state: true, followings: true });
 // console.log(result);
-import ExperimentAgentCombination from "./experiments/ExperimentAgentCombinatio/ExperimentAgentCombination";
-import FASOW from "./fasow/FASOW";
-import { AgentState } from "./fasow/abm/interfaces/Agent/AgentState";
-import ActionRead from "./fasow/abm/wom/custom-actions/ActionRead";
-import ActionShare from "./fasow/abm/wom/custom-actions/ActionShare";
-import MetaActionConfig from "./fasow/config/metaconfig/MetaActionConfig";
-import MetaAgentConfig from "./fasow/config/metaconfig/MetaAgentConfig";
-import IDataHandler from "./fasow/datahandler/IDataHandler";
-import ITowerHandler from "./fasow/reflection/tower/ITowerHandler";
-import EnvironmentTwitter from "./fasow/scenarios/twitter/EnvironmentTwitter";
-import TwitterAgent from "./fasow/scenarios/twitter/TwitterAgent";
+import FASOW from "../../fasow/FASOW";
+import { AgentState } from "../../fasow/abm/interfaces/Agent/AgentState";
+import ActionRead from "../../fasow/abm/wom/custom-actions/ActionRead";
+import ActionShare from "../../fasow/abm/wom/custom-actions/ActionShare";
+import MetaActionConfig from "../../fasow/config/metaconfig/MetaActionConfig";
+import MetaAgentConfig from "../../fasow/config/metaconfig/MetaAgentConfig";
+import IDataHandler from "../../fasow/datahandler/IDataHandler";
+import ITowerHandler from "../../fasow/reflection/tower/ITowerHandler";
+import EnvironmentTwitter from "../../fasow/scenarios/twitter/EnvironmentTwitter";
+import TwitterAgent from "../../fasow/scenarios/twitter/TwitterAgent";
+import ExperimentAgentCombination from "./ExperimentAgentCombination";
 
 const fasow: FASOW = new FASOW();
 export const DataHandler: IDataHandler = fasow.getDataHandler();
@@ -188,128 +188,128 @@ for (let i: number = 10; i < 100; i += 10) {
       metaAgentsConfigs: [avrConfig, hubConfig, leaderConfig],
     });
     /*
-        const configRead: MetaActionConfig = {
-          id: 0,
-          name: "default-read",
-          type: ActionRead,
-          probability: 0.5,
-        };
+    const configRead: MetaActionConfig = {
+      id: 0,
+      name: "default-read",
+      type: ActionRead,
+      probability: 0.5,
+    };
 
-        const configHub: MetaAgentConfig = {
-          id: 0,
-          name: "hub",
-          type: TwitterAgent,
-          percentage: 95,
-          isSeed: false,
-          state: AgentState.NOT_READ,
-          followersPercentage: 1.14225,
-          followingsPercentage: 0,
-          actionsConfigs: [
-            configRead,
-            {
-              id: 1,
-              name: "action-share-hub",
-              type: ActionShare,
-              probability: 19.3,
-            },
-          ],
-        };
-        const configLeader: MetaAgentConfig = {
+    const configHub: MetaAgentConfig = {
+      id: 0,
+      name: "hub",
+      type: TwitterAgent,
+      percentage: 95,
+      isSeed: false,
+      state: AgentState.NOT_READ,
+      followersPercentage: 1.14225,
+      followingsPercentage: 0,
+      actionsConfigs: [
+        configRead,
+        {
           id: 1,
-          name: "leader",
-          type: TwitterAgent,
-          percentage: 95,
-          isSeed: false,
-          state: AgentState.NOT_READ,
-          followingsPercentage: 0,
-          followersPercentage: 1.08,
-          actionsConfigs: [
-            configRead,
-            {
-              id: 1,
-              name: "action-share-leader",
-              type: ActionShare,
-              probability: 25.09,
-            },
-          ],
-        };
-        const configAvr: MetaAgentConfig = {
-          id: 2,
-          type: TwitterAgent,
-          percentage: 95,
-          isSeed: false,
-          state: AgentState.NOT_READ,
-          name: "average",
-          followersPercentage: 0.057,
-          followingsPercentage: 0,
-          actionsConfigs: [
-            configRead,
-            {
-              id: 1,
-              name: "action-share-avr",
-              type: ActionShare,
-              probability: 19.3,
-            },
-          ],
-        };
-        const configHubSeed: MetaAgentConfig = {
-          id: 0,
-          name: "hub-seed",
-          type: TwitterAgent,
-          percentage: 5,
-          isSeed: true,
-          state: AgentState.READY_TO_SHARE,
-          followersPercentage: 1.14225,
-          followingsPercentage: 0,
-          actionsConfigs: [
-            configRead,
-            {
-              id: 1,
-              name: "action-share-hub",
-              type: ActionShare,
-              probability: 19.3,
-            },
-          ],
-        };
-        const configLeaderSeed: MetaAgentConfig = {
+          name: "action-share-hub",
+          type: ActionShare,
+          probability: 19.3,
+        },
+      ],
+    };
+    const configLeader: MetaAgentConfig = {
+      id: 1,
+      name: "leader",
+      type: TwitterAgent,
+      percentage: 95,
+      isSeed: false,
+      state: AgentState.NOT_READ,
+      followingsPercentage: 0,
+      followersPercentage: 1.08,
+      actionsConfigs: [
+        configRead,
+        {
           id: 1,
-          name: "leader-seed",
-          type: TwitterAgent,
-          percentage: 5,
-          isSeed: true,
-          state: AgentState.READY_TO_SHARE,
-          followingsPercentage: 0,
-          followersPercentage: 1.08,
-          actionsConfigs: [
-            configRead,
-            {
-              id: 1,
-              name: "action-share-leader",
-              type: ActionShare,
-              probability: 25.09,
-            },
-          ],
-        };
-        const configAvrSeed: MetaAgentConfig = {
-          id: 2,
-          name: "average-seed",
-          type: TwitterAgent,
-          percentage: 5,
-          isSeed: true,
-          state: AgentState.READY_TO_SHARE,
-          followersPercentage: 0.057,
-          followingsPercentage: 0,
-          actionsConfigs: [
-            configRead,
-            {
-              id: 1,
-              name: "action-share-avr",
-              type: ActionShare,
-              probability: 19.3,
-            },
-          ],
-        };
-         */
+          name: "action-share-leader",
+          type: ActionShare,
+          probability: 25.09,
+        },
+      ],
+    };
+    const configAvr: MetaAgentConfig = {
+      id: 2,
+      type: TwitterAgent,
+      percentage: 95,
+      isSeed: false,
+      state: AgentState.NOT_READ,
+      name: "average",
+      followersPercentage: 0.057,
+      followingsPercentage: 0,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-avr",
+          type: ActionShare,
+          probability: 19.3,
+        },
+      ],
+    };
+    const configHubSeed: MetaAgentConfig = {
+      id: 0,
+      name: "hub-seed",
+      type: TwitterAgent,
+      percentage: 5,
+      isSeed: true,
+      state: AgentState.READY_TO_SHARE,
+      followersPercentage: 1.14225,
+      followingsPercentage: 0,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-hub",
+          type: ActionShare,
+          probability: 19.3,
+        },
+      ],
+    };
+    const configLeaderSeed: MetaAgentConfig = {
+      id: 1,
+      name: "leader-seed",
+      type: TwitterAgent,
+      percentage: 5,
+      isSeed: true,
+      state: AgentState.READY_TO_SHARE,
+      followingsPercentage: 0,
+      followersPercentage: 1.08,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-leader",
+          type: ActionShare,
+          probability: 25.09,
+        },
+      ],
+    };
+    const configAvrSeed: MetaAgentConfig = {
+      id: 2,
+      name: "average-seed",
+      type: TwitterAgent,
+      percentage: 5,
+      isSeed: true,
+      state: AgentState.READY_TO_SHARE,
+      followersPercentage: 0.057,
+      followingsPercentage: 0,
+      actionsConfigs: [
+        configRead,
+        {
+          id: 1,
+          name: "action-share-avr",
+          type: ActionShare,
+          probability: 19.3,
+        },
+      ],
+    };
+     */
   };
   TowerHandler.selectExperiment(ExperimentAgentCombination);
   TowerHandler.run();
