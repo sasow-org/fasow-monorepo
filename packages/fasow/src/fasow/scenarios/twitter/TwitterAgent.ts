@@ -6,6 +6,7 @@ export default class TwitterAgent extends Agent {
   step(): void {
     if (this.state === AgentState.READY_TO_SHARE) {
       this.share();
+      this.state = AgentState.SHARED;
     }
   }
 

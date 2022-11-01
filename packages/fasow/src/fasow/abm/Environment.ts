@@ -192,6 +192,14 @@ export default abstract class Environment
     return true;
   }
 
+  resetAgentStates(): void {
+    this.agents.forEach((agent) => agent.resetState());
+  }
+
+  resetSeedStates(): void {
+    this.seeds.forEach((seed) => seed.resetState());
+  }
+
   DataEssential(): RowData {
     const rdEnvironment: RowData = new RowData();
     rdEnvironment.addRow(this.getMaxTick(), "max_tick");

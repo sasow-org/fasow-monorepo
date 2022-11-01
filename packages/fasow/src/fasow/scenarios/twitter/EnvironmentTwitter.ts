@@ -17,28 +17,17 @@ export default class EnvironmentTwitter extends Environment {
       ")"
     );
     while (this.canNextTick()) {
-      console.log(
-        "ENVIRONMENT PERIOD ON RUN: ",
-        this.getTick(),
-        this.getMaxTick()
-      );
+      console.log("On Step: ", this.getTick(), " of(", this.getMaxTick(), ")");
+      // this.getCountStates();
       this.step();
+      this.nextTick();
     }
   }
 
   step(): void {
-    console.log("On Step: ", this.getTick(), " of(", this.getMaxTick(), ")");
-    this.getCountStates();
-    if (this.getTick() === 0) {
-      this.seeds.forEach((seed) => {
-        seed.step();
-      });
-    } else {
-      this.agents.forEach((agent) => {
-        agent.step();
-      });
-    }
-    this.nextTick();
+    this.agents.forEach((agent) => {
+      agent.step();
+    });
   }
 
   // eslint-disable-next-line class-methods-use-this

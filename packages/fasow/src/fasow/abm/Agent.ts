@@ -94,6 +94,12 @@ export default abstract class Agent
     return rd;
   }
 
+  resetState(): void {
+    this.state = TowerHandler.getMetaAgentConfigById(
+      this.indexMetaAgentConfig
+    ).state;
+  }
+
   abstract createAgent(id: number, agentData: MetaAgentConfig): Agent;
 
   setConfig(id: number, config: MetaAgentConfig): Agent {
@@ -112,7 +118,6 @@ export default abstract class Agent
    */
   share(): void {
     this.followers.forEach((follower) => follower.update(this));
-    this.state = AgentState.SHARED;
   }
 
   /*
