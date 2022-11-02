@@ -1,12 +1,27 @@
 import Agent from "../../abm/Agent";
-import { AgentState } from "../../abm/interfaces/Agent/AgentState";
+import {AgentState} from "../../abm/interfaces/Agent/AgentState";
 import MetaAgentConfig from "../../config/metaconfig/MetaAgentConfig";
+import {
+  AgentStateIntegerCount
+} from "../../datahandler/decorators/DataHandlerDecorators";
 
 export default class TwitterAgent extends Agent {
+  @AgentStateIntegerCount("NOT_READ", AgentState.NOT_READ)
+  static NOT_READ : number = AgentState.NOT_READ;
+
+  @AgentStateIntegerCount("READ", AgentState.READ)
+  static READ : number = AgentState.READ;
+
+  @AgentStateIntegerCount("READY_TO_SHARE", AgentState.READY_TO_SHARE)
+  static READY : number = AgentState.READY_TO_SHARE;
+
+  @AgentStateIntegerCount("SHARED", AgentState.SHARED)
+  static SHARED : number = AgentState.SHARED;
+
   step(): void {
-    if (this.state === AgentState.READY_TO_SHARE) {
+    if(this.state === TwitterAgent.READY){
       this.share();
-      this.state = AgentState.SHARED;
+      this.state = TwitterAgent.SHARED
     }
   }
 
@@ -16,8 +31,9 @@ export default class TwitterAgent extends Agent {
   }
 
   update(message: any): any {
-    // Que se actualizara
+    // Que se actualizara?
     this.actions.forEach((action) => action.execute(this));
     return message;
   }
+
 }

@@ -1,7 +1,6 @@
 import { TowerHandler } from "../../main";
 import type AgentConfig from "../config/config/AgentConfig";
 import MetaAgentConfig from "../config/metaconfig/MetaAgentConfig";
-import RowData from "../datahandler/data/RowData";
 import type Action from "./Action";
 import { AgentState } from "./interfaces/Agent/AgentState";
 import type IAgentCreator from "./interfaces/Agent/IAgentCreator";
@@ -86,14 +85,6 @@ export default abstract class Agent
     });
   }
 
-  DataDetailed(): RowData {
-    const rd: RowData = new RowData();
-    rd.addRow(this.id, "agent_id");
-    rd.addRow(this.state, "agent_state");
-    rd.addRow(this.isSeed, "agent_is_seed");
-    return rd;
-  }
-
   resetState(): void {
     this.state = TowerHandler.getMetaAgentConfigById(
       this.indexMetaAgentConfig
@@ -114,51 +105,15 @@ export default abstract class Agent
   }
 
   /*
-  todo: Notify is like share, and when notify, maybe you can send a message : any object
+  todo: add documentation
    */
   share(): void {
     this.followers.forEach((follower) => follower.update(this));
   }
 
   /*
-  update is like a receive message
+  todo: add documentation
+   update is like a receive message
    */
   abstract update(message: any): any;
 }
-
-/*
-    notify(data: typeof Agent, config: MetaAgentConfig): Agent {
-      console.log("agent: ", data.name);
-      console.log("config: ", config);
-      // eslint-disable-next-line new-cap
-      // @ts-ignore
-      // eslint-disable-next-line new-cap
-      const aux: data = new data();
-      aux.setConfig(1, config);
-      console.log("Object create: ");
-      return aux;
-    }
-
-
-    getData<S extends QuerySelection<Agent>>(
-      selection: S
-    ): QueryResult<Agent, S> {
-      console.log("Hola soy el agent, mis datos son: ", this);
-      // @ts-ignore
-      console.log("On get Data:  ", selection);
-      const output = {};
-      // eslint-disable-next-line guard-for-in,no-restricted-syntax
-      for (const x in selection) {
-        // @ts-ignore
-        console.log(x, ":", this[x]);
-        // @ts-ignore
-        output[x] = this[x];
-      }
-      return output as QueryResult<Agent, S>;
-    }
-
-    query: any = undefined;
-    setQuery<S extends QuerySelection<Agent>>(selection: S): void {
-      this.query = selectio n;
-    }
-*/

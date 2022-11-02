@@ -1,9 +1,6 @@
-// eslint-disable-next-line import/no-cycle
 import { TowerHandler } from "../../main";
-// eslint-disable-next-line import/no-cycle
 import ExperimentConfig from "../config/config/ExperimentConfig";
 import MetaExperimentConfig from "../config/metaconfig/MetaExperimentConfig";
-import RowData from "../datahandler/data/RowData";
 import Simulation from "./Simulation";
 import IExperimentCreator from "./interfaces/Experiment/IExperimentCreator";
 import IExperimentStrategy from "./interfaces/Experiment/IExperimentStrategy";
@@ -19,18 +16,6 @@ export default abstract class Experiment
     this.name = "";
     this.description = "";
     TowerHandler.setRepetition(-1);
-    // this.simulation = new Simulation();
-    /*
-    this.name = config.name;
-    this.description = config.description;
-    this.currentRepetition = -1;
-    this.maxRepetitions = config.maxRepetitions;
-    this.simulation = new Simulation();
-    DataHandler.experiments = this;
-    EssentialAPI.setMaxRepetition(config.maxRepetitions);
-
-     */
-    // EssentialAPI.setRepetition(-1);
   }
 
   run() {
@@ -66,15 +51,6 @@ export default abstract class Experiment
   initialize() {
     this.loadConfig();
     this.simulation.initialize(this.nextRepetition());
-  }
-
-  DataEssential(): RowData {
-    const rd: RowData = new RowData();
-    // rd.addRow(this.name, "experiment_name");
-    // rd.addRow(this.description, "experiment_description");
-    rd.addRow(this.getMaxRepetition(), "max_repetitions");
-    rd.addRows(this.simulation.DataEssential());
-    return rd;
   }
 
   abstract createExperiment(): Experiment;

@@ -7,12 +7,9 @@ import EnvironmentTwitter from "./scenarios/twitter/EnvironmentTwitter";
 import TwitterAgent from "./scenarios/twitter/TwitterAgent";
 
 export default class FASOW {
-  private dataHandler: IDataHandler = new IDataHandler({
-    hasDetailedData: false,
-    hasEssentialData: true,
-  });
-
+  private dataHandler: IDataHandler = new IDataHandler();
   private towerHandler: ITowerHandler = new ITowerHandler();
+
   constructor() {
     this.loadActions();
     this.loadAgents();

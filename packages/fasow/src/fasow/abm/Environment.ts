@@ -2,7 +2,6 @@
 import { TowerHandler } from "../../main";
 import type EnvironmentConfig from "../config/config/EnvironmentConfig";
 import MetaScenarioConfig from "../config/metaconfig/MetaScenarioConfig";
-import RowData from "../datahandler/data/RowData";
 import Agent from "./Agent";
 import type IEnvironmentCreator from "./interfaces/Environment/IEnvironmentCreator";
 
@@ -39,20 +38,17 @@ export default abstract class Environment
     });
     this.seedSize = Math.round((value * this.networkSize) / 100);
     this.initialized = false;
-    // this.currentPeriod = -1;
     console.log("Setting MaxTick to --> ", config.maxTick);
     this.setMaxTick(config.maxTick);
     console.log("MaxTick is : ", this.getMaxTick());
     this.agents = [];
     this.seeds = [];
     TowerHandler.registerMetaAgentsConfigs(config.metaAgentsConfigs);
-    // console.log("on Environment, config: ", config);
     return this;
   }
 
   public abstract step(): void;
   public abstract run(): void;
-  public abstract getCountStates(): RowData;
 
   /**
    * Initializes the current environment.
@@ -198,20 +194,6 @@ export default abstract class Environment
 
   resetSeedStates(): void {
     this.seeds.forEach((seed) => seed.resetState());
-  }
-
-  DataEssential(): RowData {
-    const rdEnvironment: RowData = new RowData();
-    rdEnvironment.addRow(this.getMaxTick(), "max_tick");
-    rdEnvironment.addRow(this.getTick(), "tick");
-    rdEnvironment.addRows(this.getCountStates());
-    return rdEnvironment;
-  }
-
-  DataDetailed(): RowData {
-    const rdEnvironment: RowData = new RowData();
-    rdEnvironment.addRow(this.getTick(), "simulation_period");
-    return rdEnvironment;
   }
 
   abstract createEnvironment(

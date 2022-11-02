@@ -2,14 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e6b1dca-5b7c-4f00-82ac-2b1e9e7c5c16" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/main-effect.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/decorators/DataHandlerDecorators.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/essentailData.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Agent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Agent.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Simulation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Simulation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionRead.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionRead.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionShare.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionShare.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/DataHandlerConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/DataHandlerConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/IDataHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/IDataHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/data/MatrixData.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/data/RowData.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IData.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IDataDetailed.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IDataEssential.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IObservable.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IObserver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/types/ExperimentData.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/types/QueryDataHandler.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/types/types.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/TwitterAgent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/TwitterAgent.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,11 +85,11 @@
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\config\metaconfig" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\fasow\datahandler\decorators" />
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\experiments\ExperimentAgentCombinatio" />
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\experiments\ExperimentEffectMessageRepetition" />
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\fasow\config\config" />
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\fasow\reflection\apis" />
-      <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\fasow" />
     </key>
   </component>
   <component name="RunManager" selected="npm.debug-backend">
@@ -137,6 +159,8 @@
       <workItem from="1666884635424" duration="58000" />
       <workItem from="1667125721677" duration="19497000" />
       <workItem from="1667333718502" duration="4703000" />
+      <workItem from="1667346482910" duration="3640000" />
+      <workItem from="1667389595400" duration="32960000" />
     </task>
     <servers />
   </component>
@@ -162,14 +186,11 @@
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Environment/IEnvironmentCreator.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentStrategy.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IData.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/index.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IDataEssential.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/data/MatrixData.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionRead.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IObserver.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IObservable.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IDataDetailed.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaAgentConfig.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaScenarioConfig.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaActionConfig.js" />
@@ -190,6 +211,7 @@
         <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/main-combination-agents.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/decorators/DataHandlerDecorators.js" />
       </list>
     </option>
   </component>

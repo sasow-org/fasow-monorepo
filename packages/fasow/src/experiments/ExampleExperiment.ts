@@ -9,10 +9,7 @@ import { TowerHandler } from "../main";
 export default class ExampleExperiment extends Experiment {
   // eslint-disable-next-line class-methods-use-this
   Strategy(): void {
-    TowerHandler.setNetworkToScenario(EnvironmentTwitter);
-    TowerHandler.setNetworkSizeToScenario(1000);
-    TowerHandler.setPeriodsToScenario(5);
-    TowerHandler.addAgentToScenario({
+    const agent1 = {
       id: 0,
       name: "seed",
       isSeed: true,
@@ -26,17 +23,17 @@ export default class ExampleExperiment extends Experiment {
           id: 0,
           name: "read1",
           type: ActionRead,
-          probability: 0.05,
+          probability: 5,
         },
         {
           id: 1,
           name: "share",
           type: ActionShare,
-          probability: 0.05,
+          probability: 5,
         },
       ],
-    });
-    TowerHandler.addAgentToScenario({
+    };
+    const agent2 = {
       id: 1,
       name: "non-seeds",
       isSeed: false,
@@ -50,18 +47,24 @@ export default class ExampleExperiment extends Experiment {
           id: 0,
           name: "read1",
           type: ActionRead,
-          probability: 0.03,
+          probability: 5,
         },
         {
           id: 1,
           name: "share",
           type: ActionShare,
-          probability: 0.05,
+          probability: 5,
         },
       ],
+    };
+    TowerHandler.setScenarioConfig({
+      networkSize: 1000,
+      maxTick: 10,
+      environmentType: EnvironmentTwitter,
+      metaAgentsConfigs: [agent1, agent2],
     });
-    TowerHandler.setExperimentName("Experiment Message Repetition");
-    TowerHandler.setExperimentMaxRepetitions(1);
+    TowerHandler.setExperimentName("Experiment-Example");
+    TowerHandler.setExperimentMaxRepetitions(10);
     TowerHandler.setExperimentDescription("Nothing");
   }
 

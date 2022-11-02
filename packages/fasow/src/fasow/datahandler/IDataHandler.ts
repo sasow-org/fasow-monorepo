@@ -1,128 +1,152 @@
-// eslint-disable-next-line import/no-cycle
 import Experiment from "../abm/Experiment";
-import DataHandlerConfig from "../config/config/DataHandlerConfig";
-import MatrixData from "./data/MatrixData";
-import RowData from "./data/RowData";
-import { IObserver } from "./interfaces";
+import {
+  AccumAgentKeysArray,
+  CountAgentStatesObjectKeysArray,
+  CountEnvironmentKeys,
+  CountAgentBooleanObjectKeysArray,
+  AccumEnvironmentObjectKeys
+} from "./decorators/DataHandlerDecorators";
+import {TowerHandler} from "../../main";
+import Agent from "../abm/Agent";
 
+// Imports to WriteFiles
 const fs = require("fs");
+const {Parser} = require("json2csv")
 
-export default class IDataHandler implements IObserver, DataHandlerConfig {
-  // todo : use Patron strategy and apply to DataHandler --> hardest to apply
-  experiment: Experiment | any;
+export default class IDataHandler {
+    experiment: Experiment | any;
+    finalOutput : any[] = [];
 
-  /*
-  UNNECESARY FOR NOW
-
-  envModel: Model<Environment> = new Model<Environment>();
-  simuModel: Model<Simulation> = new Model<Simulation>();
-  agentModel: Model<Agent> = new Model<Agent>();
-  experimentModel: Model<Experiment> = new Model<Experiment>();
-  */
-  essentialData: MatrixData = new MatrixData();
-  detailedData: MatrixData = new MatrixData();
-  hasEssentialData: boolean;
-  hasDetailedData: boolean;
-
-  constructor(dataHandlerConfig: DataHandlerConfig) {
-    this.hasEssentialData = dataHandlerConfig.hasEssentialData;
-    this.hasDetailedData = dataHandlerConfig.hasDetailedData;
+  private static generateRow(row: object, toAdd: object){
+    Reflect.ownKeys(toAdd).forEach( key => {
+      console.log(key)
+      Reflect.set(row, key, Reflect.get(toAdd, key))
+    })
+    return row;
   }
-
-  /**
-   * TODO: ADD DOC
-   */
-  update(): void {
-    if (this.hasEssentialData) {
-      this.addLineEssential();
+  private static dumpOutput(target: any[]): string {
+    try {
+      const parser = new Parser();
+      const csv = parser.parse(target)
+      return csv
+    } catch (e){
+      console.log(e)
     }
-    if (this.hasDetailedData) {
-      this.addLineDetailed();
-    }
+    return ""
   }
 
-  /**
-   * TODO: ADD DOC
-   */
-  public addLineDetailed(): void {
-    if (this.detailedData === null) return;
-    // @ts-ignore
-    const rdExperiment: RowData = this.experiment.DataEssential();
-    // console.log("rdExperimernt: \n", rdExperiment);
-    // const rdSimulation: RowData = this.simulation.DataEssential();
-    // const rdEnvironment: RowData = this.environment.DataEssential();
-    this.detailedData.addRow(rdExperiment);
-
-    /*
-    // For each agent, add essential data
-    // @ts-ignore
-    this.environment.agents.forEach((agent: Agent) => {
-      const rd: RowData = new RowData();
-
-      // Add rows
-      rd.addRows(rdSimulation);
-      rd.addRows(rdEnvironment);
-      rd.addRows(agent.DataDetailed());
-
-      detailedDataRef.addRow(rd);
-    });
-
-     */
-  }
-
-  public addLineEssential(): void {
-    if (this.essentialData === null) return;
-    // @ts-ignore
-    const rdExperiment: RowData = this.experiment.DataEssential();
-    // console.log("rdExperimernt: \n", rdExperiment);
-    // console.log("ON ADDLINEESSENTIAL: ");
-    // console.log(rdExperiment);
-    this.essentialData.addRow(rdExperiment);
-    /*
-    const rd: RowData = new RowData();
-    // @ts-ignore
-    const rdSimulation: RowData = this.simulation.DataEssential();
-    // @ts-ignore
-    const rdEnvironment: RowData = this.environment.DataEssential();
-
-    // Add rows
-    rd.addRows(rdSimulation);
-    rd.addRows(rdEnvironment);
-
-    this.essentialData.addRow(rd);
+    /**
+     * TODO: ADD DOC
     */
+    update(): void {
+      this.writeLine();
+    }
+
+    private writeLine() {
+      const repetition = TowerHandler.getRepetition();
+      const tick = TowerHandler.getTick();
+      const finalRow = {repetition, tick};
+
+      // Environment Row Data
+      const environmentCountsRow = this.calculateEnvironmentCounts();
+      const environmentAccumRow = this.calculateEnvironmentAccum();
+
+      // Agents Row Data
+      const agentAccumRow = this.calculateAgentAccum()
+      const agentBooleanCountsRow = this.calculateAgentBooleanCounts();
+      const agentStatesRow = this.calculateAgentStateIntegerCounts();
+
+      IDataHandler.generateRow(finalRow, environmentCountsRow)
+      IDataHandler.generateRow(finalRow, environmentAccumRow)
+      IDataHandler.generateRow(finalRow, agentAccumRow)
+      IDataHandler.generateRow(finalRow, agentBooleanCountsRow)
+      IDataHandler.generateRow(finalRow, agentStatesRow)
+
+
+      this.finalOutput.push(finalRow);
+    }
+    private calculateEnvironmentAccum() : any {
+      const envi = this.experiment.simulation.environment
+      const row = {}
+      AccumEnvironmentObjectKeys.forEach(item => {
+        let oldValue = 0;
+        if(TowerHandler.getTick()>0){
+          const toOut = this.finalOutput[this.finalOutput.length-1];
+          console.log("TO OUUUUT : ", toOut)
+          oldValue = Reflect.get(toOut, item.propertyKey)
+        }
+        const actualValue = Reflect.get(envi, item.propertyKey)
+        const totalValue = oldValue + actualValue;
+        Reflect.set(row, item.propertyKey, totalValue);
+      })
+      return row;
+    }
+    private calculateEnvironmentCounts() : any {
+      const envi = this.experiment.simulation.environment
+      const row = {};
+      CountEnvironmentKeys.forEach( item => {
+        const key = item.propertyKey;
+        const value = Reflect.get(envi, key)
+        Reflect.set(row, item.column_name, value)
+      })
+      return row;
+    }
+    private calculateAgentStateIntegerCounts() : any {
+      const row = {}
+      CountAgentStatesObjectKeysArray.forEach(item => {
+        let countVar = 0;
+        (<Experiment>this.experiment).simulation.environment.agents.forEach( (agent: Agent) => {
+          if(agent.state === item.value){
+            countVar+=1;
+          }
+        })
+        Reflect.set(row, item.column_name, countVar)
+      })
+      return row;
+    }
+    private calculateAgentBooleanCounts() : any {
+      const {agents} = this.experiment.simulation.environment;
+      const row = {}
+      CountAgentBooleanObjectKeysArray.forEach(item => {
+        let counter = 0;
+        agents.forEach( (agent: object) => {
+          const valueFromAgent : boolean = Reflect.get(agent, item.propertyKey)
+          if(item.countFalse){ // Si vamos a contar por cada agente que tenga esa property en false
+              if(!valueFromAgent){
+                counter += 1;
+              }
+          }else if(valueFromAgent){
+              counter +=1
+            }
+        })
+        Reflect.set(row, item.column_name, counter)
+      })
+      return row;
+    }
+    private calculateAgentAccum() {
+    const {agents} = this.experiment.simulation.environment;
+    const row = {}
+    AccumAgentKeysArray.forEach(item => {
+      let sum = 0;
+      agents.forEach((agent: object) => {
+        if(Reflect.has(agent,item.propertyKey)){
+          sum += Reflect.get(agent, item.propertyKey);
+        }
+      })
+      Reflect.set(row, item.propertyKey, sum);
+    })
+    return row;
   }
 
-  public writeCSVFile(): void {
-    if (this.essentialData !== null) {
-      this.writeFileData(this.essentialData, "essential");
-
-      // reset data
-      this.essentialData = new MatrixData();
-    }
-
-    /*
-    if (this.detailedData !== null) {
-      this.writeFileData(this.detailedData, "detailed");
-
-      // reset data
-      this.detailedData = new MatrixData();
-    }
-
+    /**
+     * Exports a file with the desired data from finalOutput
      */
-  }
+    private writeFileData() {
+      console.log("Writing File", this.finalOutput);
+      fs.writeFileSync(`${this.experiment.name}_output.csv`, IDataHandler.dumpOutput(this.finalOutput))
+    }
 
-  /**
-   * Exports a file with the desired data from Matrix Data
-   * @param data the data to be exported
-   * @param mode the mode of the data. Can be essential or detailed.
-   */
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
-  private writeFileData(data: MatrixData, mode: string) {
-    // TODO: ? export data
-    const final: string = data.toCSVFormat();
-    console.log("Final ?");
-    fs.writeFileSync(`essentailData_${this.experiment.name}.csv`, final);
-    console.log("Writing File", data);
-  }
+    public writeCSVFile(): void {
+        this.writeFileData();
+    }
 }
