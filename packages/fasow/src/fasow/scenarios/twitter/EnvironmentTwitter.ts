@@ -1,12 +1,23 @@
+import { DataHandler } from "../../../main";
 import Environment from "../../abm/Environment";
 import MetaScenarioConfig from "../../config/metaconfig/MetaScenarioConfig";
 
 export default class EnvironmentTwitter extends Environment {
   public run(): void {
     while (this.canNextTick()) {
-      console.log("On Step: ", this.getTick(), " of (", this.getMaxTick(), ")");
       this.step();
-      this.nextTick();
+      console.log(
+        "On Step: ",
+        this.nextTick(),
+        " of (",
+        this.getMaxTick(),
+        "): \n",
+        DataHandler.getLastOutputRow()
+      );
+
+      // console.log("On Step: ", this.getTick(), " of (", this.getMaxTick(), ")");
+      //
+      console.log();
     }
   }
 

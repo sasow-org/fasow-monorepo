@@ -64,7 +64,7 @@ export default class ExampleExperiment extends Experiment {
       metaAgentsConfigs: [agent1, agent2],
     });
     TowerHandler.setExperimentName("Experiment-Example");
-    TowerHandler.setExperimentMaxRepetitions(10);
+    TowerHandler.setExperimentMaxRepetitions(2);
     TowerHandler.setExperimentDescription("Nothing");
   }
 

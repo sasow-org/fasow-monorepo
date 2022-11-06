@@ -19,7 +19,6 @@ export default class IDataHandler {
 
   private static generateRow(row: object, toAdd: object){
     Reflect.ownKeys(toAdd).forEach( key => {
-      console.log(key)
       Reflect.set(row, key, Reflect.get(toAdd, key))
     })
     return row;
@@ -72,7 +71,6 @@ export default class IDataHandler {
         let oldValue = 0;
         if(TowerHandler.getTick()>0){
           const toOut = this.finalOutput[this.finalOutput.length-1];
-          console.log("TO OUUUUT : ", toOut)
           oldValue = Reflect.get(toOut, item.propertyKey)
         }
         const actualValue = Reflect.get(envi, item.propertyKey)
@@ -148,5 +146,10 @@ export default class IDataHandler {
 
     public writeCSVFile(): void {
         this.writeFileData();
+    }
+
+    // todo: make a method to show te output per period
+    public getLastOutputRow() : any {
+      return this.finalOutput[this.finalOutput.length-1]
     }
 }

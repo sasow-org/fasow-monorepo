@@ -57,7 +57,6 @@ export const CountAgentStatesObjectKeysArray: CountStateItem[] = []; // todo : t
  */
 export function AgentStateIntegerCount(name: string, value: number) {
   return function (target: any, propertyKey: string) {
-    console.log("Target: ", target);
     CountAgentStatesObjectKeysArray.push({
       target,
       propertyKey,

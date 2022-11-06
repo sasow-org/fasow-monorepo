@@ -19,15 +19,11 @@ export default abstract class Experiment
   }
 
   run() {
-    console.log(
-      "At Start --> On Experiment.run(), currentRepetition is: ",
-      this.getRepetition()
-    );
     this.initialize();
     console.log(
-      "On Experiment.run(), currentRepetition is: ",
+      "Ended Initialization --> On Experiment.run(), currentRepetition  is: ",
       this.getRepetition(),
-      " of(",
+      " of (",
       this.getMaxRepetition(),
       ")"
     );
@@ -35,16 +31,9 @@ export default abstract class Experiment
       if (!this.simulation.isDone()) {
         break;
       }
-      console.log("Before Simulation.run()");
+      console.log("Starting Simulation...");
       this.simulation.run();
       this.initialize();
-      console.log(
-        "On Experiment.run(), currentRepetition is: ",
-        this.getRepetition(),
-        "Off (",
-        this.getMaxRepetition(),
-        ")"
-      );
     }
   }
 

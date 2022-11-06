@@ -57,8 +57,8 @@ export default abstract class Environment
     console.log("On Environment Initialize");
     console.log("Agents to Create: ", this.networkSize);
     console.log("Seeds: ", this.seedSize);
-    console.log("Real agents quantity: ", this.agents.length);
-    console.log("Real seeds quantity: ", this.seeds.length);
+    console.log("Actual Total agents quantity: ", this.agents.length);
+    console.log("Actual Total seeds quantity: ", this.seeds.length);
     this.createAgents();
     console.log("Create agents passed");
     this.addFollowers();
@@ -66,19 +66,18 @@ export default abstract class Environment
     this.addFollowings();
     // console.log("add followings passed");
 
-    console.log(
-      "On Environment Initialize, after created agents and added followers and followings"
-    );
+    console.log("Ending Initialization...");
+    console.log("Checking...");
     console.log("Agents to Create: ", this.networkSize);
     console.log("Seeds: ", this.seedSize);
-    console.log("Real agents quantity: ", this.agents.length);
-    console.log("Real seeds quantity: ", this.seeds.length);
+    console.log("Actual Total agents quantity: ", this.agents.length);
+    console.log("Actual Total seeds quantity: ", this.seeds.length);
     if (!this.isDone()) {
-      console.error("Error in initialize environment with id: ", this.id);
+      throw new Error(`Error in initialize environment with id: ${this.id}`);
     }
     this.initialized = true;
     this.setTick(0);
-    console.log("All done on environment, Ending initialization....");
+    console.log("All done on environment!");
   }
 
   /**
@@ -207,7 +206,7 @@ export default abstract class Environment
 
   // eslint-disable-next-line class-methods-use-this
   nextTick() {
-    TowerHandler.nextTick();
+    return TowerHandler.nextTick();
   }
 
   // eslint-disable-next-line class-methods-use-this

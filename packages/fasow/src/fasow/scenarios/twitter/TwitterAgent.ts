@@ -25,7 +25,6 @@ export default class TwitterAgent extends Agent {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   createAgent(id: number, agentData: MetaAgentConfig): Agent {
     return new TwitterAgent().setConfig(id, agentData);
   }
