@@ -7,8 +7,20 @@ import type IAgentCreator from "./interfaces/Agent/IAgentCreator";
 import Observer from "./interfaces/Agent/Observer/Observer";
 import Subject from "./interfaces/Agent/Observer/Subject";
 
+/**
+ * Normally to start any WOM marketing campaign many users need to start with
+ * the (NOT_READ = 0) state, for that the DEFAULT_STATE correspond
+ * to (NOT_READ=0) as state
+ */
 const DEFAULT_STATE = AgentState.NOT_READ;
 
+/**
+ * The Agent abstract class allows to users to create different types of agents
+ * like as users of somewhere social network site environment.
+ * The developer should specify the behavior what the agent must follow in each
+ * step, overwriting the @method step, the same with communication between
+ * agents overwriting the  @method update
+ */
 export default abstract class Agent
   implements AgentConfig, IAgentCreator, Observer, Subject
 {
@@ -30,6 +42,9 @@ export default abstract class Agent
     this.actions = [];
   }
 
+  /**
+   * Allows to users to specify the behavior of the agent in each tick of the clock of the simulation
+   */
   abstract step(): void;
 
   addFollower(agent: Agent) {
@@ -44,6 +59,10 @@ export default abstract class Agent
     }
   }
 
+  /**
+   * Adds an agent to the followings list to this agent
+   * @param agent : Agent : The agent that will be added to the list
+   */
   addFollowing(agent: Agent) {
     // We need to make sure the agent id is not the same id of the current agent
     if (this.id === agent.id) return;
@@ -65,6 +84,10 @@ export default abstract class Agent
     this.followers.splice(agentIndex, 1);
   }
 
+  /**
+   * Remove and agent of the follower list by his id
+   * @param agentId : number : the id of the agent that will be removed
+   */
   removeFollowing(agentId: number) {
     // We need to make sure the agent id is not the same id of the current agent
     if (this.id === agentId) return;
@@ -76,15 +99,23 @@ export default abstract class Agent
     this.followings.splice(agentIndex, 1);
   }
 
-  /*
-  Receive Message lo unico que esta haciendo es ejecutar la lista de acc iones
+  /**
+   * Calls and executes all the actions of the agent, the normal behavior what need to be stablishied
+   * is between the use of ReadAction and then the ShareAction, this was be needed and specified adding thats actions
+   * in the correct order, read and the share.
    */
   receiveMessage(): void {
+    /*
+      Receive Message lo unico que esta haciendo es ejecutar la lista de acc iones
+    */
     this.actions.forEach((action) => {
       action.execute(this);
     });
   }
 
+  /**
+   * Sets the state of the agent in his initial state given by his MetaAgentConfig registered in the Tower Handler at the AgentAPI lvl
+   */
   resetState(): void {
     this.state = TowerHandler.getMetaAgentConfigById(
       this.indexMetaAgentConfig
@@ -93,6 +124,11 @@ export default abstract class Agent
 
   abstract createAgent(id: number, agentData: MetaAgentConfig): Agent;
 
+  /**
+   * Sets the id and the config to the agent
+   * @param id : number : the id to identify the agent
+   * @param agentData : MetaAgentConfig : the configuration about his followers, followings, actions, initial state and if is a seed
+   */
   setConfig(id: number, config: MetaAgentConfig): Agent {
     this.id = id;
     this.isSeed = config.isSeed;
@@ -104,16 +140,9 @@ export default abstract class Agent
     return this;
   }
 
-  /*
-  todo: add documentation
-   */
   share(): void {
     this.followers.forEach((follower) => follower.update(this));
   }
 
-  /*
-  todo: add documentation
-   update is like a receive message
-   */
   abstract update(message: any): any;
 }

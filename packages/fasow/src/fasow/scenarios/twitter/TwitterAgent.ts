@@ -30,7 +30,6 @@ export default class TwitterAgent extends Agent {
   }
 
   update(message: any): any {
-    // Que se actualizara?
     this.actions.forEach((action) => action.execute(this));
     return message;
   }

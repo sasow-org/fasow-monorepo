@@ -15,7 +15,6 @@ export default class ActionRead extends Action {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   createAction(actionData: MetaActionConfig): Action {
     return new ActionRead().setConfig(actionData);
   }

@@ -27,7 +27,6 @@ export default class EnvironmentTwitter extends Environment {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   createEnvironment(scenarioConfig: MetaScenarioConfig): Environment {
     return new EnvironmentTwitter().setConfig(scenarioConfig);
   }

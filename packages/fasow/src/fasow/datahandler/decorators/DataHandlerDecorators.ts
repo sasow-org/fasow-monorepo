@@ -35,10 +35,16 @@ export function AgentCount(name: string) {
  */
 
 export const CountAgentBooleanObjectKeysArray: CountBooleanItem[] = []; // todo: this is for count agent
-/*
-  Por cada periodo cuenta a todos los agentes que posean esta propiedad para luego ser desplegada en el output output una columna con nombre @name
-  Si @countFalse = true, se contaran a los agentes que tengan un valor falso
-  Si @countFalse = false, se contaran a los agentes que tengan un valor verdadero
+
+/**
+ * For each tick of the clock, it counts all the agents that have the decorated property,
+ * to later display it in the output on the column with name @name. Users could count
+ * false or true values according to the value of countFalse.
+ *
+ * @param name : string : The column name of the property being registered
+ * @param countFalse : boolean : specify if the count was being to true or false values.
+ *    If countFalse = true, agents with a false value will be counted
+ *    If countFalse = false, agents with a true value will be counted
  */
 export function AgentCountBoolean(name: string, countFalse: boolean) {
   return function (target: any, propertyKey: string) {
@@ -52,8 +58,14 @@ export function AgentCountBoolean(name: string, countFalse: boolean) {
 }
 
 export const CountAgentStatesObjectKeysArray: CountStateItem[] = []; // todo : this is for state integer
-/*
-  Por cada periodo cuenta a todos los agentes que su agent.state sea igual a @value ingresado para luego desplegar en el output una columna con nombre @name
+
+/**
+ * For each period, it counts all the agents whose agent.state is equal to the
+ * value entered and then displays a column with the name @name in the output.
+ *
+ * @param name : string : The column name of the property being registered
+ * @param value : number : The value that is registered as possible agent status and that will be used
+ * to count the agents that have this value as status.
  */
 export function AgentStateIntegerCount(name: string, value: number) {
   return function (target: any, propertyKey: string) {
@@ -67,8 +79,10 @@ export function AgentStateIntegerCount(name: string, value: number) {
 }
 
 export const AccumAgentKeysArray: CountItem[] = []; // todo: this is for acum on agent
-/*
-  Por cada periodo, suma los valores de cada agente que posean esta property, para luego desplegar en el output una columna con nombre @name
+
+/**
+ * For each period, add the values of each agent that have this property, to then display a column named @name in the output.
+ * @param name : string : The column name of the property being registered.
  */
 export function AccumulateAgentValue(name: string) {
   return function (target: any, propertyKey: string) {
@@ -77,8 +91,10 @@ export function AccumulateAgentValue(name: string) {
 }
 
 export const AccumEnvironmentObjectKeys: CountItem[] = [];
-/*
-  Por cada periodo suma los valores antiguos con el valor actual de la propiedad para el periodo correspondiente, para luego desplegar en el output una columna con nombre @name
+
+/**
+ * For each period, it adds the old values with the current value of the property for the corresponding period, to then display a column named @name in the output.
+ * @param name : string : The column name of the property being registered.
  */
 export function AccumulateEnvironmentValue(name: string) {
   return function (target: any, propertyKey: string) {
@@ -88,8 +104,10 @@ export function AccumulateEnvironmentValue(name: string) {
 
 // todo : this is for count in environment
 export const CountEnvironmentKeys: CountItem[] = [];
-/*
-Por cada periodo registra el parametro marcado y luego se registra en el output en una columna con nombre @name
+
+/**
+ * For each period it records the marked parameter, and then it is recorded in the output in a column named @name
+ * @param name : string : The column name of the property being registered.
  */
 export function EnvironmentCount(name: string) {
   return function (target: any, propertyKey: string) {

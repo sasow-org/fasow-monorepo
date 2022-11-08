@@ -18,7 +18,6 @@ export default class ActionShare extends Action {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   createAction(actionData: MetaActionConfig): Action {
     return new ActionShare().setConfig(actionData);
   }

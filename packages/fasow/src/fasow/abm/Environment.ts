@@ -5,12 +5,19 @@ import MetaScenarioConfig from "../config/metaconfig/MetaScenarioConfig";
 import Agent from "./Agent";
 import type IEnvironmentCreator from "./interfaces/Environment/IEnvironmentCreator";
 
+/**
+ * Environment is the place where the simulation is executed,
+ * to do this, the user need to overdrive the step and run methods
+ * to specify the behavior of all the simulation.
+ *
+ * @method step: allow to the users to specify the behaviour of the agents during the simulation
+ * @method run: handle the step by step of the simulation, calling the step method each tick of the clock and notifying the DataHandler to capture  and save a state of the simulation
+ */
 export default abstract class Environment
   implements EnvironmentConfig, IEnvironmentCreator
 {
   id: number;
   initialized: boolean;
-  // currentPeriod: number;
   seedSize: number;
   networkSize: number;
   seeds: Agent[];
@@ -20,13 +27,20 @@ export default abstract class Environment
     this.id = -1;
     this.networkSize = -1;
     this.seedSize = -1;
-    // this.periods = -1;
     this.initialized = false;
-    // this.currentPeriod = -1;
     this.agents = [];
     this.seeds = [];
   }
 
+  /**
+   * Allow to the user to load the Scenario config to the environment to after initializes
+   * the simulation
+   *
+   * @param config : MetaScenarioConfig : establishes the quantity of agents to create,
+   * sets his configurations, calculate the seedSize and registers the agentConfigs
+   * in the TowerHandler at AgentAPI level.
+   *
+   */
   setConfig(config: MetaScenarioConfig): Environment {
     this.id = -1;
     this.networkSize = config.networkSize;
@@ -47,11 +61,19 @@ export default abstract class Environment
     return this;
   }
 
+  /**
+   * Allow to users to handle what happen in each period of the running simulation
+   */
   public abstract step(): void;
+
+  /**
+   * Starts the simulation to being executed period per period
+   * This method allow to users to introduce the behaviour of the scenario
+   */
   public abstract run(): void;
 
   /**
-   * Initializes the current environment.
+   * Initializes the current environment, creating the agents, adding the followers and checking if all it's ok to run the simulation
    */
   initialize(): void {
     console.log("On Environment Initialize");
@@ -91,11 +113,13 @@ export default abstract class Environment
         this.seeds.push(agent);
       }
     });
-    // DataHandler.agentModel.props = this.agents;
   }
 
   /**
-   * Adds followers to the agents of the environment.
+   * Creates and sets the relationships between the agents,
+   * adding randomly agents to the follower list for each agent
+   * of the environment until complete his followers' quantity
+   * given by the AgentConfig.
    */
   addFollowers(): void {
     this.agents.map((agent: Agent) => {
@@ -119,7 +143,7 @@ export default abstract class Environment
   }
 
   /**
-   * Adds followings to the agents of the environment.
+   * After the followers relationships are established, the next thing to do is load the "followings" list of each agent, then, If agent A follows' agent B, then A is a follower of B, at this way the "followings" relationships are established.
    */
   addFollowings(): void {
     // todo: fix, Add Followings no funciona asi, seguir a alguien, te convierte en un seguidor de ese alguien
@@ -144,7 +168,7 @@ export default abstract class Environment
   }
 
   /**
-   * Returns true agents, seeds, followers and followings are all set up.
+   * Check if the simulation are ready to be executed and returns true if the agents, seeds, followers and followings are all set up or if exist some problem.
    */
   isDone() {
     if (this.agents.length !== this.networkSize) {
@@ -187,44 +211,68 @@ export default abstract class Environment
     return true;
   }
 
+  /**
+   * For each agent, his state are reset to the initial state of his MetaAgentConfig
+   */
   resetAgentStates(): void {
     this.agents.forEach((agent) => agent.resetState());
   }
 
+  /**
+   * For each seed, his state are reset to the initial state of his MetaAgentConfig
+   */
   resetSeedStates(): void {
     this.seeds.forEach((seed) => seed.resetState());
   }
 
+  /**
+   * Factory Method, allow to users to configure and personalize the creation of the environment
+   * @param environmentConfig : MetaScenarioConfig : The configuration of the scenario
+   */
   abstract createEnvironment(
     environmentConfig: MetaScenarioConfig
   ): Environment;
 
-  // eslint-disable-next-line class-methods-use-this
+  /**
+   * set the tick of the clock of the simulation
+   * @param tick : number : unit of time of the simulation
+   */
   setTick(tick: number) {
     TowerHandler.setTick(tick);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  nextTick() {
+  /**
+   * Force a tick update, updating is value +1 and calling the DataHandler to register the data of the simulation
+   */
+  nextTick(): number {
     return TowerHandler.nextTick();
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  /**
+   * returns the current tick of the clock of the simulation
+   */
   getTick(): number {
     return TowerHandler.getTick();
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  /**
+   * returns true as long as the clock Tick is less than maxTick
+   */
   canNextTick(): boolean {
     return TowerHandler.canNextTick();
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  /**
+   * return the duration of the simulation
+   */
   getMaxTick(): number {
     return TowerHandler.getMaxTick();
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  /**
+   * set the duration of the simulation
+   * @param maxTick : number : the simulation will be executed while the tick be less than the maxTick
+   */
   setMaxTick(maxTick: number) {
     TowerHandler.setMaxTick(maxTick);
   }
