@@ -214,6 +214,7 @@ export default class IDataHandler {
   private writeFileData() {
     console.log("Writing File", this.finalOutput);
     fs.writeFileSync(`${this.experiment.name}_output.csv`, IDataHandler.dumpOutput(this.finalOutput))
+    this.finalOutput = [];
   }
 
   /**
