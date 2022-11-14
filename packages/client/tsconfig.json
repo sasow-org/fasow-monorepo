@@ -14,10 +14,7 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@fasow/*": ["../fasow/*"]
-    }
+    "baseUrl": "."
   },
   "include": ["src"]
 }

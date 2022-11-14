@@ -1,0 +1,9 @@
+{
+  "name": "@fasow/backend",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": " npx -p typescript tsc index.ts --declaration --experimentalDecorators --emitDecoratorMetadata"
+  }
+}

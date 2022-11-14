@@ -1,18 +1,29 @@
-// import { createContext, useContext, useReducer } from "react";
-import { initialAgentConfigState } from "./ExperimentConfigData";
-import { AgentReducer } from "./reducer/AgentReducer";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useMemo,
+  useReducer,
+} from "react";
 
-const AgentConfigContext = createContext(undefined);
+import { AgentReducer } from "./reducers/AgentReducer";
+
+// import { AgentReducer } from "./reducer/AgentReducer";
+
+const AgentConfigContext = createContext({});
 
 export const useAgentConfigContext = () => useContext(AgentConfigContext);
 
-function AgentConfigProvider({ children }) {
-  const [state, dispatch] = useReducer(AgentReducer, initialAgentConfigState);
+function AgentConfigProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(AgentReducer, {});
+
+  const value = useMemo(
+    () => ({ agentConfig: state, agentDispatch: dispatch }),
+    [state]
+  );
 
   return (
-    <AgentConfigContext.Provider
-      value={{ agentConfig: state, agentDispatch: dispatch }}
-    >
+    <AgentConfigContext.Provider value={value}>
       {children}
     </AgentConfigContext.Provider>
   );

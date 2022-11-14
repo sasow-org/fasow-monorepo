@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+exports.TowerHandler = exports.DataHandler = void 0;
+var ExampleExperiment_1 = require("./experiments/ExampleExperiment");
+var FASOW_1 = require("./fasow/FASOW");
+var fasow = new FASOW_1["default"]();
+exports.DataHandler = fasow.getDataHandler();
+exports.TowerHandler = fasow.getTowerHandler();
+exports.TowerHandler.registerNewExperiment(ExampleExperiment_1["default"]);
+exports.TowerHandler.selectExperiment(ExampleExperiment_1["default"]);
+exports.TowerHandler.run();
