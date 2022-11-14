@@ -1,0 +1,20 @@
+/* eslint-disable import/prefer-default-export */
+export const ExperimentReducerTypes = {
+  resetConfig: "resetConfig",
+  setExperimentName: "setExperimentName",
+  setRepetitions: "setRepetitions",
+  setNetworkSize: "setNetworkSize",
+  setSeedSize: "setSeedSize",
+  setPeriods: "setPeriods",
+  setDescription: "setDescription",
+  setEssentialData: "setEssentialData",
+  setDetailedData: "setDetailedData",
+  setExperimentType: "setExperimentType",
+  deleteAgentConfig: "deleteAgentConfig",
+  addAgentConfig: "addAgentConfig",
+  updateAgentConfig: "updateAgentConfig",
+  setAgentConfigs: "setAgentConfigs",
+  updatePercentageAgentConfig: "updatePercentageAgentConfig",
+  updateSeedAgentConfig: "updateSeedAgentConfig",
+  useTestExperimentConfig: "useTestExperimentConfig",
+};

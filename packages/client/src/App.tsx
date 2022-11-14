@@ -1,5 +1,3 @@
-import ExampleExperiment from "@fasow/src/experiments/ExampleExperiment";
-import Experiment from "@fasow/src/fasow/abm/Experiment";
 import { Grid, ThemeProvider, createTheme } from "@mui/material";
 
 import AgentConfigurationBox from "./components/AgentConfigurationBox";
@@ -28,11 +26,7 @@ const theme = createTheme({
   },
 });
 
-const handleClick = () => {
-  {
-  }
-  const experiment: ExampleExperiment = new ExampleExperiment();
-};
+const handleClick = () => {};
 
 function App() {
   return (

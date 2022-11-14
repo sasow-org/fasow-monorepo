@@ -10,6 +10,10 @@
     "esModuleInterop": true,
     "target": "es5",
     "module": "esnext",
-    "strict": true
+    "strict": true,
+
+    // decorator support
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }
