@@ -1,0 +1,13 @@
+0 silly argv {
+0 silly argv   _: [ 'add' ],
+0 silly argv   D: true,
+0 silly argv   dev: true,
+0 silly argv   scope: '@fasow/client',
+0 silly argv   globs: [],
+0 silly argv   lernaVersion: '5.5.2',
+0 silly argv   '$0': '/Users/tomasvelez/Developer/fasow-monorepo/node_modules/.bin/lerna',
+0 silly argv   pkg: '@fasow/backend/types'
+0 silly argv }
+1 notice cli v5.5.2
+2 verbose rootPath /Users/tomasvelez/Developer/fasow-monorepo
+3 error
