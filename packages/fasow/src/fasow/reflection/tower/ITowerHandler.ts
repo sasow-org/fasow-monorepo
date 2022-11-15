@@ -4,62 +4,61 @@ import Environment from "../../abm/Environment";
 import Experiment from "../../abm/Experiment";
 import MetaActionConfig from "../../config/metaconfig/MetaActionConfig";
 import MetaAgentConfig from "../../config/metaconfig/MetaAgentConfig";
+import MetaEnvironmentConfig from "../../config/metaconfig/MetaEnvironmentConfig";
 import MetaExperimentConfig from "../../config/metaconfig/MetaExperimentConfig";
-import MetaScenarioConfig from "../../config/metaconfig/MetaScenarioConfig";
-import EssentialAPI from "../../timekepper/EssentialAPI";
 import ActionAPI from "../apis/ActionAPI";
 import AgentAPI from "../apis/AgentAPI";
+import EnvironmentAPI from "../apis/EnvironmentAPI";
 import ExperimentAPI from "../apis/ExperimentAPI";
-import ScenarioAPI from "../apis/ScenarioAPI";
 
 export default class ITowerHandler {
-  private EssentialAPI: EssentialAPI = new EssentialAPI();
+  // private timeKeeper: TimeKeeper = new TimeKeeper();
   private ActionAPI: ActionAPI = new ActionAPI();
   private AgentAPI: AgentAPI = new AgentAPI();
-  private ScenarioAPI: ScenarioAPI = new ScenarioAPI();
+  private EnvironmentAPI: EnvironmentAPI = new EnvironmentAPI();
   private ExperimentAPI: ExperimentAPI = new ExperimentAPI();
   // todo : add all the others methods per API or introspection layer
 
-  /* Essential API */
+  /* Essential API
 
   getTick(): number {
-    return this.EssentialAPI.getTick();
+    return this.timeKeeper.getTick();
   }
 
   setTick(tick: number): number {
-    return this.EssentialAPI.setTick(tick);
+    return this.timeKeeper.setTick(tick);
   }
 
   setMaxTick(periods: number) {
-    this.EssentialAPI.setMaxTick(periods);
+    this.timeKeeper.setMaxTick(periods);
   }
 
   nextTick(): number {
-    return this.EssentialAPI.nextTick();
+    return this.timeKeeper.nextTick();
   }
 
   canNextTick(): boolean {
-    return this.EssentialAPI.canNextTick();
+    return this.timeKeeper.canNextTick();
   }
 
   getMaxTick(): number {
-    return this.EssentialAPI.getMaxTick();
+    return this.timeKeeper.getMaxTick();
   }
 
   getRepetition(): number {
-    return this.EssentialAPI.getRepetition();
+    return this.timeKeeper.getRepetition();
   }
 
   getMaxRepetition(): number {
-    return this.EssentialAPI.getMaxRepetition();
+    return this.timeKeeper.getMaxRepetition();
   }
 
   canNextRepetition(): boolean {
-    return this.EssentialAPI.canNextRepetition();
+    return this.timeKeeper.canNextRepetition();
   }
 
   nextRepetition(): number {
-    return this.EssentialAPI.nextRepetition();
+    return this.timeKeeper.nextRepetition();
   }
 
   setMaxRepetition(maxRepetitions: number) {
@@ -70,23 +69,22 @@ export default class ITowerHandler {
       maxRepetitions,
       "). "
     );
-    this.EssentialAPI.setMaxRepetition(maxRepetitions);
+    this.timeKeeper.setMaxRepetition(maxRepetitions);
   }
 
   setRepetition(repetition: number) {
-    this.EssentialAPI.setRepetition(repetition);
+    this.timeKeeper.setRepetition(repetition);
   }
+  */
 
   /* Essential API */
 
   /* Action API */
 
-  // eslint-disable-next-line class-methods-use-this
   registerNewAction(newActionType: typeof Action) {
     this.ActionAPI.registerNewAction(newActionType);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   generateActions(actionsConfigs: MetaActionConfig[]) {
     return this.ActionAPI.generateActions(actionsConfigs);
   }
@@ -107,7 +105,6 @@ export default class ITowerHandler {
 
   /* Agent API */
 
-  // eslint-disable-next-line class-methods-use-this
   registerMetaConfigs(metaAgentsConfigs: MetaAgentConfig[]) {
     this.AgentAPI.registerMetaConfigs(metaAgentsConfigs);
   }
@@ -120,22 +117,18 @@ export default class ITowerHandler {
     return this.AgentAPI.generateAgentsByConfigs(metaConfigs);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   generateAgentList(): Agent[] {
     return this.AgentAPI.generateAgentList();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getMetaAgentConfigById(indexMetaAgentConfig: number): MetaAgentConfig {
     return this.AgentAPI.getMetaAgentConfigById(indexMetaAgentConfig);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   registerNewAgent(newAgentType: typeof Agent) {
     this.AgentAPI.registerNewAgent(newAgentType);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   registerMetaAgentsConfigs(metaAgentsConfigs: MetaAgentConfig[]) {
     this.AgentAPI.registerMetaConfigs(metaAgentsConfigs);
   }
@@ -143,83 +136,56 @@ export default class ITowerHandler {
   /* Agent API */
 
   /* Scenario API */
-
-  // eslint-disable-next-line class-methods-use-this
-  generateEnvironment(config: MetaScenarioConfig) {
-    return this.ScenarioAPI.generateEnvironment(config);
+  generateEnvironment(config: MetaEnvironmentConfig) {
+    return this.EnvironmentAPI.generateEnvironment(config);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  getScenarioConfig(): MetaScenarioConfig {
-    return this.ScenarioAPI.getScenarioConfig();
+  getScenarioConfig(): MetaEnvironmentConfig {
+    return this.EnvironmentAPI.getScenarioConfig();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   registerNewEnvironment(newEnvironmentType: typeof Environment) {
-    this.ScenarioAPI.registerNewEnvironment(newEnvironmentType);
+    this.EnvironmentAPI.registerNewEnvironment(newEnvironmentType);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   setNetworkToScenario(environment: typeof Environment) {
-    this.ScenarioAPI.setNetworkToScenario(environment);
+    this.EnvironmentAPI.setNetworkToScenario(environment);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   addAgentToScenario(agentConfig: MetaAgentConfig) {
-    this.ScenarioAPI.addAgentToScenario(agentConfig);
+    this.EnvironmentAPI.addAgentToScenario(agentConfig);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   setNetworkSizeToScenario(size: number) {
-    this.ScenarioAPI.setNetworkSizeToScenario(size);
+    this.EnvironmentAPI.setNetworkSizeToScenario(size);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   setPeriodsToScenario(max: number) {
-    this.ScenarioAPI.setPeriodsToScenario(max);
+    this.EnvironmentAPI.setPeriodsToScenario(max);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  setScenarioConfig(scenarioConfig: MetaScenarioConfig) {
-    this.ScenarioAPI.setScenarioConfig(scenarioConfig);
+  setScenarioConfig(scenarioConfig: MetaEnvironmentConfig) {
+    this.EnvironmentAPI.setScenarioConfig(scenarioConfig);
   }
 
-  resetScenarioConfig(): MetaScenarioConfig {
-    return this.ScenarioAPI.resetScenarioConfig();
+  resetScenarioConfig(): MetaEnvironmentConfig {
+    return this.EnvironmentAPI.resetScenarioConfig();
   }
 
   /* Scenario API */
 
   /* Experiment API */
 
-  // eslint-disable-next-line class-methods-use-this
-  run() {
-    this.ExperimentAPI.run();
-  }
-
-  // eslint-disable-next-line class-methods-use-this
   setExperimentName(name: string) {
     this.ExperimentAPI.setExperimentName(name);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   setExperimentMaxRepetitions(maxRepetitions: number) {
     this.ExperimentAPI.setExperimentMaxRepetitions(maxRepetitions);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   setExperimentDescription(description: string) {
     this.ExperimentAPI.setExperimentDescription(description);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  setEssentialData(state: boolean) {
-    this.ExperimentAPI.setEssentialData(state);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  setDetailedData(state: boolean) {
-    this.ExperimentAPI.setDetailedData(state);
   }
 
   registerNewExperiment(experiment: typeof Experiment) {
@@ -238,7 +204,36 @@ export default class ITowerHandler {
     return this.ExperimentAPI.createExperiment(type);
   }
 
+  createSelectedExperiment(): Experiment {
+    return this.ExperimentAPI.createSelectedExperiment();
+  }
+
+  selectExperimentByName(experiment: string) {
+    this.ExperimentAPI.selectExperimentByName(experiment);
+  }
+
   /* Experiment API */
+
+  /* FASOW STATE FUNCTIONS */
+  getActionAPIState(): any {
+    return this.ActionAPI.getState();
+  }
+
+  getAgentAPIState(): any {
+    return this.AgentAPI.getState();
+  }
+
+  getEnvironmentAPIState(): any {
+    return this.EnvironmentAPI.getState();
+  }
+
+  getExperimentAPIState(): any {
+    return this.ExperimentAPI.getState();
+  }
+
+  getSelectedExperiment(): typeof Experiment {
+    return this.ExperimentAPI.getSelectedExperiment();
+  }
 }
 
 // const TowerHandler: ITowerHandler = new ITowerHandler();

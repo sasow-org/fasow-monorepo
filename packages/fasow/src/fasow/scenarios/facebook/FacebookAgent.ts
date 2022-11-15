@@ -2,6 +2,9 @@ import Agent from "../../abm/Agent";
 import MetaAgentConfig from "../../config/metaconfig/MetaAgentConfig";
 
 export default class FacebookAgent extends Agent {
+  update(message: any) {
+    throw new Error("Method not implemented.");
+  }
   step(): void {
     this.receiveMessage();
   }

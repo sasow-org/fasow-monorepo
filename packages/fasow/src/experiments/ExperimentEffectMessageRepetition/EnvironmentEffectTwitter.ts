@@ -1,7 +1,7 @@
 import Environment from "../../fasow/abm/Environment";
-import MetaScenarioConfig from "../../fasow/config/metaconfig/MetaScenarioConfig";
+import MetaEnvironmentConfig from "../../fasow/config/metaconfig/MetaEnvironmentConfig";
 import EnvironmentTwitter from "../../fasow/scenarios/twitter/EnvironmentTwitter";
-import { TowerHandler } from "../../main";
+import { TimeKeeper } from "../../main";
 
 export default class EffectTwitter extends EnvironmentTwitter {
   public postOfCompanies: number = 4;
@@ -17,14 +17,14 @@ export default class EffectTwitter extends EnvironmentTwitter {
   private calculatePeriodsToRepost() {
     for (let i = 0; i < this.postOfCompanies; i += 1) {
       const periodToShare: number = Math.round(
-        Math.random() * (TowerHandler.getMaxTick() - 1)
+        Math.random() * (TimeKeeper.getMaxTick() - 1)
       );
       this.periodsToShare.push(periodToShare);
     }
   }
 
   private isAPeriodToReShare(): boolean {
-    const period = TowerHandler.getTick();
+    const period = TimeKeeper.getTick();
     let auxBool: boolean = false;
     this.periodsToShare.forEach((p) => {
       if (period === p) {
@@ -35,14 +35,14 @@ export default class EffectTwitter extends EnvironmentTwitter {
   }
 
   step() {
-    if (TowerHandler.getTick() > 0 && this.isAPeriodToReShare()) {
+    if (TimeKeeper.getTick() > 0 && this.isAPeriodToReShare()) {
       console.log("ReSending");
       this.resetSeedStates();
     }
     super.step();
   }
 
-  createEnvironment(environmentConfig: MetaScenarioConfig): Environment {
+  createEnvironment(environmentConfig: MetaEnvironmentConfig): Environment {
     return new EffectTwitter().setConfig(environmentConfig);
   }
 }

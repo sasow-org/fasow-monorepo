@@ -1,5 +1,5 @@
 import Environment from "../../abm/Environment";
-import MetaScenarioConfig from "../../config/metaconfig/MetaScenarioConfig";
+import MetaEnvironmentConfig from "../../config/metaconfig/MetaEnvironmentConfig";
 import RowData from "../../datahandler/data/RowData";
 
 export default class EnvironmentFacebook extends Environment {
@@ -20,7 +20,7 @@ export default class EnvironmentFacebook extends Environment {
     });
   }
 
-  createEnvironment(environmentConfig: MetaScenarioConfig): Environment {
+  createEnvironment(environmentConfig: MetaEnvironmentConfig): Environment {
     return new EnvironmentFacebook().setConfig(environmentConfig);
   }
 }
