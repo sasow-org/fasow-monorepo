@@ -1,13 +1,14 @@
 {
   "private": true,
   "version": "1.0.0",
-  "name": "fasow-monorepo",
+  "name": "@fasow/root",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "start": "cd packages/client && yarn start",
     "build": "npx lerna run build",
+    "build-backend": "cd packages/fasow && npx -p typescript tsc index.ts --declaration --experimentalDecorators --emitDecoratorMetadata --outDir build",
     "debug-backend": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata packages/fasow/src/main.ts && node packages/fasow/src/main.js"
   },
   "devDependencies": {

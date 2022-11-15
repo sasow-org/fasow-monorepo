@@ -1,9 +1,8 @@
-import ExampleExperiment from "./src/experiments/ExampleExperiment";
+/* eslint-disable import/prefer-default-export */
 import FASOW from "./src/fasow/FASOW";
-import IDataHandler from "./src/fasow/datahandler/IDataHandler";
-import ITowerHandler from "./src/fasow/reflection/tower/ITowerHandler";
+import { loadJSON } from "./src/main";
 
-export { ExampleExperiment };
-export { FASOW };
-export { IDataHandler };
-export { ITowerHandler };
+export const fasowInstance = new FASOW();
+export const PruebaExport = "Prueba";
+
+export { loadJSON };

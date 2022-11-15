@@ -9,3 +9,5 @@ export const TowerHandler: ITowerHandler = fasow.getTowerHandler();
 TowerHandler.registerNewExperiment(ExampleExperiment);
 TowerHandler.selectExperiment(ExampleExperiment);
 TowerHandler.run();
+
+export function loadJSON() {}
