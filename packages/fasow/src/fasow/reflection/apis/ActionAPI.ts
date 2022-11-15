@@ -1,6 +1,6 @@
 import Action from "../../abm/Action";
-import IActionCreator from "../../abm/interfaces/Action/IActionCreator";
 import MetaActionConfig from "../../config/metaconfig/MetaActionConfig";
+import { getTypesOfObject } from "../StructureHandler";
 
 /*
 Esta capa permite crear nuevas acciones que pueden ser ejecutadas por los agentes.
@@ -14,39 +14,53 @@ que permite una comunicación con las demás capas inferiores
  */
 
 export default class ActionAPI {
-  private actionFactories: Map<typeof Action, IActionCreator>;
+  // private actionFactories: Map<typeof Action, IActionCreator>;
   private actionConfigs: MetaActionConfig[];
+  // private actionFactories : typeof Action[];
+  private actionFactories: Map<string, typeof Action>;
 
   constructor() {
-    this.actionFactories = new Map<typeof Action, IActionCreator>();
+    // this.actionFactories = new Map<typeof Action, IActionCreator>();
     this.actionConfigs = [];
+    this.actionFactories = new Map<string, typeof Action>();
   }
 
   registerNewAction(newActionType: typeof Action) {
-    // @ts-ignore
-    // eslint-disable-next-line new-cap
-    this.actionFactories.set(newActionType, new newActionType());
+    // const someAction : Action = Reflect.construct(newActionType,[]);
+    // this.actionFactories.set(newActionType, someAction);
+    // this.actionFactories.push(newActionType)
+    if (!this.actionFactories.has(newActionType.name)) {
+      this.actionFactories.set(newActionType.name, newActionType);
+    } else {
+      throw Error(
+        `The referenced type '${newActionType}' has really been added`
+      );
+    }
   }
 
   registerMetaActionConfig(actionConfig: MetaActionConfig) {
     this.actionConfigs.push(actionConfig);
   }
 
-  private getAction(type: typeof Action): IActionCreator {
-    const action = this.actionFactories.get(type);
-    if (action) {
-      return action;
+  private getAction(type: typeof Action): typeof Action {
+    // const actionTypeToCreate = this.actionFactories.filter(actionType => type === actionType)[0];
+    // const { CreateAction } = Reflect.construct(actionTypeToCreate,[])
+    if (this.actionFactories.has(type.name)) {
+      // @ts-ignore
+      return this.actionFactories.get(type.name);
     }
-    throw Error(`Action Type, ${type.name} not exist in ActionAPI`);
+    throw Error(`The referenced type '${type}' not exist in ActionAPI`);
   }
 
   generateActionList(): Action[] {
     const auxList: Action[] = [];
     this.actionConfigs.forEach((actionConfig) => {
-      auxList.push(
-        // @ts-ignore
-        this.getAction(actionConfig.type).createAction(actionConfig)
+      const factoryRef = Reflect.construct(
+        this.getAction(actionConfig.type),
+        []
       );
+      const { createAction } = factoryRef;
+      auxList.push(createAction(actionConfig));
     });
     return auxList;
   }
@@ -54,10 +68,12 @@ export default class ActionAPI {
   generateActions(metaConfigs: MetaActionConfig[]): Action[] {
     const auxList: Action[] = [];
     metaConfigs.forEach((actionConfig) => {
-      auxList.push(
-        // @ts-ignore
-        this.getAction(actionConfig.type).createAction(actionConfig)
+      const factoryRef = Reflect.construct(
+        this.getAction(actionConfig.type),
+        []
       );
+      const { createAction } = factoryRef;
+      auxList.push(createAction(actionConfig));
     });
     return auxList;
   }
@@ -66,5 +82,20 @@ export default class ActionAPI {
     const list: MetaActionConfig[] = this.actionConfigs;
     this.actionConfigs = [];
     return list;
+  }
+
+  getState(): any {
+    // const excludedProps = ['followings','followers', 'actions'];
+    const outputState: any[] = [];
+    this.actionFactories.forEach((key) => {
+      const expectedObject = Reflect.construct(key, []);
+      console.log("Name: ", key);
+      outputState.push({
+        type: key,
+        properties: getTypesOfObject(expectedObject, []),
+      });
+    });
+
+    return outputState;
   }
 }

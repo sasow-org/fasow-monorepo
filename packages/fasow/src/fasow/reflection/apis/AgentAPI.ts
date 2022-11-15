@@ -1,9 +1,7 @@
-// eslint-disable-next-line import/no-cycle
 import { TowerHandler } from "../../../main";
-import Agent from "../../abm/Agent";
-// eslint-disable-next-line import/no-cycle
-import IAgentCreator from "../../abm/interfaces/Agent/IAgentCreator";
+import type Agent from "../../abm/Agent";
 import MetaAgentConfig from "../../config/metaconfig/MetaAgentConfig";
+import { getTypesOfObject } from "../StructureHandler";
 
 /*
 Esta capa permite crear, agrupar y combinar tipos diferentes de agentes,
@@ -16,18 +14,23 @@ que pueden ser utilizados en los niveles inferiores de la arquitectura esto a tr
 de la API de metaprogramacion de \co{TowerHandler} que permite la comunicación.
  */
 export default class AgentAPI {
-  private agentsFactories: Map<typeof Agent, IAgentCreator>;
+  // private agentsFactories: Map<typeof Agent, IAgentCreator>;
+  // private agentsFactories : typeof Agent[] = []
+  private agentsFactories: Map<string, typeof Agent>;
   private agentConfigs: MetaAgentConfig[];
 
   constructor() {
-    this.agentsFactories = new Map<typeof Agent, IAgentCreator>();
+    // this.agentsFactories = new Map<typeof Agent, IAgentCreator>();
     this.agentConfigs = [];
+    this.agentsFactories = new Map<string, typeof Agent>();
   }
 
   registerNewAgent(type: typeof Agent) {
-    // @ts-ignore
-    // eslint-disable-next-line new-cap
-    this.agentsFactories.set(type, new type());
+    if (!this.agentsFactories.has(type.name)) {
+      this.agentsFactories.set(type.name, type);
+    } else {
+      throw Error(`The referenced type '${type}' has already been added`);
+    }
   }
 
   registerNewMetaAgentConfig(agentConfig: MetaAgentConfig) {
@@ -38,28 +41,16 @@ export default class AgentAPI {
     this.agentConfigs = agentConfigs;
   }
 
-  private getAgent(type: typeof Agent) {
-    return this.agentsFactories.get(type);
+  private getAgent(type: typeof Agent): typeof Agent {
+    if (this.agentsFactories.has(type.name)) {
+      // @ts-ignore
+      return this.agentsFactories.get(type.name);
+    }
+    throw Error(`The referenced type '${type}' not exist in AgentAPI`);
   }
 
   generateAgentList(): Agent[] {
     const auxList: Agent[] = this.generateAgentsByConfigs(this.agentConfigs);
-    /*
-    this.agentConfigs.forEach((config) => {
-      for (let i = 0; i < config.percentage; i += 1) {
-        const agent = this.getAgent(config.type)?.createAgent(
-          auxList.length,
-          config
-        );
-        if (agent) {
-          auxList.push(agent);
-        } else {
-          throw new Error(`Agent Type ${config.type} not exist in AgentAPI`);
-        }
-      }
-    });
-    
-     */
     return auxList;
   }
 
@@ -77,16 +68,9 @@ export default class AgentAPI {
         ") agents with this config: \n",
         config
       );
+      const { createAgent } = Reflect.construct(this.getAgent(config.type), []);
       for (let i = 0; i < quantity; i += 1) {
-        const agent = this.getAgent(config.type)?.createAgent(
-          auxList.length,
-          config
-        );
-        if (agent) {
-          auxList.push(agent);
-        } else {
-          throw new Error(`Agent Type ${config.type} not exist in AgentAPI`);
-        }
+        auxList.push(createAgent(auxList.length, config));
       }
     });
     return auxList;
@@ -94,6 +78,20 @@ export default class AgentAPI {
 
   getMetaAgentConfigById(id: number) {
     return this.agentConfigs.filter((config) => config.id === id)[0];
+  }
+
+  getState(): any {
+    const excludedProps = ["followings", "followers", "actions"];
+    const outputState: any[] = [];
+    this.agentsFactories.forEach((key) => {
+      const expectedObject = Reflect.construct(key, []);
+      console.log("Name: ", key.name);
+      outputState.push({
+        type: key.name,
+        properties: getTypesOfObject(expectedObject, excludedProps),
+      });
+    });
+    return outputState;
   }
 
   // todo: a method to set the type of agent to create with an specific config

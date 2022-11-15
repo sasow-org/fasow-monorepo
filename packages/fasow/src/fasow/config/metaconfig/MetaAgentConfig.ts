@@ -8,7 +8,6 @@ export default interface MetaAgentConfig {
   name: string;
   percentage: number;
   followersPercentage: number;
-  followingsPercentage: number;
   actionsConfigs: MetaActionConfig[];
   type: typeof Agent;
   // Normal data to create a agentConfig ?

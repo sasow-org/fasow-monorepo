@@ -1,16 +1,16 @@
-import { DataHandler } from "../../../main";
+import { DataHandler, TimeKeeper } from "../../../main";
 import Environment from "../../abm/Environment";
-import MetaScenarioConfig from "../../config/metaconfig/MetaScenarioConfig";
+import MetaEnvironmentConfig from "../../config/metaconfig/MetaEnvironmentConfig";
 
 export default class EnvironmentTwitter extends Environment {
   public run(): void {
-    while (this.canNextTick()) {
+    while (TimeKeeper.canNextTick()) {
       this.step();
       console.log(
         "On Step: ",
-        this.nextTick(),
+        TimeKeeper.nextTick(),
         " of (",
-        this.getMaxTick(),
+        TimeKeeper.getMaxTick(),
         "): \n",
         DataHandler.getLastOutputRow()
       );
@@ -27,7 +27,7 @@ export default class EnvironmentTwitter extends Environment {
     });
   }
 
-  createEnvironment(scenarioConfig: MetaScenarioConfig): Environment {
+  createEnvironment(scenarioConfig: MetaEnvironmentConfig): Environment {
     return new EnvironmentTwitter().setConfig(scenarioConfig);
   }
 }

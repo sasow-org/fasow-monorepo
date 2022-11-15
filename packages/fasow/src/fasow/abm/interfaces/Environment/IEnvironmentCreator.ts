@@ -1,4 +1,4 @@
-import MetaScenarioConfig from "../../../config/metaconfig/MetaScenarioConfig";
+import MetaEnvironmentConfig from "../../../config/metaconfig/MetaEnvironmentConfig";
 import type Environment from "../../Environment";
 
 /**
@@ -7,7 +7,7 @@ import type Environment from "../../Environment";
 export default interface IEnvironmentCreator {
   /**
    * Factory Method, allow to users to configure and personalize the creation of the environment
-   * @param environmentConfig : MetaScenarioConfig : The configuration of the scenario
+   * @param environmentConfig : MetaEnvironmentConfig : The configuration of the scenario
    */
-  createEnvironment(environmentConfig: MetaScenarioConfig): Environment;
+  createEnvironment(environmentConfig: MetaEnvironmentConfig): Environment;
 }

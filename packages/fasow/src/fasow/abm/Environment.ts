@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
-import { TowerHandler } from "../../main";
+import { TimeKeeper, TowerHandler } from "../../main";
 import type EnvironmentConfig from "../config/config/EnvironmentConfig";
-import MetaScenarioConfig from "../config/metaconfig/MetaScenarioConfig";
+import MetaEnvironmentConfig from "../config/metaconfig/MetaEnvironmentConfig";
 import Agent from "./Agent";
 import type IEnvironmentCreator from "./interfaces/Environment/IEnvironmentCreator";
 
@@ -36,12 +36,12 @@ export default abstract class Environment
    * Allow to the user to load the Scenario config to the environment to after initializes
    * the simulation
    *
-   * @param config : MetaScenarioConfig : establishes the quantity of agents to create,
+   * @param config : MetaEnvironmentConfig : establishes the quantity of agents to create,
    * sets his configurations, calculate the seedSize and registers the agentConfigs
    * in the TowerHandler at AgentAPI level.
    *
    */
-  setConfig(config: MetaScenarioConfig): Environment {
+  setConfig(config: MetaEnvironmentConfig): Environment {
     this.id = -1;
     this.networkSize = config.networkSize;
     let value = 0;
@@ -53,8 +53,8 @@ export default abstract class Environment
     this.seedSize = Math.round((value * this.networkSize) / 100);
     this.initialized = false;
     console.log("Setting MaxTick to --> ", config.maxTick);
-    this.setMaxTick(config.maxTick);
-    console.log("MaxTick is : ", this.getMaxTick());
+    TimeKeeper.setMaxTick(config.maxTick);
+    console.log("MaxTick is : ", TimeKeeper.getMaxTick());
     this.agents = [];
     this.seeds = [];
     TowerHandler.registerMetaAgentsConfigs(config.metaAgentsConfigs);
@@ -98,7 +98,7 @@ export default abstract class Environment
       throw new Error(`Error in initialize environment with id: ${this.id}`);
     }
     this.initialized = true;
-    this.setTick(0);
+    TimeKeeper.setTick(0);
     console.log("All done on environment!");
   }
 
@@ -129,7 +129,6 @@ export default abstract class Environment
           this.networkSize) /
         100;
       const total: number = Math.round(toRound);
-      // console.log("Total de Seguidores: ", total);
       while (agent.followers.length !== total) {
         const max: number = this.agents.length;
         const randomIndex: number = Number.parseInt(
@@ -143,32 +142,32 @@ export default abstract class Environment
   }
 
   /**
-   * After the followers relationships are established, the next thing to do is load the "followings" list of each agent, then, If agent A follows' agent B, then A is a follower of B, at this way the "followings" relationships are established.
+   * After the followers relationships are established, the next thing to do is load the "followings"
+   * list of each agent, then, If agent A follows' agent B, then A is a follower of B, at this way
+   * the "followings" relationships are established.
    */
   addFollowings(): void {
-    // todo: fix, Add Followings no funciona asi, seguir a alguien, te convierte en un seguidor de ese alguien
-    this.agents.map((agent: Agent) => {
-      const total: number = Math.round(
-        (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
-          .followingsPercentage *
-          this.networkSize) /
-          100
-      );
-
-      while (agent.followings.length !== total) {
-        const max: number = this.agents.length;
-        const randomIndex: number = Number.parseInt(
-          `${Math.random() * (max - 1 + 1)}${0}`,
-          10
-        );
-        agent.addFollowing(this.agents[randomIndex]);
-      }
-      return agent;
+    this.agents.forEach((iAgent) => {
+      iAgent.followers.forEach((kAgent) => {
+        kAgent.followings.push(iAgent);
+      });
     });
+    /*
+    This is a mind reminder
+    If A is a follower of B, then
+      B has A on his follower list
+
+      and
+
+      A has B on his followings list
+
+      and then for each k follower of B, add B in the followings list of K
+     */
   }
 
   /**
-   * Check if the simulation are ready to be executed and returns true if the agents, seeds, followers and followings are all set up or if exist some problem.
+   * Check if the simulation are ready to be executed and returns true if the agents,
+   * seeds, followers and followings are all set up or if exist some problem.
    */
   isDone() {
     if (this.agents.length !== this.networkSize) {
@@ -193,18 +192,9 @@ export default abstract class Environment
       const roundedAgentFollowersQuantity: number = Math.round(
         toRoundAgentFollowersQuantity
       );
-      if (
-        agent.followers.length !== roundedAgentFollowersQuantity &&
-        agent.followings.length !==
-          Math.round(
-            (TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
-              .followingsPercentage *
-              this.networkSize) /
-              100
-          )
-      ) {
+      if (agent.followers.length !== roundedAgentFollowersQuantity) {
         throw new Error(
-          `On Agent.id: ${agent.id} followers or followings are not equal to the real number of followers`
+          `On Agent.id: ${agent.id} followers are not equal to the real number of followers`
         );
       }
     });
@@ -227,53 +217,9 @@ export default abstract class Environment
 
   /**
    * Factory Method, allow to users to configure and personalize the creation of the environment
-   * @param environmentConfig : MetaScenarioConfig : The configuration of the scenario
+   * @param environmentConfig : MetaEnvironmentConfig : The configuration of the scenario
    */
   abstract createEnvironment(
-    environmentConfig: MetaScenarioConfig
+    environmentConfig: MetaEnvironmentConfig
   ): Environment;
-
-  /**
-   * set the tick of the clock of the simulation
-   * @param tick : number : unit of time of the simulation
-   */
-  setTick(tick: number) {
-    TowerHandler.setTick(tick);
-  }
-
-  /**
-   * Force a tick update, updating is value +1 and calling the DataHandler to register the data of the simulation
-   */
-  nextTick(): number {
-    return TowerHandler.nextTick();
-  }
-
-  /**
-   * returns the current tick of the clock of the simulation
-   */
-  getTick(): number {
-    return TowerHandler.getTick();
-  }
-
-  /**
-   * returns true as long as the clock Tick is less than maxTick
-   */
-  canNextTick(): boolean {
-    return TowerHandler.canNextTick();
-  }
-
-  /**
-   * return the duration of the simulation
-   */
-  getMaxTick(): number {
-    return TowerHandler.getMaxTick();
-  }
-
-  /**
-   * set the duration of the simulation
-   * @param maxTick : number : the simulation will be executed while the tick be less than the maxTick
-   */
-  setMaxTick(maxTick: number) {
-    TowerHandler.setMaxTick(maxTick);
-  }
 }

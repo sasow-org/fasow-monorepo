@@ -2,15 +2,24 @@ import Experiment from "../../fasow/abm/Experiment";
 import { AgentState } from "../../fasow/abm/interfaces/Agent/AgentState";
 import MetaActionConfig from "../../fasow/config/metaconfig/MetaActionConfig";
 import MetaAgentConfig from "../../fasow/config/metaconfig/MetaAgentConfig";
-import { TowerHandler } from "../../main";
+import { TimeKeeper, TowerHandler } from "../../main";
 import CanSaturatedActionRead from "./CanSaturatedActionRead";
 import CanSaturatedActionShare from "./CanSaturatedActionShare";
 import EffectAgent from "./EffectAgent";
 import EnvironmentEffectTwitter from "./EnvironmentEffectTwitter";
+import {ExperimentCount} from "../../fasow/datahandler/decorators/DataHandlerDecorators";
 
 export default class MessageRepetition extends Experiment {
+
+  @ExperimentCount("SOME_ROW")
+  public someData : string = "SOME DATA TO OUTPUT"
   // eslint-disable-next-line class-methods-use-this
   Strategy(): void {
+    TowerHandler.registerNewAction(CanSaturatedActionShare);
+    TowerHandler.registerNewAction(CanSaturatedActionRead);
+    TowerHandler.registerNewAgent(EffectAgent);
+    TowerHandler.registerNewEnvironment(EnvironmentEffectTwitter);
+
     const actionReadConfig: MetaActionConfig = {
       id: 0,
       name: "read",
@@ -31,7 +40,6 @@ export default class MessageRepetition extends Experiment {
       type: EffectAgent,
       percentage: 95,
       state: AgentState.NOT_READ,
-      followingsPercentage: 0,
       isSeed: false,
     };
     const avrAgentConfigSeed: MetaAgentConfig = {
@@ -43,11 +51,9 @@ export default class MessageRepetition extends Experiment {
       percentage: 5,
       isSeed: true,
       state: AgentState.READY_TO_SHARE,
-      followingsPercentage: 0,
     };
 
     TowerHandler.setExperimentName("Effect of Message Repetition");
-    TowerHandler.setMaxRepetition(1);
     TowerHandler.setExperimentDescription(
       "This experiment is for analyze the effect of message repetition in twitter agents on wom marketing campaings"
     );
@@ -57,6 +63,7 @@ export default class MessageRepetition extends Experiment {
       maxTick: 40,
       metaAgentsConfigs: [avrAgentConfig, avrAgentConfigSeed],
     });
+    TimeKeeper.setMaxRepetition(1);
   }
 
   createExperiment(): Experiment {

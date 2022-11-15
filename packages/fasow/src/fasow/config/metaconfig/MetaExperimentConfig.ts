@@ -1,5 +1,5 @@
 import type Experiment from "../../abm/Experiment";
-import MetaScenarioConfig from "./MetaScenarioConfig";
+import MetaEnvironmentConfig from "./MetaEnvironmentConfig";
 
 export default interface MetaExperimentConfig {
   // Experiment Metadata
@@ -9,8 +9,5 @@ export default interface MetaExperimentConfig {
   type: typeof Experiment;
   maxRepetitions: number;
   // Scenario Metadata
-  scenarioConfig: MetaScenarioConfig;
-  // DataHandler Metadata
-  essentialData: boolean;
-  detailedData: boolean;
+  environmentConfig: MetaEnvironmentConfig;
 }

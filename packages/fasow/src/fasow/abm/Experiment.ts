@@ -1,4 +1,4 @@
-import { TowerHandler } from "../../main";
+import { TimeKeeper, TowerHandler } from "../../main";
 import ExperimentConfig from "../config/config/ExperimentConfig";
 import MetaExperimentConfig from "../config/metaconfig/MetaExperimentConfig";
 import Simulation from "./Simulation";
@@ -13,42 +13,49 @@ export default abstract class Experiment
 {
   name: string;
   description: string;
-  simulation: Simulation | any;
+  simulation: Simulation;
 
   constructor() {
     this.name = "";
     this.description = "";
-    TowerHandler.setRepetition(-1);
+    TimeKeeper.setRepetition(-1);
+    this.simulation = new Simulation();
   }
 
   /**
    * Run the Experiment,initializing the model and starting the simulation
    * */
   run() {
+    this.executeStrategy();
     this.initialize();
     console.log(
       "Ended Initialization --> On Experiment.run(), currentRepetition  is: ",
-      this.getRepetition(),
+      TimeKeeper.getRepetition(),
       " of (",
-      this.getMaxRepetition(),
+      TimeKeeper.getMaxRepetition(),
       ")"
     );
-    while (this.canNextRepetition()) {
+    while (TimeKeeper.canNextRepetition()) {
       if (!this.simulation.isDone()) {
         break;
       }
       console.log("Starting Simulation...");
       this.simulation.run();
+      console.log("Ending Simulation...");
       this.initialize();
     }
+    console.log("Ending Experiment...");
   }
 
   /**
    * Initialize the Model, setting up the configs to TowerHandler
    */
   initialize() {
-    this.loadConfig();
-    this.simulation.initialize(this.nextRepetition());
+    const rep = TimeKeeper.nextRepetition();
+    if (TimeKeeper.canNextRepetition()) {
+      this.loadConfig();
+      this.simulation.initialize(rep);
+    }
   }
 
   abstract createExperiment(): Experiment;
@@ -61,7 +68,7 @@ export default abstract class Experiment
     this.name = config.name;
     this.description = config.description;
     this.simulation = new Simulation();
-    this.setMaxRepetition(config.maxRepetitions);
+    TimeKeeper.setMaxRepetition(config.maxRepetitions);
   }
 
   /**
@@ -79,46 +86,10 @@ export default abstract class Experiment
   abstract Strategy(): void;
 
   /**
-   * Call to Strategy to be executed
+   * Calls to Strategy to be executed
    */
   executeStrategy(): void {
     console.log("Executing Strategy");
     this.Strategy();
-  }
-
-  /**
-   * Return the Repetition of the Experiment
-   */
-  getRepetition(): number {
-    return TowerHandler.getRepetition();
-  }
-
-  /**
-   * Return the max Repetitions to do the Experiment
-   */
-  getMaxRepetition(): number {
-    return TowerHandler.getMaxRepetition();
-  }
-
-  /**
-   * Return true if is posible to do another repetition
-   */
-  canNextRepetition(): boolean {
-    return TowerHandler.canNextRepetition();
-  }
-
-  /**
-   * Update the repetition number to +1
-   */
-  nextRepetition(): number {
-    return TowerHandler.nextRepetition();
-  }
-
-  /**
-   * Allow to set the max repetitions
-   * @param maxRepetitions : number : The quantity of repetitions to execute the Experiment
-   */
-  setMaxRepetition(maxRepetitions: number) {
-    TowerHandler.setMaxRepetition(maxRepetitions);
   }
 }
