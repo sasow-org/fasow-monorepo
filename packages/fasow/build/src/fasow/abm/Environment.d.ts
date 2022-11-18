@@ -1,5 +1,5 @@
 import type EnvironmentConfig from "../config/config/EnvironmentConfig";
-import MetaScenarioConfig from "../config/metaconfig/MetaScenarioConfig";
+import MetaEnvironmentConfig from "../config/metaconfig/MetaEnvironmentConfig";
 import Agent from "./Agent";
 import type IEnvironmentCreator from "./interfaces/Environment/IEnvironmentCreator";
 /**
@@ -22,12 +22,12 @@ export default abstract class Environment implements EnvironmentConfig, IEnviron
      * Allow to the user to load the Scenario config to the environment to after initializes
      * the simulation
      *
-     * @param config : MetaScenarioConfig : establishes the quantity of agents to create,
+     * @param config : MetaEnvironmentConfig : establishes the quantity of agents to create,
      * sets his configurations, calculate the seedSize and registers the agentConfigs
      * in the TowerHandler at AgentAPI level.
      *
      */
-    setConfig(config: MetaScenarioConfig): Environment;
+    setConfig(config: MetaEnvironmentConfig): Environment;
     /**
      * Allow to users to handle what happen in each period of the running simulation
      */
@@ -54,11 +54,14 @@ export default abstract class Environment implements EnvironmentConfig, IEnviron
      */
     addFollowers(): void;
     /**
-     * After the followers relationships are established, the next thing to do is load the "followings" list of each agent, then, If agent A follows' agent B, then A is a follower of B, at this way the "followings" relationships are established.
+     * After the followers relationships are established, the next thing to do is load the "followings"
+     * list of each agent, then, If agent A follows' agent B, then A is a follower of B, at this way
+     * the "followings" relationships are established.
      */
     addFollowings(): void;
     /**
-     * Check if the simulation are ready to be executed and returns true if the agents, seeds, followers and followings are all set up or if exist some problem.
+     * Check if the simulation are ready to be executed and returns true if the agents,
+     * seeds, followers and followings are all set up or if exist some problem.
      */
     isDone(): boolean;
     /**
@@ -71,33 +74,7 @@ export default abstract class Environment implements EnvironmentConfig, IEnviron
     resetSeedStates(): void;
     /**
      * Factory Method, allow to users to configure and personalize the creation of the environment
-     * @param environmentConfig : MetaScenarioConfig : The configuration of the scenario
+     * @param environmentConfig : MetaEnvironmentConfig : The configuration of the scenario
      */
-    abstract createEnvironment(environmentConfig: MetaScenarioConfig): Environment;
-    /**
-     * set the tick of the clock of the simulation
-     * @param tick : number : unit of time of the simulation
-     */
-    setTick(tick: number): void;
-    /**
-     * Force a tick update, updating is value +1 and calling the DataHandler to register the data of the simulation
-     */
-    nextTick(): number;
-    /**
-     * returns the current tick of the clock of the simulation
-     */
-    getTick(): number;
-    /**
-     * returns true as long as the clock Tick is less than maxTick
-     */
-    canNextTick(): boolean;
-    /**
-     * return the duration of the simulation
-     */
-    getMaxTick(): number;
-    /**
-     * set the duration of the simulation
-     * @param maxTick : number : the simulation will be executed while the tick be less than the maxTick
-     */
-    setMaxTick(maxTick: number): void;
+    abstract createEnvironment(environmentConfig: MetaEnvironmentConfig): Environment;
 }

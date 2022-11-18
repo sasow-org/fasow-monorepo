@@ -9,7 +9,7 @@ import IExperimentStrategy from "./interfaces/Experiment/IExperimentStrategy";
 export default abstract class Experiment implements ExperimentConfig, IExperimentCreator, IExperimentStrategy {
     name: string;
     description: string;
-    simulation: Simulation | any;
+    simulation: Simulation;
     constructor();
     /**
      * Run the Experiment,initializing the model and starting the simulation
@@ -35,28 +35,7 @@ export default abstract class Experiment implements ExperimentConfig, IExperimen
      */
     abstract Strategy(): void;
     /**
-     * Call to Strategy to be executed
+     * Calls to Strategy to be executed
      */
     executeStrategy(): void;
-    /**
-     * Return the Repetition of the Experiment
-     */
-    getRepetition(): number;
-    /**
-     * Return the max Repetitions to do the Experiment
-     */
-    getMaxRepetition(): number;
-    /**
-     * Return true if is posible to do another repetition
-     */
-    canNextRepetition(): boolean;
-    /**
-     * Update the repetition number to +1
-     */
-    nextRepetition(): number;
-    /**
-     * Allow to set the max repetitions
-     * @param maxRepetitions : number : The quantity of repetitions to execute the Experiment
-     */
-    setMaxRepetition(maxRepetitions: number): void;
 }

@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.AgentState = void 0;
 /**
  * Enum of the most simply states of an Agent in a WOM communication process and is equal to the followings states

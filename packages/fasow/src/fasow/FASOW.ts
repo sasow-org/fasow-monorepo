@@ -103,8 +103,4 @@ export default class FASOW {
   writeFASOWState() {
     this.dataHandler.writeFASOWState();
   }
-
-  loadJSON(): void {
-    console.log("LoadJSON.");
-  }
 }

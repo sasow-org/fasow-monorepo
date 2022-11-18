@@ -23,7 +23,7 @@ var Environment = /** @class */ (function () {
      * Allow to the user to load the Scenario config to the environment to after initializes
      * the simulation
      *
-     * @param config : MetaScenarioConfig : establishes the quantity of agents to create,
+     * @param config : MetaEnvironmentConfig : establishes the quantity of agents to create,
      * sets his configurations, calculate the seedSize and registers the agentConfigs
      * in the TowerHandler at AgentAPI level.
      *
@@ -40,8 +40,8 @@ var Environment = /** @class */ (function () {
         this.seedSize = Math.round((value * this.networkSize) / 100);
         this.initialized = false;
         console.log("Setting MaxTick to --> ", config.maxTick);
-        this.setMaxTick(config.maxTick);
-        console.log("MaxTick is : ", this.getMaxTick());
+        main_1.TimeKeeper.setMaxTick(config.maxTick);
+        console.log("MaxTick is : ", main_1.TimeKeeper.getMaxTick());
         this.agents = [];
         this.seeds = [];
         main_1.TowerHandler.registerMetaAgentsConfigs(config.metaAgentsConfigs);
@@ -72,7 +72,7 @@ var Environment = /** @class */ (function () {
             throw new Error("Error in initialize environment with id: ".concat(this.id));
         }
         this.initialized = true;
-        this.setTick(0);
+        main_1.TimeKeeper.setTick(0);
         console.log("All done on environment!");
     };
     /**
@@ -102,7 +102,6 @@ var Environment = /** @class */ (function () {
                 _this.networkSize) /
                 100;
             var total = Math.round(toRound);
-            // console.log("Total de Seguidores: ", total);
             while (agent.followers.length !== total) {
                 var max = _this.agents.length;
                 var randomIndex = Number.parseInt("".concat(Math.random() * (max - 1 + 1)).concat(0), 10);
@@ -112,26 +111,31 @@ var Environment = /** @class */ (function () {
         });
     };
     /**
-     * After the followers relationships are established, the next thing to do is load the "followings" list of each agent, then, If agent A follows' agent B, then A is a follower of B, at this way the "followings" relationships are established.
+     * After the followers relationships are established, the next thing to do is load the "followings"
+     * list of each agent, then, If agent A follows' agent B, then A is a follower of B, at this way
+     * the "followings" relationships are established.
      */
     Environment.prototype.addFollowings = function () {
-        var _this = this;
-        // todo: fix, Add Followings no funciona asi, seguir a alguien, te convierte en un seguidor de ese alguien
-        this.agents.map(function (agent) {
-            var total = Math.round((main_1.TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
-                .followingsPercentage *
-                _this.networkSize) /
-                100);
-            while (agent.followings.length !== total) {
-                var max = _this.agents.length;
-                var randomIndex = Number.parseInt("".concat(Math.random() * (max - 1 + 1)).concat(0), 10);
-                agent.addFollowing(_this.agents[randomIndex]);
-            }
-            return agent;
+        this.agents.forEach(function (iAgent) {
+            iAgent.followers.forEach(function (kAgent) {
+                kAgent.followings.push(iAgent);
+            });
         });
+        /*
+        This is a mind reminder
+        If A is a follower of B, then
+          B has A on his follower list
+    
+          and
+    
+          A has B on his followings list
+    
+          and then for each k follower of B, add B in the followings list of K
+         */
     };
     /**
-     * Check if the simulation are ready to be executed and returns true if the agents, seeds, followers and followings are all set up or if exist some problem.
+     * Check if the simulation are ready to be executed and returns true if the agents,
+     * seeds, followers and followings are all set up or if exist some problem.
      */
     Environment.prototype.isDone = function () {
         var _this = this;
@@ -151,13 +155,8 @@ var Environment = /** @class */ (function () {
                 _this.networkSize) /
                 100;
             var roundedAgentFollowersQuantity = Math.round(toRoundAgentFollowersQuantity);
-            if (agent.followers.length !== roundedAgentFollowersQuantity &&
-                agent.followings.length !==
-                    Math.round((main_1.TowerHandler.getMetaAgentConfigById(agent.indexMetaAgentConfig)
-                        .followingsPercentage *
-                        _this.networkSize) /
-                        100)) {
-                throw new Error("On Agent.id: ".concat(agent.id, " followers or followings are not equal to the real number of followers"));
+            if (agent.followers.length !== roundedAgentFollowersQuantity) {
+                throw new Error("On Agent.id: ".concat(agent.id, " followers are not equal to the real number of followers"));
             }
         });
         return true;
@@ -173,44 +172,6 @@ var Environment = /** @class */ (function () {
      */
     Environment.prototype.resetSeedStates = function () {
         this.seeds.forEach(function (seed) { return seed.resetState(); });
-    };
-    /**
-     * set the tick of the clock of the simulation
-     * @param tick : number : unit of time of the simulation
-     */
-    Environment.prototype.setTick = function (tick) {
-        main_1.TowerHandler.setTick(tick);
-    };
-    /**
-     * Force a tick update, updating is value +1 and calling the DataHandler to register the data of the simulation
-     */
-    Environment.prototype.nextTick = function () {
-        return main_1.TowerHandler.nextTick();
-    };
-    /**
-     * returns the current tick of the clock of the simulation
-     */
-    Environment.prototype.getTick = function () {
-        return main_1.TowerHandler.getTick();
-    };
-    /**
-     * returns true as long as the clock Tick is less than maxTick
-     */
-    Environment.prototype.canNextTick = function () {
-        return main_1.TowerHandler.canNextTick();
-    };
-    /**
-     * return the duration of the simulation
-     */
-    Environment.prototype.getMaxTick = function () {
-        return main_1.TowerHandler.getMaxTick();
-    };
-    /**
-     * set the duration of the simulation
-     * @param maxTick : number : the simulation will be executed while the tick be less than the maxTick
-     */
-    Environment.prototype.setMaxTick = function (maxTick) {
-        main_1.TowerHandler.setMaxTick(maxTick);
     };
     return Environment;
 }());

@@ -1,8 +1,9 @@
 "use strict";
-exports.__esModule = true;
-var DataHandlerDecorators_1 = require("./decorators/DataHandlerDecorators");
+Object.defineProperty(exports, "__esModule", { value: true });
 var main_1 = require("../../main");
+var DataHandlerDecorators_1 = require("./decorators/DataHandlerDecorators");
 // Imports to WriteFiles
+var fs = require("fs");
 var Parser = require("json2csv").Parser;
 /**
  * Allows to users to notify changes in the simulation to generate output data of that.
@@ -27,6 +28,10 @@ var Parser = require("json2csv").Parser;
  *
  * @EnvironmentCount(name) : allows to register properties of the environment to be
  * counted and added to the output each time the update is called.
+ *
+ * @ExperimentCount(name) : allows to register properties of the experiment to be
+ * counted and added to the output each time the update is called and normally that
+ * property is updated for each repetition
  *
  */
 var IDataHandler = /** @class */ (function () {
@@ -65,7 +70,7 @@ var IDataHandler = /** @class */ (function () {
      * extracts the data from the simulation and then are these added to the Output array.
      *
      * Normally this method is called each time the tick of the clock changes.
-    */
+     */
     IDataHandler.prototype.update = function () {
         this.writeLine();
     };
@@ -77,9 +82,11 @@ var IDataHandler = /** @class */ (function () {
      * @private this method is called by the update.
      */
     IDataHandler.prototype.writeLine = function () {
-        var repetition = main_1.TowerHandler.getRepetition();
-        var tick = main_1.TowerHandler.getTick();
+        var repetition = main_1.TimeKeeper.getRepetition();
+        var tick = main_1.TimeKeeper.getTick();
         var finalRow = { repetition: repetition, tick: tick };
+        // Experiments Row Data
+        var experimentCountsRow = this.calculateExperimentCounts();
         // Environment Row Data
         var environmentCountsRow = this.calculateEnvironmentCounts();
         var environmentAccumRow = this.calculateEnvironmentAccum();
@@ -87,6 +94,7 @@ var IDataHandler = /** @class */ (function () {
         var agentAccumRow = this.calculateAgentAccum();
         var agentBooleanCountsRow = this.calculateAgentBooleanCounts();
         var agentStatesRow = this.calculateAgentStateIntegerCounts();
+        IDataHandler.generateRow(finalRow, experimentCountsRow);
         IDataHandler.generateRow(finalRow, environmentCountsRow);
         IDataHandler.generateRow(finalRow, environmentAccumRow);
         IDataHandler.generateRow(finalRow, agentAccumRow);
@@ -104,7 +112,7 @@ var IDataHandler = /** @class */ (function () {
         var row = {};
         DataHandlerDecorators_1.AccumEnvironmentObjectKeys.forEach(function (item) {
             var oldValue = 0;
-            if (main_1.TowerHandler.getTick() > 0) {
+            if (main_1.TimeKeeper.getTick() > 0) {
                 var toOut = _this.finalOutput[_this.finalOutput.length - 1];
                 oldValue = Reflect.get(toOut, item.propertyKey);
             }
@@ -122,9 +130,12 @@ var IDataHandler = /** @class */ (function () {
         var envi = this.experiment.simulation.environment;
         var row = {};
         DataHandlerDecorators_1.CountEnvironmentKeys.forEach(function (item) {
-            var key = item.propertyKey;
-            var value = Reflect.get(envi, key);
-            Reflect.set(row, item.column_name, value);
+            if (item.target.constructor.name === envi.constructor.name) {
+                // Registra el valor siempre y cuando sea una propiedad de la clase
+                var key = item.propertyKey;
+                var value = Reflect.get(envi, key);
+                Reflect.set(row, item.column_name, value);
+            }
         });
         return row;
     };
@@ -133,16 +144,33 @@ var IDataHandler = /** @class */ (function () {
      * @private this method is called on writeLine method.
      */
     IDataHandler.prototype.calculateAgentStateIntegerCounts = function () {
-        var _this = this;
+        var exp = this.experiment;
+        var agents = exp.simulation.environment.agents;
         var row = {};
         DataHandlerDecorators_1.CountAgentStatesObjectKeysArray.forEach(function (item) {
             var countVar = 0;
-            _this.experiment.simulation.environment.agents.forEach(function (agent) {
+            agents.forEach(function (agent) {
                 if (agent.state === item.value) {
                     countVar += 1;
                 }
             });
             Reflect.set(row, item.column_name, countVar);
+        });
+        return row;
+    };
+    /**
+     * Registers the value from some experiment and added that to the output, normally is registered for each repetition
+     * @private this method is called on writeLine method
+     */
+    IDataHandler.prototype.calculateExperimentCounts = function () {
+        var exp = this.experiment;
+        var row = {};
+        DataHandlerDecorators_1.CountExperimentsKeys.forEach(function (item) {
+            if (item.target.constructor.name === exp.constructor.name) {
+                var key = item.propertyKey;
+                var value = Reflect.get(exp, key);
+                Reflect.set(row, item.column_name, value);
+            }
         });
         return row;
     };
@@ -156,17 +184,21 @@ var IDataHandler = /** @class */ (function () {
         DataHandlerDecorators_1.CountAgentBooleanObjectKeysArray.forEach(function (item) {
             var counter = 0;
             agents.forEach(function (agent) {
-                var valueFromAgent = Reflect.get(agent, item.propertyKey);
-                if (item.countFalse) { // Si vamos a contar por cada agente que tenga esa property en false
-                    if (!valueFromAgent) {
+                if (Reflect.has(agent, item.propertyKey) &&
+                    agent.constructor.name === item.target.constructor.name) {
+                    var valueFromAgent = Reflect.get(agent, item.propertyKey);
+                    if (item.countFalse) {
+                        // Si vamos a contar por cada agente que tenga esa property en false
+                        if (!valueFromAgent) {
+                            counter += 1;
+                        }
+                    }
+                    else if (valueFromAgent) {
                         counter += 1;
                     }
-                }
-                else if (valueFromAgent) {
-                    counter += 1;
+                    Reflect.set(row, item.column_name, counter);
                 }
             });
-            Reflect.set(row, item.column_name, counter);
         });
         return row;
     };
@@ -180,7 +212,8 @@ var IDataHandler = /** @class */ (function () {
         DataHandlerDecorators_1.AccumAgentKeysArray.forEach(function (item) {
             var sum = 0;
             agents.forEach(function (agent) {
-                if (Reflect.has(agent, item.propertyKey)) {
+                if (Reflect.has(agent, item.propertyKey) &&
+                    agent.constructor.name === item.target.constructor.name) {
                     sum += Reflect.get(agent, item.propertyKey);
                 }
             });
@@ -193,6 +226,7 @@ var IDataHandler = /** @class */ (function () {
      */
     IDataHandler.prototype.writeFileData = function () {
         console.log("Writing File", this.finalOutput);
+        fs.writeFileSync("".concat(this.experiment.name, "_output.csv"), IDataHandler.dumpOutput(this.finalOutput));
         this.finalOutput = [];
     };
     /**
@@ -208,6 +242,24 @@ var IDataHandler = /** @class */ (function () {
         // todo: make a method to show te output per period
         return this.finalOutput[this.finalOutput.length - 1];
     };
+    IDataHandler.prototype.getState = function () {
+        return {
+            state: {
+                selectedExperiment: main_1.TowerHandler.getSelectedExperiment(),
+                actions: main_1.TowerHandler.getActionAPIState(),
+                agents: main_1.TowerHandler.getAgentAPIState(),
+                environments: main_1.TowerHandler.getEnvironmentAPIState(),
+                experiments: main_1.TowerHandler.getExperimentAPIState(),
+                agent_states: DataHandlerDecorators_1.CountAgentStatesObjectKeysArray,
+            },
+        };
+    };
+    IDataHandler.prototype.writeFASOWState = function () {
+        fs.writeFile("FASOWState.json", JSON.stringify(this.getState()), function (error) {
+            if (error)
+                throw error;
+        });
+    };
     return IDataHandler;
 }());
-exports["default"] = IDataHandler;
+exports.default = IDataHandler;

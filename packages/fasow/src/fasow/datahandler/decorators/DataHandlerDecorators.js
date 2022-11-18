@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-exports.EnvironmentCount = exports.CountEnvironmentKeys = exports.AccumulateEnvironmentValue = exports.AccumEnvironmentObjectKeys = exports.AccumulateAgentValue = exports.AccumAgentKeysArray = exports.AgentStateIntegerCount = exports.CountAgentStatesObjectKeysArray = exports.AgentCountBoolean = exports.CountAgentBooleanObjectKeysArray = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExperimentCount = exports.CountExperimentsKeys = exports.EnvironmentCount = exports.CountEnvironmentKeys = exports.AccumulateEnvironmentValue = exports.AccumEnvironmentObjectKeys = exports.AccumulateAgentValue = exports.AccumAgentKeysArray = exports.AgentStateIntegerCount = exports.CountAgentStatesObjectKeysArray = exports.AgentCountBoolean = exports.CountAgentBooleanObjectKeysArray = void 0;
 require("reflect-metadata");
 /*
 todo: Encontrarle un mejor proposito a esto
@@ -34,7 +34,7 @@ function AgentCountBoolean(name, countFalse) {
             target: target,
             propertyKey: propertyKey,
             column_name: name,
-            countFalse: countFalse
+            countFalse: countFalse,
         });
     };
 }
@@ -54,7 +54,7 @@ function AgentStateIntegerCount(name, value) {
             target: target,
             propertyKey: propertyKey,
             column_name: name,
-            value: value
+            value: value,
         });
     };
 }
@@ -89,11 +89,29 @@ exports.CountEnvironmentKeys = [];
  */
 function EnvironmentCount(name) {
     return function (target, propertyKey) {
+        console.log("Name: ", name);
+        console.log("propertyKey: ", propertyKey);
+        console.log("target: ", target);
         exports.CountEnvironmentKeys.push({
             target: target,
             propertyKey: propertyKey,
-            column_name: name
+            column_name: name,
         });
     };
 }
 exports.EnvironmentCount = EnvironmentCount;
+exports.CountExperimentsKeys = [];
+/**
+ * For each repetition it records the marked parameter, and then it is recorded in the output in a column named @name
+ * @param name : string : The column name of the property being registered.
+ */
+function ExperimentCount(name) {
+    return function (target, propertyKey) {
+        exports.CountExperimentsKeys.push({
+            target: target,
+            propertyKey: propertyKey,
+            column_name: name,
+        });
+    };
+}
+exports.ExperimentCount = ExperimentCount;

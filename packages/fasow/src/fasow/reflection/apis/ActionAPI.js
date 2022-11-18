@@ -1,5 +1,6 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
+var StructureHandler_1 = require("../StructureHandler");
 /*
 Esta capa permite crear nuevas acciones que pueden ser ejecutadas por los agentes.
 Debido al alto nivel de acoplamiento que existe entre los agentes y las acciones, ya que
@@ -12,31 +13,40 @@ que permite una comunicación con las demás capas inferiores
  */
 var ActionAPI = /** @class */ (function () {
     function ActionAPI() {
-        this.actionFactories = new Map();
+        // this.actionFactories = new Map<typeof Action, IActionCreator>();
         this.actionConfigs = [];
+        this.actionFactories = new Map();
     }
     ActionAPI.prototype.registerNewAction = function (newActionType) {
-        // @ts-ignore
-        // eslint-disable-next-line new-cap
-        this.actionFactories.set(newActionType, new newActionType());
+        // const someAction : Action = Reflect.construct(newActionType,[]);
+        // this.actionFactories.set(newActionType, someAction);
+        // this.actionFactories.push(newActionType)
+        if (!this.actionFactories.has(newActionType.name)) {
+            this.actionFactories.set(newActionType.name, newActionType);
+        }
+        else {
+            throw Error("The referenced type '".concat(newActionType, "' has really been added"));
+        }
     };
     ActionAPI.prototype.registerMetaActionConfig = function (actionConfig) {
         this.actionConfigs.push(actionConfig);
     };
     ActionAPI.prototype.getAction = function (type) {
-        var action = this.actionFactories.get(type);
-        if (action) {
-            return action;
+        // const actionTypeToCreate = this.actionFactories.filter(actionType => type === actionType)[0];
+        // const { CreateAction } = Reflect.construct(actionTypeToCreate,[])
+        if (this.actionFactories.has(type.name)) {
+            // @ts-ignore
+            return this.actionFactories.get(type.name);
         }
-        throw Error("Action Type, ".concat(type.name, " not exist in ActionAPI"));
+        throw Error("The referenced type '".concat(type, "' not exist in ActionAPI"));
     };
     ActionAPI.prototype.generateActionList = function () {
         var _this = this;
         var auxList = [];
         this.actionConfigs.forEach(function (actionConfig) {
-            auxList.push(
-            // @ts-ignore
-            _this.getAction(actionConfig.type).createAction(actionConfig));
+            var factoryRef = Reflect.construct(_this.getAction(actionConfig.type), []);
+            var createAction = factoryRef.createAction;
+            auxList.push(createAction(actionConfig));
         });
         return auxList;
     };
@@ -44,9 +54,9 @@ var ActionAPI = /** @class */ (function () {
         var _this = this;
         var auxList = [];
         metaConfigs.forEach(function (actionConfig) {
-            auxList.push(
-            // @ts-ignore
-            _this.getAction(actionConfig.type).createAction(actionConfig));
+            var factoryRef = Reflect.construct(_this.getAction(actionConfig.type), []);
+            var createAction = factoryRef.createAction;
+            auxList.push(createAction(actionConfig));
         });
         return auxList;
     };
@@ -55,6 +65,19 @@ var ActionAPI = /** @class */ (function () {
         this.actionConfigs = [];
         return list;
     };
+    ActionAPI.prototype.getState = function () {
+        // const excludedProps = ['followings','followers', 'actions'];
+        var outputState = [];
+        this.actionFactories.forEach(function (key) {
+            var expectedObject = Reflect.construct(key, []);
+            console.log("Name: ", key);
+            outputState.push({
+                type: key,
+                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, []),
+            });
+        });
+        return outputState;
+    };
     return ActionAPI;
 }());
-exports["default"] = ActionAPI;
+exports.default = ActionAPI;

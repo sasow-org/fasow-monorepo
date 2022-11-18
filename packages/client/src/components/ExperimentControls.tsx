@@ -1,3 +1,4 @@
+import { fasowInstance } from "@fasow/backend/build";
 import {
   CloudDownload,
   CloudUpload,
@@ -15,7 +16,13 @@ export default function ExperimentControls() {
       </Typography>
       <Grid container spacing={1}>
         <Grid item xs={12}>
-          <Button variant="contained" sx={{ width: "100%" }}>
+          <Button
+            variant="contained"
+            sx={{ width: "100%" }}
+            onClick={() => {
+              console.log(fasowInstance.getState());
+            }}
+          >
             <PlayArrow sx={{ marginRight: 1 }} />
             Start experiment
           </Button>

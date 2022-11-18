@@ -1,8 +1,8 @@
 import Action from "../../abm/Action";
 import MetaActionConfig from "../../config/metaconfig/MetaActionConfig";
 export default class ActionAPI {
-    private actionFactories;
     private actionConfigs;
+    private actionFactories;
     constructor();
     registerNewAction(newActionType: typeof Action): void;
     registerMetaActionConfig(actionConfig: MetaActionConfig): void;
@@ -10,4 +10,5 @@ export default class ActionAPI {
     generateActionList(): Action[];
     generateActions(metaConfigs: MetaActionConfig[]): Action[];
     getMetaConfigs(): MetaActionConfig[];
+    getState(): any;
 }

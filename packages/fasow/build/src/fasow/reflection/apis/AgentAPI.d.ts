@@ -1,4 +1,4 @@
-import Agent from "../../abm/Agent";
+import type Agent from "../../abm/Agent";
 import MetaAgentConfig from "../../config/metaconfig/MetaAgentConfig";
 export default class AgentAPI {
     private agentsFactories;
@@ -11,4 +11,5 @@ export default class AgentAPI {
     generateAgentList(): Agent[];
     generateAgentsByConfigs(metaConfigs: MetaAgentConfig[]): Agent[];
     getMetaAgentConfigById(id: number): MetaAgentConfig;
+    getState(): any;
 }

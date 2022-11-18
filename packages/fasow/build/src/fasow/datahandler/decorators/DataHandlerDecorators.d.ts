@@ -56,4 +56,10 @@ export declare const CountEnvironmentKeys: CountItem[];
  * @param name : string : The column name of the property being registered.
  */
 export declare function EnvironmentCount(name: string): (target: any, propertyKey: string) => void;
+export declare const CountExperimentsKeys: CountItem[];
+/**
+ * For each repetition it records the marked parameter, and then it is recorded in the output in a column named @name
+ * @param name : string : The column name of the property being registered.
+ */
+export declare function ExperimentCount(name: string): (target: any, propertyKey: string) => void;
 export {};

@@ -1,8 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import FASOW from "./src/fasow/FASOW";
-import { loadJSON } from "./src/main";
+import fasow from "./src/main";
 
-export const fasowInstance = new FASOW();
+export const fasowInstance = fasow;
 export const PruebaExport = "Prueba";
-
-export { loadJSON };

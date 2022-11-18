@@ -9,7 +9,8 @@
     "start": "cd packages/client && yarn start",
     "build": "npx lerna run build",
     "build-backend": "cd packages/fasow && npx -p typescript tsc index.ts --declaration --experimentalDecorators --emitDecoratorMetadata --outDir build",
-    "debug-backend": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata packages/fasow/src/main.ts && node packages/fasow/src/main.js"
+    "debug-backend": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata packages/fasow/src/main.ts && node packages/fasow/src/main.js",
+    "build-backend-start": "yarn build-backend && yarn start"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
@@ -22,11 +23,11 @@
     "eslint-import-resolver-typescript": "^3.5.1",
     "eslint-plugin-import": "^2.26.0",
     "lerna": "^5.5.2",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "json2csv": "^5.0.7"
   },
   "dependencies": {
     "is-even": "^1.0.0",
-    "json2csv": "^5.0.7",
     "reflect-metadata": "^0.1.13"
   }
 }

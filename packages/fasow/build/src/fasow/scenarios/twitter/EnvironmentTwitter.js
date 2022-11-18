@@ -23,9 +23,9 @@ var EnvironmentTwitter = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     EnvironmentTwitter.prototype.run = function () {
-        while (this.canNextTick()) {
+        while (main_1.TimeKeeper.canNextTick()) {
             this.step();
-            console.log("On Step: ", this.nextTick(), " of (", this.getMaxTick(), "): \n", main_1.DataHandler.getLastOutputRow());
+            console.log("On Step: ", main_1.TimeKeeper.nextTick(), " of (", main_1.TimeKeeper.getMaxTick(), "): \n", main_1.DataHandler.getLastOutputRow());
             // console.log("On Step: ", this.getTick(), " of (", this.getMaxTick(), ")");
             //
             console.log();

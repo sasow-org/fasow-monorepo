@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.EnvironmentCount = exports.CountEnvironmentKeys = exports.AccumulateEnvironmentValue = exports.AccumEnvironmentObjectKeys = exports.AccumulateAgentValue = exports.AccumAgentKeysArray = exports.AgentStateIntegerCount = exports.CountAgentStatesObjectKeysArray = exports.AgentCountBoolean = exports.CountAgentBooleanObjectKeysArray = void 0;
+exports.ExperimentCount = exports.CountExperimentsKeys = exports.EnvironmentCount = exports.CountEnvironmentKeys = exports.AccumulateEnvironmentValue = exports.AccumEnvironmentObjectKeys = exports.AccumulateAgentValue = exports.AccumAgentKeysArray = exports.AgentStateIntegerCount = exports.CountAgentStatesObjectKeysArray = exports.AgentCountBoolean = exports.CountAgentBooleanObjectKeysArray = void 0;
 require("reflect-metadata");
 /*
 todo: Encontrarle un mejor proposito a esto
@@ -89,6 +89,9 @@ exports.CountEnvironmentKeys = [];
  */
 function EnvironmentCount(name) {
     return function (target, propertyKey) {
+        console.log("Name: ", name);
+        console.log("propertyKey: ", propertyKey);
+        console.log("target: ", target);
         exports.CountEnvironmentKeys.push({
             target: target,
             propertyKey: propertyKey,
@@ -97,3 +100,18 @@ function EnvironmentCount(name) {
     };
 }
 exports.EnvironmentCount = EnvironmentCount;
+exports.CountExperimentsKeys = [];
+/**
+ * For each repetition it records the marked parameter, and then it is recorded in the output in a column named @name
+ * @param name : string : The column name of the property being registered.
+ */
+function ExperimentCount(name) {
+    return function (target, propertyKey) {
+        exports.CountExperimentsKeys.push({
+            target: target,
+            propertyKey: propertyKey,
+            column_name: name
+        });
+    };
+}
+exports.ExperimentCount = ExperimentCount;

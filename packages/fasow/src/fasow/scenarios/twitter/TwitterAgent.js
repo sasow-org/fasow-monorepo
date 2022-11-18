@@ -23,7 +23,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var Agent_1 = require("../../abm/Agent");
 var AgentState_1 = require("../../abm/interfaces/Agent/AgentState");
 var DataHandlerDecorators_1 = require("../../datahandler/decorators/DataHandlerDecorators");
@@ -53,19 +53,19 @@ var TwitterAgent = /** @class */ (function (_super) {
     __decorate([
         (0, DataHandlerDecorators_1.AgentStateIntegerCount)("NOT_READ", AgentState_1.AgentState.NOT_READ),
         __metadata("design:type", Number)
-    ], TwitterAgent, "NOT_READ");
+    ], TwitterAgent, "NOT_READ", void 0);
     __decorate([
         (0, DataHandlerDecorators_1.AgentStateIntegerCount)("READ", AgentState_1.AgentState.READ),
         __metadata("design:type", Number)
-    ], TwitterAgent, "READ");
+    ], TwitterAgent, "READ", void 0);
     __decorate([
         (0, DataHandlerDecorators_1.AgentStateIntegerCount)("READY_TO_SHARE", AgentState_1.AgentState.READY_TO_SHARE),
         __metadata("design:type", Number)
-    ], TwitterAgent, "READY");
+    ], TwitterAgent, "READY", void 0);
     __decorate([
         (0, DataHandlerDecorators_1.AgentStateIntegerCount)("SHARED", AgentState_1.AgentState.SHARED),
         __metadata("design:type", Number)
-    ], TwitterAgent, "SHARED");
+    ], TwitterAgent, "SHARED", void 0);
     return TwitterAgent;
-}(Agent_1["default"]));
-exports["default"] = TwitterAgent;
+}(Agent_1.default));
+exports.default = TwitterAgent;

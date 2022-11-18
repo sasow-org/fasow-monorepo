@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var Action_1 = require("../../Action");
 var AgentState_1 = require("../../interfaces/Agent/AgentState");
 var ActionRead = /** @class */ (function (_super) {
@@ -35,5 +35,5 @@ var ActionRead = /** @class */ (function (_super) {
         return new ActionRead().setConfig(actionData);
     };
     return ActionRead;
-}(Action_1["default"]));
-exports["default"] = ActionRead;
+}(Action_1.default));
+exports.default = ActionRead;

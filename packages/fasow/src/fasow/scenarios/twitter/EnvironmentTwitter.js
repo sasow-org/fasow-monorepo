@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var main_1 = require("../../../main");
 var Environment_1 = require("../../abm/Environment");
 var EnvironmentTwitter = /** @class */ (function (_super) {
@@ -23,9 +23,9 @@ var EnvironmentTwitter = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     EnvironmentTwitter.prototype.run = function () {
-        while (this.canNextTick()) {
+        while (main_1.TimeKeeper.canNextTick()) {
             this.step();
-            console.log("On Step: ", this.nextTick(), " of (", this.getMaxTick(), "): \n", main_1.DataHandler.getLastOutputRow());
+            console.log("On Step: ", main_1.TimeKeeper.nextTick(), " of (", main_1.TimeKeeper.getMaxTick(), "): \n", main_1.DataHandler.getLastOutputRow());
             // console.log("On Step: ", this.getTick(), " of (", this.getMaxTick(), ")");
             //
             console.log();
@@ -40,5 +40,5 @@ var EnvironmentTwitter = /** @class */ (function (_super) {
         return new EnvironmentTwitter().setConfig(scenarioConfig);
     };
     return EnvironmentTwitter;
-}(Environment_1["default"]));
-exports["default"] = EnvironmentTwitter;
+}(Environment_1.default));
+exports.default = EnvironmentTwitter;

@@ -9,10 +9,10 @@ import {
   AccumEnvironmentObjectKeys,
   CountExperimentsKeys,
 } from "./decorators/DataHandlerDecorators";
+import { Parser } from "json2csv";
 
 // Imports to WriteFiles
-const fs = require("fs");
-const { Parser } = require("json2csv");
+// const fs = require("fs");
 
 /**
  * Allows to users to notify changes in the simulation to generate output data of that.
@@ -250,12 +250,14 @@ export default class IDataHandler {
    * Exports a file with the desired data from finalOutput
    */
   private writeFileData() {
-    console.log("Writing File", this.finalOutput);
+    console.log("Writing File", this.finalOutput); // todo:  move this line
+    /*
     fs.writeFileSync(
       `${this.experiment.name}_output.csv`,
       IDataHandler.dumpOutput(this.finalOutput)
     );
-    this.finalOutput = [];
+    */
+    this.finalOutput = []; // todo and this line
   }
 
   /**
@@ -287,12 +289,18 @@ export default class IDataHandler {
   }
 
   writeFASOWState() {
+    /*
     fs.writeFile(
       "FASOWState.json",
       JSON.stringify(this.getState()),
       (error: any) => {
         if (error) throw error;
       }
+    );
+    
+     */
+    console.log(
+      "Writing the fasow state in a file, please uncomment the code from up"
     );
   }
 }

@@ -23,6 +23,10 @@ import Experiment from "../abm/Experiment";
  * @EnvironmentCount(name) : allows to register properties of the environment to be
  * counted and added to the output each time the update is called.
  *
+ * @ExperimentCount(name) : allows to register properties of the experiment to be
+ * counted and added to the output each time the update is called and normally that
+ * property is updated for each repetition
+ *
  */
 export default class IDataHandler {
     experiment: Experiment | any;
@@ -44,7 +48,7 @@ export default class IDataHandler {
      * extracts the data from the simulation and then are these added to the Output array.
      *
      * Normally this method is called each time the tick of the clock changes.
-    */
+     */
     update(): void;
     /**
      * Calls and calculates all's of the environment and agent vars what should be registered
@@ -70,6 +74,11 @@ export default class IDataHandler {
      */
     private calculateAgentStateIntegerCounts;
     /**
+     * Registers the value from some experiment and added that to the output, normally is registered for each repetition
+     * @private this method is called on writeLine method
+     */
+    private calculateExperimentCounts;
+    /**
      * Calculates the agent booleans vars of the selected parameters for each agent in the simulation
      * @private this method is called on writeLine method.
      */
@@ -91,4 +100,6 @@ export default class IDataHandler {
      * Return the last iteration state of the simulation
      */
     getLastOutputRow(): any;
+    getState(): any;
+    writeFASOWState(): void;
 }

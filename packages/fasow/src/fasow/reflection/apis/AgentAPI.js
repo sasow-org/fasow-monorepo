@@ -1,7 +1,7 @@
 "use strict";
-exports.__esModule = true;
-// eslint-disable-next-line import/no-cycle
+Object.defineProperty(exports, "__esModule", { value: true });
 var main_1 = require("../../../main");
+var StructureHandler_1 = require("../StructureHandler");
 /*
 Esta capa permite crear, agrupar y combinar tipos diferentes de agentes,
 también permite relacionar a los agentes con sus respectivas configuraciones
@@ -14,13 +14,17 @@ de la API de metaprogramacion de \co{TowerHandler} que permite la comunicación.
  */
 var AgentAPI = /** @class */ (function () {
     function AgentAPI() {
-        this.agentsFactories = new Map();
+        // this.agentsFactories = new Map<typeof Agent, IAgentCreator>();
         this.agentConfigs = [];
+        this.agentsFactories = new Map();
     }
     AgentAPI.prototype.registerNewAgent = function (type) {
-        // @ts-ignore
-        // eslint-disable-next-line new-cap
-        this.agentsFactories.set(type, new type());
+        if (!this.agentsFactories.has(type.name)) {
+            this.agentsFactories.set(type.name, type);
+        }
+        else {
+            throw Error("The referenced type '".concat(type, "' has already been added"));
+        }
     };
     AgentAPI.prototype.registerNewMetaAgentConfig = function (agentConfig) {
         this.agentConfigs.push(agentConfig);
@@ -29,43 +33,25 @@ var AgentAPI = /** @class */ (function () {
         this.agentConfigs = agentConfigs;
     };
     AgentAPI.prototype.getAgent = function (type) {
-        return this.agentsFactories.get(type);
+        if (this.agentsFactories.has(type.name)) {
+            // @ts-ignore
+            return this.agentsFactories.get(type.name);
+        }
+        throw Error("The referenced type '".concat(type, "' not exist in AgentAPI"));
     };
     AgentAPI.prototype.generateAgentList = function () {
         var auxList = this.generateAgentsByConfigs(this.agentConfigs);
-        /*
-        this.agentConfigs.forEach((config) => {
-          for (let i = 0; i < config.percentage; i += 1) {
-            const agent = this.getAgent(config.type)?.createAgent(
-              auxList.length,
-              config
-            );
-            if (agent) {
-              auxList.push(agent);
-            } else {
-              throw new Error(`Agent Type ${config.type} not exist in AgentAPI`);
-            }
-          }
-        });
-        
-         */
         return auxList;
     };
     AgentAPI.prototype.generateAgentsByConfigs = function (metaConfigs) {
         var _this = this;
         var auxList = [];
         metaConfigs.forEach(function (config) {
-            var _a;
             var quantity = Math.round((main_1.TowerHandler.getScenarioConfig().networkSize * config.percentage) / 100);
             console.log("Config Name: ", config.name, " Starting to creating (", quantity, ") agents with this config: \n", config);
+            var createAgent = Reflect.construct(_this.getAgent(config.type), []).createAgent;
             for (var i = 0; i < quantity; i += 1) {
-                var agent = (_a = _this.getAgent(config.type)) === null || _a === void 0 ? void 0 : _a.createAgent(auxList.length, config);
-                if (agent) {
-                    auxList.push(agent);
-                }
-                else {
-                    throw new Error("Agent Type ".concat(config.type, " not exist in AgentAPI"));
-                }
+                auxList.push(createAgent(auxList.length, config));
             }
         });
         return auxList;
@@ -73,6 +59,19 @@ var AgentAPI = /** @class */ (function () {
     AgentAPI.prototype.getMetaAgentConfigById = function (id) {
         return this.agentConfigs.filter(function (config) { return config.id === id; })[0];
     };
+    AgentAPI.prototype.getState = function () {
+        var excludedProps = ["followings", "followers", "actions"];
+        var outputState = [];
+        this.agentsFactories.forEach(function (key) {
+            var expectedObject = Reflect.construct(key, []);
+            console.log("Name: ", key.name);
+            outputState.push({
+                type: key.name,
+                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps),
+            });
+        });
+        return outputState;
+    };
     return AgentAPI;
 }());
-exports["default"] = AgentAPI;
+exports.default = AgentAPI;

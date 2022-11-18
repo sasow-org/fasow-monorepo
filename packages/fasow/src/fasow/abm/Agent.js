@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var main_1 = require("../../main");
 var AgentState_1 = require("./interfaces/Agent/AgentState");
 /**
@@ -123,4 +123,4 @@ var Agent = /** @class */ (function () {
     };
     return Agent;
 }());
-exports["default"] = Agent;
+exports.default = Agent;

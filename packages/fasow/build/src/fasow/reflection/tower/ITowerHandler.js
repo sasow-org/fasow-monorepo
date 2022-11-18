@@ -1,65 +1,80 @@
 "use strict";
 exports.__esModule = true;
-var EssentialAPI_1 = require("../../timekepper/EssentialAPI");
 var ActionAPI_1 = require("../apis/ActionAPI");
 var AgentAPI_1 = require("../apis/AgentAPI");
+var EnvironmentAPI_1 = require("../apis/EnvironmentAPI");
 var ExperimentAPI_1 = require("../apis/ExperimentAPI");
-var ScenarioAPI_1 = require("../apis/ScenarioAPI");
 var ITowerHandler = /** @class */ (function () {
     function ITowerHandler() {
-        this.EssentialAPI = new EssentialAPI_1["default"]();
+        // private timeKeeper: TimeKeeper = new TimeKeeper();
         this.ActionAPI = new ActionAPI_1["default"]();
         this.AgentAPI = new AgentAPI_1["default"]();
-        this.ScenarioAPI = new ScenarioAPI_1["default"]();
+        this.EnvironmentAPI = new EnvironmentAPI_1["default"]();
         this.ExperimentAPI = new ExperimentAPI_1["default"]();
-        /* Experiment API */
     }
     // todo : add all the others methods per API or introspection layer
-    /* Essential API */
-    ITowerHandler.prototype.getTick = function () {
-        return this.EssentialAPI.getTick();
-    };
-    ITowerHandler.prototype.setTick = function (tick) {
-        return this.EssentialAPI.setTick(tick);
-    };
-    ITowerHandler.prototype.setMaxTick = function (periods) {
-        this.EssentialAPI.setMaxTick(periods);
-    };
-    ITowerHandler.prototype.nextTick = function () {
-        return this.EssentialAPI.nextTick();
-    };
-    ITowerHandler.prototype.canNextTick = function () {
-        return this.EssentialAPI.canNextTick();
-    };
-    ITowerHandler.prototype.getMaxTick = function () {
-        return this.EssentialAPI.getMaxTick();
-    };
-    ITowerHandler.prototype.getRepetition = function () {
-        return this.EssentialAPI.getRepetition();
-    };
-    ITowerHandler.prototype.getMaxRepetition = function () {
-        return this.EssentialAPI.getMaxRepetition();
-    };
-    ITowerHandler.prototype.canNextRepetition = function () {
-        return this.EssentialAPI.canNextRepetition();
-    };
-    ITowerHandler.prototype.nextRepetition = function () {
-        return this.EssentialAPI.nextRepetition();
-    };
-    ITowerHandler.prototype.setMaxRepetition = function (maxRepetitions) {
-        console.log("Setting up MaxRepetitions from (", this.getMaxRepetition(), ") to (", maxRepetitions, "). ");
-        this.EssentialAPI.setMaxRepetition(maxRepetitions);
-    };
-    ITowerHandler.prototype.setRepetition = function (repetition) {
-        this.EssentialAPI.setRepetition(repetition);
-    };
+    /* Essential API
+  
+    getTick(): number {
+      return this.timeKeeper.getTick();
+    }
+  
+    setTick(tick: number): number {
+      return this.timeKeeper.setTick(tick);
+    }
+  
+    setMaxTick(periods: number) {
+      this.timeKeeper.setMaxTick(periods);
+    }
+  
+    nextTick(): number {
+      return this.timeKeeper.nextTick();
+    }
+  
+    canNextTick(): boolean {
+      return this.timeKeeper.canNextTick();
+    }
+  
+    getMaxTick(): number {
+      return this.timeKeeper.getMaxTick();
+    }
+  
+    getRepetition(): number {
+      return this.timeKeeper.getRepetition();
+    }
+  
+    getMaxRepetition(): number {
+      return this.timeKeeper.getMaxRepetition();
+    }
+  
+    canNextRepetition(): boolean {
+      return this.timeKeeper.canNextRepetition();
+    }
+  
+    nextRepetition(): number {
+      return this.timeKeeper.nextRepetition();
+    }
+  
+    setMaxRepetition(maxRepetitions: number) {
+      console.log(
+        "Setting up MaxRepetitions from (",
+        this.getMaxRepetition(),
+        ") to (",
+        maxRepetitions,
+        "). "
+      );
+      this.timeKeeper.setMaxRepetition(maxRepetitions);
+    }
+  
+    setRepetition(repetition: number) {
+      this.timeKeeper.setRepetition(repetition);
+    }
+    */
     /* Essential API */
     /* Action API */
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.registerNewAction = function (newActionType) {
         this.ActionAPI.registerNewAction(newActionType);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.generateActions = function (actionsConfigs) {
         return this.ActionAPI.generateActions(actionsConfigs);
     };
@@ -74,7 +89,6 @@ var ITowerHandler = /** @class */ (function () {
     };
     /* Action API */
     /* Agent API */
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.registerMetaConfigs = function (metaAgentsConfigs) {
         this.AgentAPI.registerMetaConfigs(metaAgentsConfigs);
     };
@@ -84,84 +98,57 @@ var ITowerHandler = /** @class */ (function () {
     ITowerHandler.prototype.generateAgentsByConfigs = function (metaConfigs) {
         return this.AgentAPI.generateAgentsByConfigs(metaConfigs);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.generateAgentList = function () {
         return this.AgentAPI.generateAgentList();
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.getMetaAgentConfigById = function (indexMetaAgentConfig) {
         return this.AgentAPI.getMetaAgentConfigById(indexMetaAgentConfig);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.registerNewAgent = function (newAgentType) {
         this.AgentAPI.registerNewAgent(newAgentType);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.registerMetaAgentsConfigs = function (metaAgentsConfigs) {
         this.AgentAPI.registerMetaConfigs(metaAgentsConfigs);
     };
     /* Agent API */
     /* Scenario API */
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.generateEnvironment = function (config) {
-        return this.ScenarioAPI.generateEnvironment(config);
+        return this.EnvironmentAPI.generateEnvironment(config);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.getScenarioConfig = function () {
-        return this.ScenarioAPI.getScenarioConfig();
+        return this.EnvironmentAPI.getScenarioConfig();
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.registerNewEnvironment = function (newEnvironmentType) {
-        this.ScenarioAPI.registerNewEnvironment(newEnvironmentType);
+        this.EnvironmentAPI.registerNewEnvironment(newEnvironmentType);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.setNetworkToScenario = function (environment) {
-        this.ScenarioAPI.setNetworkToScenario(environment);
+        this.EnvironmentAPI.setNetworkToScenario(environment);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.addAgentToScenario = function (agentConfig) {
-        this.ScenarioAPI.addAgentToScenario(agentConfig);
+        this.EnvironmentAPI.addAgentToScenario(agentConfig);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.setNetworkSizeToScenario = function (size) {
-        this.ScenarioAPI.setNetworkSizeToScenario(size);
+        this.EnvironmentAPI.setNetworkSizeToScenario(size);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.setPeriodsToScenario = function (max) {
-        this.ScenarioAPI.setPeriodsToScenario(max);
+        this.EnvironmentAPI.setPeriodsToScenario(max);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.setScenarioConfig = function (scenarioConfig) {
-        this.ScenarioAPI.setScenarioConfig(scenarioConfig);
+        this.EnvironmentAPI.setScenarioConfig(scenarioConfig);
     };
     ITowerHandler.prototype.resetScenarioConfig = function () {
-        return this.ScenarioAPI.resetScenarioConfig();
+        return this.EnvironmentAPI.resetScenarioConfig();
     };
     /* Scenario API */
     /* Experiment API */
-    // eslint-disable-next-line class-methods-use-this
-    ITowerHandler.prototype.run = function () {
-        this.ExperimentAPI.run();
-    };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.setExperimentName = function (name) {
         this.ExperimentAPI.setExperimentName(name);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.setExperimentMaxRepetitions = function (maxRepetitions) {
         this.ExperimentAPI.setExperimentMaxRepetitions(maxRepetitions);
     };
-    // eslint-disable-next-line class-methods-use-this
     ITowerHandler.prototype.setExperimentDescription = function (description) {
         this.ExperimentAPI.setExperimentDescription(description);
-    };
-    // eslint-disable-next-line class-methods-use-this
-    ITowerHandler.prototype.setEssentialData = function (state) {
-        this.ExperimentAPI.setEssentialData(state);
-    };
-    // eslint-disable-next-line class-methods-use-this
-    ITowerHandler.prototype.setDetailedData = function (state) {
-        this.ExperimentAPI.setDetailedData(state);
     };
     ITowerHandler.prototype.registerNewExperiment = function (experiment) {
         this.ExperimentAPI.registerNewExperiment(experiment);
@@ -174,6 +161,29 @@ var ITowerHandler = /** @class */ (function () {
     };
     ITowerHandler.prototype.createExperiment = function (type) {
         return this.ExperimentAPI.createExperiment(type);
+    };
+    ITowerHandler.prototype.createSelectedExperiment = function () {
+        return this.ExperimentAPI.createSelectedExperiment();
+    };
+    ITowerHandler.prototype.selectExperimentByName = function (experiment) {
+        this.ExperimentAPI.selectExperimentByName(experiment);
+    };
+    /* Experiment API */
+    /* FASOW STATE FUNCTIONS */
+    ITowerHandler.prototype.getActionAPIState = function () {
+        return this.ActionAPI.getState();
+    };
+    ITowerHandler.prototype.getAgentAPIState = function () {
+        return this.AgentAPI.getState();
+    };
+    ITowerHandler.prototype.getEnvironmentAPIState = function () {
+        return this.EnvironmentAPI.getState();
+    };
+    ITowerHandler.prototype.getExperimentAPIState = function () {
+        return this.ExperimentAPI.getState();
+    };
+    ITowerHandler.prototype.getSelectedExperiment = function () {
+        return this.ExperimentAPI.getSelectedExperiment();
     };
     return ITowerHandler;
 }());

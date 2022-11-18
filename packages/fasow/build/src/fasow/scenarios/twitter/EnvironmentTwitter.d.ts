@@ -1,7 +1,7 @@
 import Environment from "../../abm/Environment";
-import MetaScenarioConfig from "../../config/metaconfig/MetaScenarioConfig";
+import MetaEnvironmentConfig from "../../config/metaconfig/MetaEnvironmentConfig";
 export default class EnvironmentTwitter extends Environment {
     run(): void;
     step(): void;
-    createEnvironment(scenarioConfig: MetaScenarioConfig): Environment;
+    createEnvironment(scenarioConfig: MetaEnvironmentConfig): Environment;
 }

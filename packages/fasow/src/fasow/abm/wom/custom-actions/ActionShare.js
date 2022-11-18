@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var Action_1 = require("../../Action");
 var AgentState_1 = require("../../interfaces/Agent/AgentState");
 var ActionShare = /** @class */ (function (_super) {
@@ -38,5 +38,5 @@ var ActionShare = /** @class */ (function (_super) {
         return new ActionShare().setConfig(actionData);
     };
     return ActionShare;
-}(Action_1["default"]));
-exports["default"] = ActionShare;
+}(Action_1.default));
+exports.default = ActionShare;

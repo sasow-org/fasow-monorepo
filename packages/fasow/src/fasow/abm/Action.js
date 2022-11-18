@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * The Action abstract class allow to users to build specialized actions.
  * For that the developer should overwrite the @methods "execute" and
@@ -29,4 +29,4 @@ var Action = /** @class */ (function () {
     };
     return Action;
 }());
-exports["default"] = Action;
+exports.default = Action;
