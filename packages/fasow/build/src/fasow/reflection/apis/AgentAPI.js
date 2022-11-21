@@ -64,7 +64,7 @@ var AgentAPI = /** @class */ (function () {
         var outputState = [];
         this.agentsFactories.forEach(function (key) {
             var expectedObject = Reflect.construct(key, []);
-            console.log("Name: ", key.name);
+            // console.log("Name: ", key.name);
             outputState.push({
                 type: key.name,
                 properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps)

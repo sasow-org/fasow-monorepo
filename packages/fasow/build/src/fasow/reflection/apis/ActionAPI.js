@@ -70,7 +70,7 @@ var ActionAPI = /** @class */ (function () {
         var outputState = [];
         this.actionFactories.forEach(function (key) {
             var expectedObject = Reflect.construct(key, []);
-            console.log("Name: ", key);
+            // console.log("Name: ", key);
             outputState.push({
                 type: key,
                 properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, [])

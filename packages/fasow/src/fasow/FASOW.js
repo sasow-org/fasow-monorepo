@@ -52,12 +52,12 @@ var FASOW = /** @class */ (function () {
     };
     FASOW.prototype.runExperiment = function (experiment) {
         this.towerHandler.selectExperiment(experiment);
-        console.log("Selected Experiment: ", experiment.name);
+        // console.log("Selected Experiment: ", experiment.name);
         this.privateRunExperiment();
     };
     FASOW.prototype.runExperimentByName = function (experiment) {
         this.towerHandler.selectExperimentByName(experiment);
-        console.log("Selected Experiment: ", experiment);
+        // console.log("Selected Experiment: ", experiment);
         this.privateRunExperiment();
     };
     FASOW.prototype.selectExperiment = function (experiment) {

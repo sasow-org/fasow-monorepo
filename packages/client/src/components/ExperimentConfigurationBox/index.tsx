@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
-import DataHandlerOptionsCard from "./DataHandlerOptionsCard";
 import ExperimentForm from "./ExperimentForm";
+import ExperimentSelector from "./ExperimentSelector";
 import NetworkSelector from "./NetworkSelector";
 
 export default function ExperimentConfigurationBox() {
@@ -10,8 +10,8 @@ export default function ExperimentConfigurationBox() {
       <Typography variant="subtitle2" paddingBottom={2} color="GrayText">
         Set the configuration for the current experiment.
       </Typography>
-      <DataHandlerOptionsCard />
       <Box sx={{ height: 16 }} />
+      <ExperimentSelector />
       <NetworkSelector />
       <ExperimentForm />
     </Box>

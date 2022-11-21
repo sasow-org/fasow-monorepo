@@ -89,7 +89,7 @@ export default class ActionAPI {
     const outputState: any[] = [];
     this.actionFactories.forEach((key) => {
       const expectedObject = Reflect.construct(key, []);
-      console.log("Name: ", key);
+      // console.log("Name: ", key);
       outputState.push({
         type: key,
         properties: getTypesOfObject(expectedObject, []),

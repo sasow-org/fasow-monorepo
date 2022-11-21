@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var main_1 = require("../../main");
 var DataHandlerDecorators_1 = require("./decorators/DataHandlerDecorators");
+var json2csv_1 = require("json2csv");
 // Imports to WriteFiles
-var fs = require("fs");
-var Parser = require("json2csv").Parser;
+// const fs = require("fs");
 /**
  * Allows to users to notify changes in the simulation to generate output data of that.
  * This is achieved with the use of the update @method, which is responsible for
@@ -55,7 +55,7 @@ var IDataHandler = /** @class */ (function () {
      */
     IDataHandler.dumpOutput = function (target) {
         try {
-            var parser = new Parser();
+            var parser = new json2csv_1.Parser();
             var csv = parser.parse(target);
             return csv;
         }
@@ -225,9 +225,14 @@ var IDataHandler = /** @class */ (function () {
      * Exports a file with the desired data from finalOutput
      */
     IDataHandler.prototype.writeFileData = function () {
-        console.log("Writing File", this.finalOutput);
-        fs.writeFileSync("".concat(this.experiment.name, "_output.csv"), IDataHandler.dumpOutput(this.finalOutput));
-        this.finalOutput = [];
+        console.log("Writing File", this.finalOutput); // todo:  move this line
+        /*
+        fs.writeFileSync(
+          `${this.experiment.name}_output.csv`,
+          IDataHandler.dumpOutput(this.finalOutput)
+        );
+        */
+        this.finalOutput = []; // todo and this line
     };
     /**
      * Write a CSV file with the output of the Experiment
@@ -255,10 +260,17 @@ var IDataHandler = /** @class */ (function () {
         };
     };
     IDataHandler.prototype.writeFASOWState = function () {
-        fs.writeFile("FASOWState.json", JSON.stringify(this.getState()), function (error) {
-            if (error)
-                throw error;
-        });
+        /*
+        fs.writeFile(
+          "FASOWState.json",
+          JSON.stringify(this.getState()),
+          (error: any) => {
+            if (error) throw error;
+          }
+        );
+        
+         */
+        console.log("Writing the fasow state in a file, please uncomment the code from up");
     };
     return IDataHandler;
 }());

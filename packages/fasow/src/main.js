@@ -21,7 +21,9 @@ exports.TowerHandler = fasow.getTowerHandler();
 exports.TimeKeeper = fasow.getTimeKeeper();
 fasow.registerNewExperiment(MessageRepetition_1.default);
 fasow.registerNewExperiment(ExperimentAgentCombination_1.default);
-fasow.runExperimentByName("ExperimentAgentCombination");
+// fasow.runExperimentByName("ExperimentAgentCombination");
 // console.log(fasow.getState());
+fasow.runExperiment(MessageRepetition_1.default);
 function loadJSON() { }
 exports.loadJSON = loadJSON;
+exports.default = fasow;

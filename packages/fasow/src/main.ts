@@ -25,6 +25,6 @@ fasow.registerNewExperiment(MessageRepetition);
 fasow.registerNewExperiment(ExperimentAgentCombination);
 // fasow.runExperimentByName("ExperimentAgentCombination");
 // console.log(fasow.getState());
+// fasow.runExperiment(MessageRepetition);
 
-export function loadJSON() {}
 export default fasow;

@@ -111,13 +111,13 @@ export default class IExperimentAPI {
   }
 
   getState(): any {
-    console.log("ExperimentAPI.state: ");
+    // console.log("ExperimentAPI.state: ");
 
     const excludedProps: any[] = ["simulation"];
     const outputState: any[] = [];
     this.experimentList.forEach((type) => {
       const expectedObject = Reflect.construct(type, []);
-      console.log("Name: ", type.name);
+      // console.log("Name: ", type.name);
       outputState.push({
         type: type.name,
         properties: getTypesOfObject(expectedObject, excludedProps),

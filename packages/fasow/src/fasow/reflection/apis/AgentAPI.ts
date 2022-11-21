@@ -85,7 +85,7 @@ export default class AgentAPI {
     const outputState: any[] = [];
     this.agentsFactories.forEach((key) => {
       const expectedObject = Reflect.construct(key, []);
-      console.log("Name: ", key.name);
+      // console.log("Name: ", key.name);
       outputState.push({
         type: key.name,
         properties: getTypesOfObject(expectedObject, excludedProps),

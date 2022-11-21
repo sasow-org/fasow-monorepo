@@ -62,13 +62,13 @@ export default class FASOW {
 
   runExperiment(experiment: typeof Experiment) {
     this.towerHandler.selectExperiment(experiment);
-    console.log("Selected Experiment: ", experiment.name);
+    // console.log("Selected Experiment: ", experiment.name);
     this.privateRunExperiment();
   }
 
   runExperimentByName(experiment: string) {
     this.towerHandler.selectExperimentByName(experiment);
-    console.log("Selected Experiment: ", experiment);
+    // console.log("Selected Experiment: ", experiment);
     this.privateRunExperiment();
   }
 

@@ -7,12 +7,8 @@ import CanSaturatedActionRead from "./CanSaturatedActionRead";
 import CanSaturatedActionShare from "./CanSaturatedActionShare";
 import EffectAgent from "./EffectAgent";
 import EnvironmentEffectTwitter from "./EnvironmentEffectTwitter";
-import {ExperimentCount} from "../../fasow/datahandler/decorators/DataHandlerDecorators";
 
 export default class MessageRepetition extends Experiment {
-
-  @ExperimentCount("SOME_ROW")
-  public someData : string = "SOME DATA TO OUTPUT"
   // eslint-disable-next-line class-methods-use-this
   Strategy(): void {
     TowerHandler.registerNewAction(CanSaturatedActionShare);
@@ -58,7 +54,7 @@ export default class MessageRepetition extends Experiment {
       "This experiment is for analyze the effect of message repetition in twitter agents on wom marketing campaings"
     );
     TowerHandler.setScenarioConfig({
-      networkSize: 100000,
+      networkSize: 10000,
       environmentType: EnvironmentEffectTwitter,
       maxTick: 40,
       metaAgentsConfigs: [avrAgentConfig, avrAgentConfigSeed],

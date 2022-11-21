@@ -97,7 +97,7 @@ var EnvironmentAPI = /** @class */ (function () {
         var outputState = [];
         this.environmentFactories.forEach(function (type) {
             var expectedObject = Reflect.construct(type, []);
-            console.log("Name: ", type.name);
+            // console.log("Name: ", type.name);
             outputState.push({
                 type: type.name,
                 properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps)

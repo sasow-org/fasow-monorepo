@@ -131,7 +131,7 @@ export default class EnvironmentAPI {
     const outputState: any[] = [];
     this.environmentFactories.forEach((type) => {
       const expectedObject = Reflect.construct(type, []);
-      console.log("Name: ", type.name);
+      // console.log("Name: ", type.name);
       outputState.push({
         type: type.name,
         properties: getTypesOfObject(expectedObject, excludedProps),

@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.loadJSON = exports.TimeKeeper = exports.TowerHandler = exports.DataHandler = void 0;
+exports.TimeKeeper = exports.TowerHandler = exports.DataHandler = void 0;
 var ExperimentAgentCombination_1 = require("./experiments/ExperimentAgentCombinatio/ExperimentAgentCombination");
 var MessageRepetition_1 = require("./experiments/ExperimentEffectMessageRepetition/MessageRepetition");
 var FASOW_1 = require("./fasow/FASOW");
@@ -23,6 +23,5 @@ fasow.registerNewExperiment(MessageRepetition_1["default"]);
 fasow.registerNewExperiment(ExperimentAgentCombination_1["default"]);
 // fasow.runExperimentByName("ExperimentAgentCombination");
 // console.log(fasow.getState());
-function loadJSON() { }
-exports.loadJSON = loadJSON;
+// fasow.runExperiment(MessageRepetition);
 exports["default"] = fasow;

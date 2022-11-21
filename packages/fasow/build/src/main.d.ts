@@ -6,5 +6,4 @@ declare const fasow: FASOW;
 export declare const DataHandler: IDataHandler;
 export declare const TowerHandler: ITowerHandler;
 export declare const TimeKeeper: ITimeKeeper;
-export declare function loadJSON(): void;
 export default fasow;

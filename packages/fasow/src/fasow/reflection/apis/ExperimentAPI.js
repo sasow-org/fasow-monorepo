@@ -83,12 +83,12 @@ var IExperimentAPI = /** @class */ (function () {
         return this.selectedExperiment;
     };
     IExperimentAPI.prototype.getState = function () {
-        console.log("ExperimentAPI.state: ");
+        // console.log("ExperimentAPI.state: ");
         var excludedProps = ["simulation"];
         var outputState = [];
         this.experimentList.forEach(function (type) {
             var expectedObject = Reflect.construct(type, []);
-            console.log("Name: ", type.name);
+            // console.log("Name: ", type.name);
             outputState.push({
                 type: type.name,
                 properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps),
