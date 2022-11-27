@@ -16,7 +16,6 @@ var Experiment = /** @class */ (function () {
      * Run the Experiment,initializing the model and starting the simulation
      * */
     Experiment.prototype.run = function () {
-        this.executeStrategy();
         this.initialize();
         console.log("Ended Initialization --> On Experiment.run(), currentRepetition  is: ", main_1.TimeKeeper.getRepetition(), " of (", main_1.TimeKeeper.getMaxRepetition(), ")");
         while (main_1.TimeKeeper.canNextRepetition()) {
@@ -34,6 +33,7 @@ var Experiment = /** @class */ (function () {
      * Initialize the Model, setting up the configs to TowerHandler
      */
     Experiment.prototype.initialize = function () {
+        this.executeStrategy();
         var rep = main_1.TimeKeeper.nextRepetition();
         if (main_1.TimeKeeper.canNextRepetition()) {
             this.loadConfig();

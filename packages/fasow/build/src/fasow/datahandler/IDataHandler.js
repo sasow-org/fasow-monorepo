@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
+var json2csv_1 = require("json2csv");
 var main_1 = require("../../main");
 var DataHandlerDecorators_1 = require("./decorators/DataHandlerDecorators");
-var json2csv_1 = require("json2csv");
 // Imports to WriteFiles
 // const fs = require("fs");
 /**
@@ -220,6 +220,14 @@ var IDataHandler = /** @class */ (function () {
             Reflect.set(row, item.propertyKey, sum);
         });
         return row;
+    };
+    IDataHandler.prototype.getOutput = function () {
+        return this.finalOutput;
+    };
+    IDataHandler.prototype.clearOutput = function () {
+        var lastOutput = this.finalOutput;
+        this.finalOutput = [];
+        return lastOutput;
     };
     /**
      * Exports a file with the desired data from finalOutput

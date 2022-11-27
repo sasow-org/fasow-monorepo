@@ -88,6 +88,8 @@ export default class IDataHandler {
      * @private this method is called on writeLine method.
      */
     private calculateAgentAccum;
+    getOutput(): any[];
+    clearOutput(): any[];
     /**
      * Exports a file with the desired data from finalOutput
      */

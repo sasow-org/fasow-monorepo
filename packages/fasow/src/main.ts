@@ -23,6 +23,9 @@ export const TimeKeeper: ITimeKeeper = fasow.getTimeKeeper();
 
 fasow.registerNewExperiment(MessageRepetition);
 fasow.registerNewExperiment(ExperimentAgentCombination);
+// fasow.selectExperimentByName("MessageRepetition")
+// fasow.initializeSelectedExperiment();
+// console.log(fasow.getExperimentConfig());
 // fasow.runExperimentByName("ExperimentAgentCombination");
 // console.log(fasow.getState());
 // fasow.runExperiment(MessageRepetition);
