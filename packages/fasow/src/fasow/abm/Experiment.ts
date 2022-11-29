@@ -26,7 +26,6 @@ export default abstract class Experiment
    * Run the Experiment,initializing the model and starting the simulation
    * */
   run() {
-    this.executeStrategy();
     this.initialize();
     console.log(
       "Ended Initialization --> On Experiment.run(), currentRepetition  is: ",
@@ -51,6 +50,7 @@ export default abstract class Experiment
    * Initialize the Model, setting up the configs to TowerHandler
    */
   initialize() {
+    this.executeStrategy();
     const rep = TimeKeeper.nextRepetition();
     if (TimeKeeper.canNextRepetition()) {
       this.loadConfig();

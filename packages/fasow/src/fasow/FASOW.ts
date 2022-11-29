@@ -8,6 +8,7 @@ import FacebookAgent from "./scenarios/facebook/FacebookAgent";
 import EnvironmentTwitter from "./scenarios/twitter/EnvironmentTwitter";
 import TwitterAgent from "./scenarios/twitter/TwitterAgent";
 import ITimeKeeper from "./timekepper/ITimeKeeper";
+import MetaExperimentConfig from "./config/metaconfig/MetaExperimentConfig";
 
 /*
 todo : maybe the loads actions,agents,environments, agents, could be better
@@ -19,6 +20,8 @@ export default class FASOW {
   private towerHandler: ITowerHandler = new ITowerHandler();
   private timeKeeper: ITimeKeeper = new ITimeKeeper();
 
+
+  private experiment:  Experiment | undefined = undefined;
   constructor() {
     this.loadActions();
     this.loadAgents();
@@ -142,10 +145,10 @@ export default class FASOW {
     // todo : move this method to other class like FASOW ?
     // todo : maybe we need to move too the method select experiment or maybe allow to call that method from other class like fasow also
     // todo handle with a trycatch if the experiments is undefined
-    const exp = this.towerHandler.createSelectedExperiment();
-    this.dataHandler.experiment = exp;
+    this.dataHandler.experiment = this.experiment;
     // exp.executeStrategy();
-    exp.run();
+    // @ts-ignore
+    this.experiment.run();
     this.dataHandler.writeCSVFile();
   }
 
@@ -184,5 +187,15 @@ export default class FASOW {
    */
   getLastOutputRow() : any[] {
     return this.dataHandler.getLastOutputRow();
+  }
+
+  initializeSelectedExperiment() : Experiment {
+    this.experiment = this.towerHandler.createSelectedExperiment();
+    this.experiment.initialize();
+    return this.experiment;
+  }
+
+  getExperimentConfig() : MetaExperimentConfig {
+    return this.towerHandler.getExperimentConfig();
   }
 }
