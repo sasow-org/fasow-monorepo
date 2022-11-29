@@ -1,55 +1,56 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { Add } from "@mui/icons-material";
+import MetaExperimentConfig from "@fasow/backend/src/fasow/config/metaconfig/MetaExperimentConfig";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, Button, Switch, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-import NewAgentModal from "../NewAgentModal";
-
-export default function AgentConfigurationBox() {
-  const [rows] = useState([]);
-
-  const [newAgentModalVisible, setNewAgentModalVisible] = useState(false);
+export default function AgentConfigurationBox({
+  experimentConfig,
+}: {
+  experimentConfig: MetaExperimentConfig;
+}) {
+  const rows = useMemo(
+    () =>
+      experimentConfig?.environmentConfig.metaAgentsConfigs.sort(
+        (a, b) => a.id - b.id
+      ) ?? [],
+    [experimentConfig]
+  );
 
   const columns: GridColDef[] = [
     {
-      field: "configName",
+      field: "id",
+      headerName: "ID",
+      minWidth: 130,
+    },
+    {
+      field: "name",
       headerName: "Config Name",
       minWidth: 130,
     },
     {
-      field: "percentageAgent",
-      headerName: "Percentage Agent (%)",
-      width: 160,
-      editable: true,
+      field: "followersPercentage",
+      headerName: "Followers percentage (%)",
+      width: 200,
     },
     {
       field: "isSeed",
       headerName: "isSeed",
       width: 70,
-      renderCell: () => <Switch checked />,
+      editable: false,
+      renderCell: (params) => <Switch checked={params.value} />,
     },
     {
-      field: "edit",
-      headerName: "Edit",
-      width: 80,
-      renderCell: (cellParam) => {
-        // console.log("On Edit, CellParam: ",cellParam);
-        // let agentConfig = agentsConfig[cellParam.row.id];
-        const index = cellParam.row.id;
-        // return <ModalEditAgentConfig {...index} />;
-        return <div id={index} />;
-      },
-    },
-    {
-      field: "delete",
-      headerName: "Delete",
-      width: 80,
-      renderCell: () => (
-        <Button>
-          <DeleteIcon />
-        </Button>
+      field: "actionsConfigs",
+      headerName: "Actions",
+      width: 500,
+      renderCell: ({ value }) => (
+        <span>
+          {value
+            .map(({ name, probability }) => `${name} (${probability}%)`)
+            .join(" | ")}
+        </span>
       ),
     },
   ];
@@ -76,14 +77,10 @@ export default function AgentConfigurationBox() {
           experimentalFeatures={{ newEditingApi: true }}
         />
       </Box>
-      <Button variant="contained" onClick={() => setNewAgentModalVisible(true)}>
-        <Add />
-        Add configuration
-      </Button>
-      <NewAgentModal
+      {/* <NewAgentModal
         visible={newAgentModalVisible}
         hide={() => setNewAgentModalVisible(false)}
-      />
+      /> */}
     </>
   );
 }

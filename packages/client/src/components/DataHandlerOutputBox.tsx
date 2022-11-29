@@ -1,62 +1,62 @@
 import { Box, Typography } from "@mui/material";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-
-const rows = [
-  { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-  { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-  { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-  { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-  { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-  { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-  { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-];
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { Result } from "src/hooks/useFasow";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
   {
-    field: "firstName",
-    headerName: "First name",
+    field: "repetition",
+    headerName: "Repetition",
     width: 150,
-    editable: true,
   },
   {
-    field: "lastName",
-    headerName: "Last name",
+    field: "tick",
+    headerName: "Tick",
     width: 150,
-    editable: true,
   },
   {
-    field: "age",
-    headerName: "Age",
-    type: "number",
-    width: 110,
-    editable: true,
+    field: "NOT_READ",
+    headerName: "Not read",
+    width: 150,
   },
   {
-    field: "fullName",
-    headerName: "Full name",
-    description: "This column has a value getter and is not sortable.",
-    sortable: false,
-    width: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+    field: "READ",
+    headerName: "Read",
+    width: 150,
+  },
+  {
+    field: "READY_TO_SHARE",
+    headerName: "Ready to share",
+    width: 150,
+  },
+  {
+    field: "SHARED",
+    headerName: "Shared",
+    width: 150,
+  },
+  {
+    field: "percentage-type",
+    headerName: "Value",
+    width: 300,
   },
 ];
 
-export default function DataHandlerOutputBox() {
+export default function DataHandlerOutputBox({
+  results,
+}: {
+  results: Result[];
+}) {
   return (
     <Box sx={{ display: "flex", flex: 1, flexDirection: "column" }}>
       <Typography variant="subtitle2" paddingBottom={2} color="GrayText">
         This is the output of the current experiment.
       </Typography>
       <DataGrid
-        rows={rows}
+        rows={results}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
+        // pageSize={5}
+        // rowsPerPageOptions={[5]}
+        // checkboxSelection
+        getRowId={(row) => Math.random().toString()}
         disableSelectionOnClick
       />
     </Box>

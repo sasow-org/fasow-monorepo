@@ -1,27 +1,58 @@
-import { fasowInstance } from "@fasow/backend";
+/* eslint-disable import/prefer-default-export */
+import { useCallback, useState } from "react";
 
-type Property = {
-  type: string;
-  properties: Property[];
+import { fasowInstance } from "@fasow/backend";
+import MetaExperimentConfig from "@fasow/backend/src/fasow/config/metaconfig/MetaExperimentConfig";
+
+export type Result = {
+  NOT_READ: number;
+  READ: number;
+  READY_TO_SHARE: number;
+  SHARED: number;
+  "percentage-type": string;
+  repetition: number;
+  tick: number;
 };
 
-export const useExperiment = () => {
+export const useExperiments = () => {
+  const [experimentConfig, setExperimentConfig] =
+    useState<MetaExperimentConfig>();
   const { state } = fasowInstance.getState();
 
-  const experiments: Property[] = state.experiments;
+  const { experiments } = state;
 
-  const formattedExperiments = experiments.map(({ type }) => {
-    return type;
-  });
+  const formattedExperiments = experiments.map(({ type }) => type);
 
   const setExperiment = (
     experimentName: typeof formattedExperiments[number]
   ) => {
-    console.log(
-      fasowInstance.getTowerHandler().getSelectedExperiment().toString()
-    );
     fasowInstance.selectExperimentByName(experimentName);
+    fasowInstance.initializeSelectedExperiment();
+
+    const config = fasowInstance.getExperimentConfig();
+    setExperimentConfig({ ...config });
   };
 
-  return [formattedExperiments, setExperiment] as const;
+  return {
+    experiments: formattedExperiments,
+    setExperiment,
+    experimentConfig,
+  } as const;
+};
+
+export const useRunExperiment = () => {
+  const [results, setResults] = useState<Result[]>([]);
+
+  const runExperiment = useCallback(() => {
+    fasowInstance.runSelectedExperiment();
+    setTimeout(() => {
+      const output = fasowInstance.getDataHandler().clearOutput();
+      setResults(output);
+    }, 3000);
+  }, []);
+
+  return {
+    runExperiment,
+    results,
+  };
 };

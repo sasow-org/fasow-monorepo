@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
-
-import { fasowInstance } from "@fasow/backend";
-import { Grid, ThemeProvider, createTheme } from "@mui/material";
+import { PlayArrow } from "@mui/icons-material";
+import { Fab, Grid, ThemeProvider, createTheme } from "@mui/material";
 
 import AgentConfigurationBox from "./components/AgentConfigurationBox";
-import Console from "./components/Console";
 import DataHandlerOutputBox from "./components/DataHandlerOutputBox";
 import ExperimentConfigurationBox from "./components/ExperimentConfigurationBox";
-import ExperimentControls from "./components/ExperimentControls";
 import HomeBox from "./components/HomeBox";
 import NavBar from "./components/NavBar";
+import { useExperiments, useRunExperiment } from "./hooks/useFasow";
 import "./index.css";
 
 const theme = createTheme({
@@ -29,14 +26,9 @@ const theme = createTheme({
   },
 });
 
-const handleClick = () => {};
-
 function App() {
-  const [state, setState] = useState(fasowInstance.getState());
-
-  useEffect(() => {
-    console.log(JSON.stringify(state, null, 2));
-  }, [state]);
+  const { experimentConfig, experiments, setExperiment } = useExperiments();
+  const { results, runExperiment } = useRunExperiment();
 
   return (
     <ThemeProvider theme={theme}>
@@ -44,34 +36,36 @@ function App() {
         <NavBar />
         <div className="app-content">
           <Grid container spacing={1} sx={{ height: "100%" }}>
-            <Grid item xs={4} sx={{ height: "60%" }}>
+            <Grid item xs={6} sx={{ height: "50%" }}>
               <HomeBox title="Experiment configuration">
-                <ExperimentConfigurationBox />
+                <ExperimentConfigurationBox
+                  {...{ experimentConfig, experiments, setExperiment }}
+                />
               </HomeBox>
             </Grid>
-            <Grid item xs={5} sx={{ height: "60%" }}>
+            <Grid item xs={6} sx={{ height: "50%" }}>
               <HomeBox title="Agent configuration">
-                <AgentConfigurationBox />
+                <AgentConfigurationBox experimentConfig={experimentConfig} />
               </HomeBox>
             </Grid>
-            <Grid item xs={3} sx={{ height: "60%" }}>
-              <HomeBox title="Logs">
-                <Console />
-              </HomeBox>
-            </Grid>
-            <Grid item xs={9} sx={{ height: "40%" }}>
+            <Grid item xs={12} sx={{ height: "50%" }}>
               <HomeBox title="Data handler output">
-                <DataHandlerOutputBox />
-              </HomeBox>
-            </Grid>
-            <Grid item xs={3} sx={{ height: "40%" }}>
-              <HomeBox title="Experiment controls">
-                <ExperimentControls />
+                <DataHandlerOutputBox results={results} />
               </HomeBox>
             </Grid>
           </Grid>
         </div>
       </div>
+      <Fab
+        color="primary"
+        variant="extended"
+        aria-label="add"
+        onClick={runExperiment}
+        sx={{ position: "absolute", bottom: 108, right: 72 }}
+      >
+        <PlayArrow sx={{ mr: 1 }} />
+        Run experiment
+      </Fab>
     </ThemeProvider>
   );
 }
