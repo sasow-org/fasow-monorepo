@@ -266,7 +266,7 @@ export default class IDataHandler {
       IDataHandler.dumpOutput(this.finalOutput)
     );
     */
-    this.finalOutput = []; // todo and this line
+    // this.finalOutput = []; // todo and this line
   }
 
   /**
