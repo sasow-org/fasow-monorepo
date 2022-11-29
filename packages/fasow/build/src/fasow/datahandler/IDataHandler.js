@@ -221,6 +221,14 @@ var IDataHandler = /** @class */ (function () {
         });
         return row;
     };
+    IDataHandler.prototype.getOutput = function () {
+        return this.finalOutput;
+    };
+    IDataHandler.prototype.clearOutput = function () {
+        var lastOutput = this.finalOutput;
+        this.finalOutput = [];
+        return lastOutput;
+    };
     /**
      * Exports a file with the desired data from finalOutput
      */

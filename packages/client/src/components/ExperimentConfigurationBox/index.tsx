@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 
 import ExperimentForm from "./ExperimentForm";
 import ExperimentSelector from "./ExperimentSelector";
-import NetworkSelector from "./NetworkSelector";
 
 export default function ExperimentConfigurationBox() {
   return (
@@ -12,7 +11,6 @@ export default function ExperimentConfigurationBox() {
       </Typography>
       <Box sx={{ height: 16 }} />
       <ExperimentSelector />
-      <NetworkSelector />
       <ExperimentForm />
     </Box>
   );
