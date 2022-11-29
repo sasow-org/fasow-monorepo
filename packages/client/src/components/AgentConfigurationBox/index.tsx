@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import {  useMemo } from "react";
 
 import MetaExperimentConfig from "@fasow/backend/src/fasow/config/metaconfig/MetaExperimentConfig";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { Box, Button, Switch, Typography } from "@mui/material";
+// import DeleteIcon from "@mui/icons-material/Delete";
+import { Box, Switch, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 export default function AgentConfigurationBox({
