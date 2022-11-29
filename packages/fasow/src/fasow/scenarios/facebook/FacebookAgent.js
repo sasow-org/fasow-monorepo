@@ -14,21 +14,24 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
-var Environment_1 = require("../../abm/Environment");
-var EnvironmentTwitter = /** @class */ (function (_super) {
-    __extends(EnvironmentTwitter, _super);
-    function EnvironmentTwitter() {
+Object.defineProperty(exports, "__esModule", { value: true });
+var Agent_1 = require("../../abm/Agent");
+var FacebookAgent = /** @class */ (function (_super) {
+    __extends(FacebookAgent, _super);
+    function FacebookAgent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    EnvironmentTwitter.prototype.step = function () {
-        this.agents.forEach(function (agent) {
-            agent.step();
-        });
+    FacebookAgent.prototype.update = function (message) {
+        throw new Error("Method not implemented.");
     };
-    EnvironmentTwitter.prototype.createEnvironment = function (scenarioConfig) {
-        return new EnvironmentTwitter().setConfig(scenarioConfig);
+    FacebookAgent.prototype.step = function () {
+        this.receiveMessage();
     };
-    return EnvironmentTwitter;
-}(Environment_1["default"]));
-exports["default"] = EnvironmentTwitter;
+    // eslint-disable-next-line class-methods-use-this
+    FacebookAgent.prototype.createAgent = function (id, agentData) {
+        // @ts-ignore
+        return new FacebookAgent(id, agentData);
+    };
+    return FacebookAgent;
+}(Agent_1.default));
+exports.default = FacebookAgent;

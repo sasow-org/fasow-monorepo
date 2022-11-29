@@ -6,14 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="9e6b1dca-5b7c-4f00-82ac-2b1e9e7c5c16" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/FASOW.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/fasow/FASOW.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/FASOW.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/fasow/FASOW.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Experiment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/datahandler/IDataHandler.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/fasow/datahandler/IDataHandler.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Environment.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Environment.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Environment.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Environment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/datahandler/IDataHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/fasow/datahandler/IDataHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/twitter/EnvironmentTwitter.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/twitter/EnvironmentTwitter.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/twitter/EnvironmentTwitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/twitter/EnvironmentTwitter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/build/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/fasow/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -44,16 +47,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "ts.external.directory.path": "C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Equipo\\Documents\\GitHub\\fasow-monorepo\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\config\metaconfig" />
@@ -66,7 +69,7 @@
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\fasow\reflection\apis" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build-backend-start">
+  <component name="RunManager" selected="npm.debug-backend">
     <configuration name="build-backend-start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -109,8 +112,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build-backend-start" />
         <item itemvalue="npm.debug-backend" />
+        <item itemvalue="npm.build-backend-start" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.build-backend" />
       </list>
@@ -181,6 +184,7 @@
       <workItem from="1669040477265" duration="7000" />
       <workItem from="1669064765932" duration="852000" />
       <workItem from="1669066416142" duration="1798000" />
+      <workItem from="1669726862051" duration="3150000" />
     </task>
     <servers />
   </component>
@@ -291,6 +295,7 @@
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/facebook/FacebookAgent.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.js" />
       </list>
     </option>
   </component>

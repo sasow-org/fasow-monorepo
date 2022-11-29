@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 // eslint-disable-next-line import/no-cycle
 var main_1 = require("../../main");
 /**
@@ -185,4 +185,4 @@ var Environment = /** @class */ (function () {
     };
     return Environment;
 }());
-exports["default"] = Environment;
+exports.default = Environment;

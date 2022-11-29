@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var main_1 = require("../../main");
 var DataHandlerDecorators_1 = require("./decorators/DataHandlerDecorators");
 var json2csv_1 = require("json2csv");
@@ -263,8 +263,8 @@ var IDataHandler = /** @class */ (function () {
                 agents: main_1.TowerHandler.getAgentAPIState(),
                 environments: main_1.TowerHandler.getEnvironmentAPIState(),
                 experiments: main_1.TowerHandler.getExperimentAPIState(),
-                agent_states: DataHandlerDecorators_1.CountAgentStatesObjectKeysArray
-            }
+                agent_states: DataHandlerDecorators_1.CountAgentStatesObjectKeysArray,
+            },
         };
     };
     IDataHandler.prototype.writeFASOWState = function () {
@@ -282,4 +282,4 @@ var IDataHandler = /** @class */ (function () {
     };
     return IDataHandler;
 }());
-exports["default"] = IDataHandler;
+exports.default = IDataHandler;

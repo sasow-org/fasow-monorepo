@@ -4,6 +4,8 @@ import FASOW from "./fasow/FASOW";
 import IDataHandler from "./fasow/datahandler/IDataHandler";
 import ITowerHandler from "./fasow/reflection/tower/ITowerHandler";
 import ITimeKeeper from "./fasow/timekepper/ITimeKeeper";
+import ExperimentAgentCombinationBestSeed
+    from "./experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed";
 
 // FASOW es el sistema que se debe exportar el cual tiene al backend
 const fasow: FASOW = new FASOW();
@@ -23,6 +25,10 @@ export const TimeKeeper: ITimeKeeper = fasow.getTimeKeeper();
 
 fasow.registerNewExperiment(MessageRepetition);
 fasow.registerNewExperiment(ExperimentAgentCombination);
+fasow.registerNewExperiment(ExperimentAgentCombinationBestSeed);
+fasow.selectExperimentByName("ExampleExperiment");
+fasow.initializeSelectedExperiment();
+fasow.runSelectedExperiment();
 // fasow.selectExperimentByName("MessageRepetition")
 // fasow.initializeSelectedExperiment();
 // console.log(fasow.getExperimentConfig());

@@ -36,7 +36,7 @@ export default abstract class Environment implements EnvironmentConfig, IEnviron
      * Starts the simulation to being executed period per period
      * This method allow to users to introduce the behaviour of the scenario
      */
-    abstract run(): void;
+    run(): void;
     /**
      * Initializes the current environment, creating the agents, adding the followers and checking if all it's ok to run the simulation
      */

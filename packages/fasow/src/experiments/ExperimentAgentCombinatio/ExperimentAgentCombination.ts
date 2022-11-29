@@ -134,14 +134,13 @@ export default class ExperimentAgentCombination extends Experiment {
         true,
         AgentState.READY_TO_SHARE
       );
-    TowerHandler.setExperimentName(`seed-combination`);
+    TowerHandler.setExperimentName(`seed-combinations`);
     TowerHandler.setExperimentDescription(
       "Experiment to analyze what is the best agent combination to get more retweets"
     );
     TowerHandler.setScenarioConfig({
       networkSize: 10000,
-      maxTick: 5,
-      // maxTick: 20,
+      maxTick: 20,
       environmentType: EnvironmentTwitter,
       metaAgentsConfigs: [avrConfig, hubConfig, leaderConfig],
     });

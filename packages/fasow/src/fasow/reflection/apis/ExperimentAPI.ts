@@ -82,16 +82,11 @@ export default class IExperimentAPI {
     return {
       id: this.experimentConfig.id,
       name: this.experimentConfig.name,
-      type: ExampleExperiment,
+      type: this.selectedExperiment,
       description: this.experimentConfig.description,
       maxRepetitions: TimeKeeper.getMaxRepetition(),
       environmentConfig: TowerHandler.getScenarioConfig(),
     };
-  }
-
-  createExperiment(type: typeof Experiment): Experiment {
-    // @ts-ignore
-    return this.experimentList.get(type).createExperiment();
   }
 
   createSelectedExperiment(): Experiment {

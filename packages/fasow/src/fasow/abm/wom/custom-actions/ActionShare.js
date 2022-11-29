@@ -14,21 +14,29 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
-var Environment_1 = require("../../abm/Environment");
-var EnvironmentTwitter = /** @class */ (function (_super) {
-    __extends(EnvironmentTwitter, _super);
-    function EnvironmentTwitter() {
+Object.defineProperty(exports, "__esModule", { value: true });
+var Action_1 = require("../../Action");
+var AgentState_1 = require("../../interfaces/Agent/AgentState");
+var ActionShare = /** @class */ (function (_super) {
+    __extends(ActionShare, _super);
+    function ActionShare() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    EnvironmentTwitter.prototype.step = function () {
-        this.agents.forEach(function (agent) {
-            agent.step();
-        });
+    /*
+    Maybe this action can named CalculateCanShare
+     */
+    ActionShare.prototype.execute = function (agent) {
+        var aux = agent;
+        if (aux.state === AgentState_1.AgentState.READ) {
+            var p1 = this.getRandom();
+            if (p1 > 100 - this.probability) {
+                aux.state = AgentState_1.AgentState.READY_TO_SHARE;
+            }
+        }
     };
-    EnvironmentTwitter.prototype.createEnvironment = function (scenarioConfig) {
-        return new EnvironmentTwitter().setConfig(scenarioConfig);
+    ActionShare.prototype.createAction = function (actionData) {
+        return new ActionShare().setConfig(actionData);
     };
-    return EnvironmentTwitter;
-}(Environment_1["default"]));
-exports["default"] = EnvironmentTwitter;
+    return ActionShare;
+}(Action_1.default));
+exports.default = ActionShare;
