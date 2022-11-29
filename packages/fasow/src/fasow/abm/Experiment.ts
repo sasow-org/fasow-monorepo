@@ -26,14 +26,14 @@ export default abstract class Experiment
    * */
   run() {
     this.initialize();
+    TimeKeeper.setRepetition(0);
     console.log(
       "Ended Initialization --> On Experiment.run(), currentRepetition  is: ",
-      TimeKeeper.getRepetition(),
+      TimeKeeper.getRepetition()+1,
       " of (",
       TimeKeeper.getMaxRepetition(),
       ")"
     );
-    TimeKeeper.setRepetition(0);
     while (TimeKeeper.canNextRepetition()) {
       if (!this.simulation.isDone()) {
         break;
@@ -41,7 +41,17 @@ export default abstract class Experiment
       console.log("Starting Simulation...");
       this.simulation.run();
       console.log("Ending Simulation...");
-      this.initialize();
+      TimeKeeper.nextRepetition();
+      if(TimeKeeper.canNextRepetition()){
+        this.initialize();
+        console.log(
+            "Ended Initialization --> On Experiment.run(), currentRepetition  is: ",
+            TimeKeeper.getRepetition()+1,
+            " of (",
+            TimeKeeper.getMaxRepetition(),
+            ")"
+        );
+      }
     }
     console.log("Ending Experiment...");
   }
@@ -50,11 +60,11 @@ export default abstract class Experiment
    * Initialize the Model, setting up the configs to TowerHandler
    */
   initialize() {
+    console.log("Starting initialization...")
     this.executeStrategy();
-    const rep = TimeKeeper.nextRepetition();
     if (TimeKeeper.canNextRepetition()) {
       this.loadConfig();
-      this.simulation.initialize(rep);
+      this.simulation.initialize(TimeKeeper.getRepetition());
     }
   }
 

@@ -5,9 +5,6 @@ import Agent from "../../Agent";
 import {AgentState} from "../../interfaces/Agent/AgentState";
 
 export default class ActionShare extends Action {
-  /*
-  Maybe this action can named CalculateCanShare
-   */
   execute(agent: Agent): void {
     const aux: TwitterAgent = <TwitterAgent>agent;
     if (aux.state === AgentState.READ) {

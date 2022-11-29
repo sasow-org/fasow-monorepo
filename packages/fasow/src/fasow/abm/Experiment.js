@@ -16,8 +16,8 @@ var Experiment = /** @class */ (function () {
      * */
     Experiment.prototype.run = function () {
         this.initialize();
-        console.log("Ended Initialization --> On Experiment.run(), currentRepetition  is: ", main_1.TimeKeeper.getRepetition(), " of (", main_1.TimeKeeper.getMaxRepetition(), ")");
         main_1.TimeKeeper.setRepetition(0);
+        console.log("Ended Initialization --> On Experiment.run(), currentRepetition  is: ", main_1.TimeKeeper.getRepetition() + 1, " of (", main_1.TimeKeeper.getMaxRepetition(), ")");
         while (main_1.TimeKeeper.canNextRepetition()) {
             if (!this.simulation.isDone()) {
                 break;
@@ -25,7 +25,11 @@ var Experiment = /** @class */ (function () {
             console.log("Starting Simulation...");
             this.simulation.run();
             console.log("Ending Simulation...");
-            this.initialize();
+            main_1.TimeKeeper.nextRepetition();
+            if (main_1.TimeKeeper.canNextRepetition()) {
+                this.initialize();
+                console.log("Ended Initialization --> On Experiment.run(), currentRepetition  is: ", main_1.TimeKeeper.getRepetition() + 1, " of (", main_1.TimeKeeper.getMaxRepetition(), ")");
+            }
         }
         console.log("Ending Experiment...");
     };
@@ -33,11 +37,11 @@ var Experiment = /** @class */ (function () {
      * Initialize the Model, setting up the configs to TowerHandler
      */
     Experiment.prototype.initialize = function () {
+        console.log("Starting initialization...");
         this.executeStrategy();
-        var rep = main_1.TimeKeeper.nextRepetition();
         if (main_1.TimeKeeper.canNextRepetition()) {
             this.loadConfig();
-            this.simulation.initialize(rep);
+            this.simulation.initialize(main_1.TimeKeeper.getRepetition());
         }
     };
     /**

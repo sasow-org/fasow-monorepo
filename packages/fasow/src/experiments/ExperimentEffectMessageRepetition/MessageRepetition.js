@@ -29,6 +29,7 @@ var MessageRepetition = /** @class */ (function (_super) {
     }
     // eslint-disable-next-line class-methods-use-this
     MessageRepetition.prototype.Strategy = function () {
+        // todo : check if the probabilities are correct
         main_1.TowerHandler.registerNewAction(CanSaturatedActionShare_1.default);
         main_1.TowerHandler.registerNewAction(CanSaturatedActionRead_1.default);
         main_1.TowerHandler.registerNewAgent(EffectAgent_1.default);

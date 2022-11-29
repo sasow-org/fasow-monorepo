@@ -11,6 +11,7 @@ import EnvironmentEffectTwitter from "./EnvironmentEffectTwitter";
 export default class MessageRepetition extends Experiment {
   // eslint-disable-next-line class-methods-use-this
   Strategy(): void {
+    // todo : check if the probabilities are correct
     TowerHandler.registerNewAction(CanSaturatedActionShare);
     TowerHandler.registerNewAction(CanSaturatedActionRead);
     TowerHandler.registerNewAgent(EffectAgent);

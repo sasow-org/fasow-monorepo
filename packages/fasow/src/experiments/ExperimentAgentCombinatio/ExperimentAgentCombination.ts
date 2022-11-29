@@ -26,7 +26,7 @@ export default class ExperimentAgentCombination extends Experiment {
       id: 0,
       name: "default-read",
       type: ActionRead,
-      probability: 0.5,
+      probability: 50,
     };
     switch (name) {
       case "hub":

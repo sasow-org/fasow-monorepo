@@ -49,7 +49,7 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
             id: 0,
             name: "default-read",
             type: ActionRead_1.default,
-            probability: 0.5,
+            probability: 50,
         };
         switch (type) {
             case "hub":
@@ -126,12 +126,12 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
         main_1.TowerHandler.setExperimentName("best seed type ?");
         main_1.TowerHandler.setExperimentDescription("Who are the best seed type ?");
         main_1.TowerHandler.setScenarioConfig({
-            networkSize: 10000,
+            networkSize: 1000,
             maxTick: 20,
             environmentType: EnvironmentTwitter_1.default,
             metaAgentsConfigs: [nonSeedConfig, seedConfig],
         });
-        main_1.TimeKeeper.setMaxRepetition(1);
+        main_1.TimeKeeper.setMaxRepetition(2);
     };
     ExperimentAgentCombinationBestSeed.prototype.createExperiment = function () {
         return new ExperimentAgentCombinationBestSeed();

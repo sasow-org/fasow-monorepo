@@ -1,4 +1,3 @@
-import {doc} from "prettier";
 import Experiment from "../../fasow/abm/Experiment";
 import {TimeKeeper, TowerHandler} from "../../main";
 import MetaAgentConfig from "../../fasow/config/metaconfig/MetaAgentConfig";
@@ -27,7 +26,7 @@ export default class ExperimentAgentCombinationBestSeed extends Experiment {
             id: 0,
             name: "default-read",
             type: ActionRead,
-            probability: 0.5,
+            probability: 50,
         };
         switch (type) {
             case "hub":
@@ -108,12 +107,12 @@ export default class ExperimentAgentCombinationBestSeed extends Experiment {
             "Who are the best seed type ?"
         );
         TowerHandler.setScenarioConfig({
-            networkSize: 10000,
+            networkSize: 1000,
             maxTick: 20,
             environmentType: EnvironmentTwitter,
             metaAgentsConfigs: [nonSeedConfig, seedConfig],
         });
-        TimeKeeper.setMaxRepetition(1);
+        TimeKeeper.setMaxRepetition(2);
     }
 
     createExperiment(): Experiment {
