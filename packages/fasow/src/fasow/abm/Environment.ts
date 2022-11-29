@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { TimeKeeper, TowerHandler } from "../../main";
+import {DataHandler, TimeKeeper, TowerHandler} from "../../main";
 import type EnvironmentConfig from "../config/config/EnvironmentConfig";
 import MetaEnvironmentConfig from "../config/metaconfig/MetaEnvironmentConfig";
 import Agent from "./Agent";
@@ -70,7 +70,19 @@ export default abstract class Environment
    * Starts the simulation to being executed period per period
    * This method allow to users to introduce the behaviour of the scenario
    */
-  public abstract run(): void;
+  public run(): void {
+    while (TimeKeeper.canNextTick()) {
+      this.step();
+      console.log(
+          "On Step: ",
+          TimeKeeper.nextTick(),
+          " of (",
+          TimeKeeper.getMaxTick(),
+          "): \n",
+          DataHandler.getLastOutputRow()
+      );
+    }
+  }
 
   /**
    * Initializes the current environment, creating the agents, adding the followers and checking if all it's ok to run the simulation
