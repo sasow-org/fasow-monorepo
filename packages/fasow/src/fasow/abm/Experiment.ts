@@ -18,7 +18,6 @@ export default abstract class Experiment
   constructor() {
     this.name = "";
     this.description = "";
-    TimeKeeper.setRepetition(-1);
     this.simulation = new Simulation();
   }
 
@@ -34,6 +33,7 @@ export default abstract class Experiment
       TimeKeeper.getMaxRepetition(),
       ")"
     );
+    TimeKeeper.setRepetition(0);
     while (TimeKeeper.canNextRepetition()) {
       if (!this.simulation.isDone()) {
         break;
