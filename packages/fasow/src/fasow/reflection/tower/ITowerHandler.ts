@@ -200,9 +200,10 @@ export default class ITowerHandler {
     return this.ExperimentAPI.getExperimentConfig();
   }
 
+  /*
   createExperiment(type: typeof Experiment): Experiment {
     return this.ExperimentAPI.createExperiment(type);
-  }
+  } */
 
   createSelectedExperiment(): Experiment {
     return this.ExperimentAPI.createSelectedExperiment();
