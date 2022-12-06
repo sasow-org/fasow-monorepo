@@ -3,7 +3,7 @@ import MessageRepetition from "./experiments/ExperimentEffectMessageRepetition/M
 import FASOW from "./fasow/FASOW";
 import IDataHandler from "./fasow/datahandler/IDataHandler";
 import ITowerHandler from "./fasow/reflection/tower/ITowerHandler";
-import ITimeKeeper from "./fasow/timekepper/ITimeKeeper";
+import ITimeKeeper from "./fasow/timekeeper/ITimeKeeper";
 import ExperimentAgentCombinationBestSeed
     from "./experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed";
 

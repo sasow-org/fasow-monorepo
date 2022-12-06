@@ -7,7 +7,7 @@ import ITowerHandler from "./reflection/tower/ITowerHandler";
 import FacebookAgent from "./scenarios/facebook/FacebookAgent";
 import EnvironmentTwitter from "./scenarios/twitter/EnvironmentTwitter";
 import TwitterAgent from "./scenarios/twitter/TwitterAgent";
-import ITimeKeeper from "./timekepper/ITimeKeeper";
+import ITimeKeeper from "./timekeeper/ITimeKeeper";
 import MetaExperimentConfig from "./config/metaconfig/MetaExperimentConfig";
 
 /*
