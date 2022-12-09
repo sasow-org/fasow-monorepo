@@ -1,5 +1,6 @@
 {
-  "private": true,
+  "private": false,
+  "license": "MIT",
   "version": "1.0.0",
   "homepage": "https://sasow-org.github.io/fasow-monorepo/",
   "name": "@fasow/root",
@@ -7,13 +8,12 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "cd packages/client && yarn start",
+    "start": "yarn build-backend && cd packages/client && yarn start",
     "build": "npx lerna run build",
     "build-backend": "cd packages/fasow && npx -p typescript tsc index.ts --declaration --experimentalDecorators --emitDecoratorMetadata --outDir build",
+    "tesBuild": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata packages/fasow/src/main.ts && ",
     "debug-backend": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata packages/fasow/src/main.ts && node packages/fasow/src/main.js",
-    "build-backend-start-debug": "yarn build-backend && yarn start",
-    "deploy": "yarn build && gh-pages -b prod -d packages/client/build",
-    "load-local": "yarn build && serve -s build "
+    "gh-pages-upload": "gh-pages -b prod -d packages/client/build"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
