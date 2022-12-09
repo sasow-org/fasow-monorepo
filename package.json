@@ -1,7 +1,7 @@
 {
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://sasow-org.github.io/fasow/",
+  "homepage": "https://sasow-org.github.io/fasow-monorepo/",
   "name": "@fasow/root",
   "workspaces": [
     "packages/*"
