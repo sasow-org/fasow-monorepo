@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var ExampleExperiment_1 = require("../experiments/ExampleExperiment");
 var ActionRead_1 = require("./abm/wom/custom-actions/ActionRead");
 var ActionShare_1 = require("./abm/wom/custom-actions/ActionShare");
@@ -8,16 +8,16 @@ var ITowerHandler_1 = require("./reflection/tower/ITowerHandler");
 var FacebookAgent_1 = require("./scenarios/facebook/FacebookAgent");
 var EnvironmentTwitter_1 = require("./scenarios/twitter/EnvironmentTwitter");
 var TwitterAgent_1 = require("./scenarios/twitter/TwitterAgent");
-var ITimeKeeper_1 = require("./timekepper/ITimeKeeper");
+var ITimeKeeper_1 = require("./timekeeper/ITimeKeeper");
 /*
 todo : maybe the loads actions,agents,environments, agents, could be better
   creating 4 classes with one method that allow to call towerHandler and register all of them´s.
  */
 var FASOW = /** @class */ (function () {
     function FASOW() {
-        this.dataHandler = new IDataHandler_1.default();
-        this.towerHandler = new ITowerHandler_1.default();
-        this.timeKeeper = new ITimeKeeper_1.default();
+        this.dataHandler = new IDataHandler_1["default"]();
+        this.towerHandler = new ITowerHandler_1["default"]();
+        this.timeKeeper = new ITimeKeeper_1["default"]();
         this.experiment = undefined;
         this.loadActions();
         this.loadAgents();
@@ -26,22 +26,22 @@ var FASOW = /** @class */ (function () {
     }
     FASOW.prototype.loadActions = function () {
         console.log("Loading Actions...");
-        this.towerHandler.registerNewAction(ActionRead_1.default);
-        this.towerHandler.registerNewAction(ActionShare_1.default);
+        this.towerHandler.registerNewAction(ActionRead_1["default"]);
+        this.towerHandler.registerNewAction(ActionShare_1["default"]);
     };
     FASOW.prototype.loadAgents = function () {
         console.log("Loading Agents...");
-        this.towerHandler.registerNewAgent(TwitterAgent_1.default);
-        this.towerHandler.registerNewAgent(FacebookAgent_1.default);
+        this.towerHandler.registerNewAgent(TwitterAgent_1["default"]);
+        this.towerHandler.registerNewAgent(FacebookAgent_1["default"]);
     };
     FASOW.prototype.loadEnvironments = function () {
         console.log("Loading Environments...");
-        this.towerHandler.registerNewEnvironment(EnvironmentTwitter_1.default);
+        this.towerHandler.registerNewEnvironment(EnvironmentTwitter_1["default"]);
         // TowerHandler.registerNewEnvironment(EnvironmentFacebook);
     };
     FASOW.prototype.loadExperiments = function () {
         console.log("Loading Experiments...");
-        this.towerHandler.registerNewExperiment(ExampleExperiment_1.default);
+        this.towerHandler.registerNewExperiment(ExampleExperiment_1["default"]);
     };
     FASOW.prototype.getDataHandler = function () {
         return this.dataHandler;
@@ -175,4 +175,4 @@ var FASOW = /** @class */ (function () {
     };
     return FASOW;
 }());
-exports.default = FASOW;
+exports["default"] = FASOW;

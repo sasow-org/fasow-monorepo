@@ -1,8 +1,9 @@
 "use strict";
 exports.__esModule = true;
+// @ts-ignore
+var json2csv_1 = require("json2csv");
 var main_1 = require("../../main");
 var DataHandlerDecorators_1 = require("./decorators/DataHandlerDecorators");
-var json2csv_1 = require("json2csv");
 // Imports to WriteFiles
 // const fs = require("fs");
 /**

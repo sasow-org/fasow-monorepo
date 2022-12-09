@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.ExperimentCount = exports.CountExperimentsKeys = exports.EnvironmentCount = exports.CountEnvironmentKeys = exports.AccumulateEnvironmentValue = exports.AccumEnvironmentObjectKeys = exports.AccumulateAgentValue = exports.AccumAgentKeysArray = exports.AgentStateIntegerCount = exports.CountAgentStatesObjectKeysArray = exports.AgentCountBoolean = exports.CountAgentBooleanObjectKeysArray = void 0;
 require("reflect-metadata");
 /*
@@ -34,7 +34,7 @@ function AgentCountBoolean(name, countFalse) {
             target: target,
             propertyKey: propertyKey,
             column_name: name,
-            countFalse: countFalse,
+            countFalse: countFalse
         });
     };
 }
@@ -54,7 +54,7 @@ function AgentStateIntegerCount(name, value) {
             target: target,
             propertyKey: propertyKey,
             column_name: name,
-            value: value,
+            value: value
         });
     };
 }
@@ -95,7 +95,7 @@ function EnvironmentCount(name) {
         exports.CountEnvironmentKeys.push({
             target: target,
             propertyKey: propertyKey,
-            column_name: name,
+            column_name: name
         });
     };
 }
@@ -110,7 +110,7 @@ function ExperimentCount(name) {
         exports.CountExperimentsKeys.push({
             target: target,
             propertyKey: propertyKey,
-            column_name: name,
+            column_name: name
         });
     };
 }

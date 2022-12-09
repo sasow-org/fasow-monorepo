@@ -8,7 +8,7 @@ var ITowerHandler_1 = require("./reflection/tower/ITowerHandler");
 var FacebookAgent_1 = require("./scenarios/facebook/FacebookAgent");
 var EnvironmentTwitter_1 = require("./scenarios/twitter/EnvironmentTwitter");
 var TwitterAgent_1 = require("./scenarios/twitter/TwitterAgent");
-var ITimeKeeper_1 = require("./timekepper/ITimeKeeper");
+var ITimeKeeper_1 = require("./timekeeper/ITimeKeeper");
 /*
 todo : maybe the loads actions,agents,environments, agents, could be better
   creating 4 classes with one method that allow to call towerHandler and register all of them´s.

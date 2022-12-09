@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.getTypesOfObject = void 0;
 function areExcluded(key, excludedProps) {
     // console.log("Evaluating the key: ", key)

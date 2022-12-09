@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var AgentState_1 = require("../../fasow/abm/interfaces/Agent/AgentState");
 var ActionShare_1 = require("../../fasow/abm/wom/custom-actions/ActionShare");
 var EffectAgent_1 = require("./EffectAgent");
@@ -28,7 +28,7 @@ var CanSaturatedActionShare = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     CanSaturatedActionShare.prototype.execute = function (agent) {
-        if (agent instanceof EffectAgent_1.default) { // Si es de este tipo de agente
+        if (agent instanceof EffectAgent_1["default"]) { // Si es de este tipo de agente
             var agentRef = agent;
             if (agentRef.state === AgentState_1.AgentState.READ && !agentRef.isSaturated) { // Mientras haya leido y no este saturado, entonces puede compartir
                 var p1 = this.getRandom();
@@ -45,5 +45,5 @@ var CanSaturatedActionShare = /** @class */ (function (_super) {
         return new CanSaturatedActionShare().setConfig(actionData);
     };
     return CanSaturatedActionShare;
-}(ActionShare_1.default));
-exports.default = CanSaturatedActionShare;
+}(ActionShare_1["default"]));
+exports["default"] = CanSaturatedActionShare;

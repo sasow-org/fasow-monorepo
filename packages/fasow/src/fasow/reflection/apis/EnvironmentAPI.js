@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var StructureHandler_1 = require("../StructureHandler");
 /*
 Esta capa es el nivel siguiente de Experiment.
@@ -26,7 +26,7 @@ var EnvironmentAPI = /** @class */ (function () {
             networkSize: 0,
             periods: 0,
             seedSize: 0,
-            environmentType: undefined,
+            environmentType: undefined
         };
     }
     /*
@@ -88,7 +88,7 @@ var EnvironmentAPI = /** @class */ (function () {
             networkSize: 0,
             periods: 0,
             seedSize: 0,
-            environmentType: undefined,
+            environmentType: undefined
         };
         return this.scenarioConfig;
     };
@@ -100,11 +100,11 @@ var EnvironmentAPI = /** @class */ (function () {
             // console.log("Name: ", type.name);
             outputState.push({
                 type: type.name,
-                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps),
+                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps)
             });
         });
         return outputState;
     };
     return EnvironmentAPI;
 }());
-exports.default = EnvironmentAPI;
+exports["default"] = EnvironmentAPI;

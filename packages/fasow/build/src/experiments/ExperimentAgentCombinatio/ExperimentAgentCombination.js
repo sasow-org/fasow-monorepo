@@ -47,7 +47,7 @@ var ExperimentAgentCombination = /** @class */ (function (_super) {
             id: 0,
             name: "default-read",
             type: ActionRead_1["default"],
-            probability: 0.5
+            probability: 50
         };
         switch (name) {
             case "hub":

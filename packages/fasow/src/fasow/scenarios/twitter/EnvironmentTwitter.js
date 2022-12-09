@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Environment_1 = require("../../abm/Environment");
 var EnvironmentTwitter = /** @class */ (function (_super) {
     __extends(EnvironmentTwitter, _super);
@@ -30,5 +30,5 @@ var EnvironmentTwitter = /** @class */ (function (_super) {
         return new EnvironmentTwitter().setConfig(scenarioConfig);
     };
     return EnvironmentTwitter;
-}(Environment_1.default));
-exports.default = EnvironmentTwitter;
+}(Environment_1["default"]));
+exports["default"] = EnvironmentTwitter;

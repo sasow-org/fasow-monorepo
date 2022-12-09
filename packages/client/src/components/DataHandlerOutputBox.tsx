@@ -56,7 +56,7 @@ export default function DataHandlerOutputBox({
         // pageSize={5}
         // rowsPerPageOptions={[5]}
         // checkboxSelection
-        getRowId={(row) => Math.random().toString()}
+        getRowId={() => Math.random().toString()}
         disableSelectionOnClick
       />
     </Box>

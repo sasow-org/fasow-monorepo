@@ -23,7 +23,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var TwitterAgent_1 = require("../../fasow/scenarios/twitter/TwitterAgent");
 var DataHandlerDecorators_1 = require("../../fasow/datahandler/decorators/DataHandlerDecorators");
 var EffectAgent = /** @class */ (function (_super) {
@@ -44,7 +44,7 @@ var EffectAgent = /** @class */ (function (_super) {
     __decorate([
         (0, DataHandlerDecorators_1.AgentCountBoolean)("saturated", false),
         __metadata("design:type", Boolean)
-    ], EffectAgent.prototype, "isSaturated", void 0);
+    ], EffectAgent.prototype, "isSaturated");
     return EffectAgent;
-}(TwitterAgent_1.default));
-exports.default = EffectAgent;
+}(TwitterAgent_1["default"]));
+exports["default"] = EffectAgent;

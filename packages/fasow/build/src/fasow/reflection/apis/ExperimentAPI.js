@@ -1,6 +1,5 @@
 "use strict";
 exports.__esModule = true;
-var ExampleExperiment_1 = require("../../../experiments/ExampleExperiment");
 var main_1 = require("../../../main");
 var StructureHandler_1 = require("../StructureHandler");
 /**
@@ -59,15 +58,11 @@ var IExperimentAPI = /** @class */ (function () {
         return {
             id: this.experimentConfig.id,
             name: this.experimentConfig.name,
-            type: ExampleExperiment_1["default"],
+            type: this.selectedExperiment,
             description: this.experimentConfig.description,
             maxRepetitions: main_1.TimeKeeper.getMaxRepetition(),
             environmentConfig: main_1.TowerHandler.getScenarioConfig()
         };
-    };
-    IExperimentAPI.prototype.createExperiment = function (type) {
-        // @ts-ignore
-        return this.experimentList.get(type).createExperiment();
     };
     IExperimentAPI.prototype.createSelectedExperiment = function () {
         return Reflect.construct(this.selectedExperiment, []);

@@ -21,6 +21,7 @@ export const useExperiments = () => {
 
   const { experiments } = state;
 
+  // @ts-ignore
   const formattedExperiments = experiments.map(({ type }) => type);
 
   const setExperiment = (

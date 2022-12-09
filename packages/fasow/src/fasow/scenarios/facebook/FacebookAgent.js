@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Agent_1 = require("../../abm/Agent");
 var FacebookAgent = /** @class */ (function (_super) {
     __extends(FacebookAgent, _super);
@@ -33,5 +33,5 @@ var FacebookAgent = /** @class */ (function (_super) {
         return new FacebookAgent(id, agentData);
     };
     return FacebookAgent;
-}(Agent_1.default));
-exports.default = FacebookAgent;
+}(Agent_1["default"]));
+exports["default"] = FacebookAgent;

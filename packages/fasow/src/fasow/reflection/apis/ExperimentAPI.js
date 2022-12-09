@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var main_1 = require("../../../main");
 var StructureHandler_1 = require("../StructureHandler");
 /**
@@ -26,7 +26,7 @@ var IExperimentAPI = /** @class */ (function () {
             id: 0,
             name: "",
             description: "",
-            maxRepetitions: -1,
+            maxRepetitions: -1
         };
         this.experimentList = new Map();
     }
@@ -61,7 +61,7 @@ var IExperimentAPI = /** @class */ (function () {
             type: this.selectedExperiment,
             description: this.experimentConfig.description,
             maxRepetitions: main_1.TimeKeeper.getMaxRepetition(),
-            environmentConfig: main_1.TowerHandler.getScenarioConfig(),
+            environmentConfig: main_1.TowerHandler.getScenarioConfig()
         };
     };
     IExperimentAPI.prototype.createSelectedExperiment = function () {
@@ -86,7 +86,7 @@ var IExperimentAPI = /** @class */ (function () {
             // console.log("Name: ", type.name);
             outputState.push({
                 type: type.name,
-                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps),
+                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps)
             });
         });
         return outputState;
@@ -101,4 +101,4 @@ var IExperimentAPI = /** @class */ (function () {
     };
     return IExperimentAPI;
 }());
-exports.default = IExperimentAPI;
+exports["default"] = IExperimentAPI;

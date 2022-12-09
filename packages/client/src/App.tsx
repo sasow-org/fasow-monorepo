@@ -6,7 +6,7 @@ import DataHandlerOutputBox from "./components/DataHandlerOutputBox";
 import ExperimentConfigurationBox from "./components/ExperimentConfigurationBox";
 import HomeBox from "./components/HomeBox";
 import NavBar from "./components/NavBar";
-import { useExperiments, useRunExperiment } from "./hooks/useFasow";
+import {useRunExperiment } from "./hooks/useFasow";
 import "./index.css";
 
 const theme = createTheme({
@@ -27,7 +27,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const { experimentConfig, experiments, setExperiment } = useExperiments();
+  // const { experimentConfig, experiments, setExperiment } = useExperiments();
   const { results, runExperiment } = useRunExperiment();
 
   return (
@@ -38,14 +38,12 @@ function App() {
           <Grid container spacing={1} sx={{ height: "100%" }}>
             <Grid item xs={6} sx={{ height: "50%" }}>
               <HomeBox title="Experiment configuration">
-                <ExperimentConfigurationBox
-                  {...{ experimentConfig, experiments, setExperiment }}
-                />
+                <ExperimentConfigurationBox/>
               </HomeBox>
             </Grid>
             <Grid item xs={6} sx={{ height: "50%" }}>
               <HomeBox title="Agent configuration">
-                <AgentConfigurationBox experimentConfig={experimentConfig} />
+                <AgentConfigurationBox/>
               </HomeBox>
             </Grid>
             <Grid item xs={12} sx={{ height: "50%" }}>

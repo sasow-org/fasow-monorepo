@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var main_1 = require("../../main");
 var Simulation_1 = require("./Simulation");
 /**
@@ -9,7 +9,7 @@ var Experiment = /** @class */ (function () {
     function Experiment() {
         this.name = "";
         this.description = "";
-        this.simulation = new Simulation_1.default();
+        this.simulation = new Simulation_1["default"]();
     }
     /**
      * Run the Experiment,initializing the model and starting the simulation
@@ -51,7 +51,7 @@ var Experiment = /** @class */ (function () {
     Experiment.prototype.setConfig = function (config) {
         this.name = config.name;
         this.description = config.description;
-        this.simulation = new Simulation_1.default();
+        this.simulation = new Simulation_1["default"]();
         main_1.TimeKeeper.setMaxRepetition(config.maxRepetitions);
     };
     /**
@@ -70,4 +70,4 @@ var Experiment = /** @class */ (function () {
     };
     return Experiment;
 }());
-exports.default = Experiment;
+exports["default"] = Experiment;

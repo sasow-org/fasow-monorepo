@@ -1,15 +1,12 @@
 import {  useMemo } from "react";
 
-import MetaExperimentConfig from "@fasow/backend/src/fasow/config/metaconfig/MetaExperimentConfig";
 // import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, Switch, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import {useExperiments} from "../../hooks/useFasow";
 
-export default function AgentConfigurationBox({
-  experimentConfig,
-}: {
-  experimentConfig: MetaExperimentConfig;
-}) {
+export default function AgentConfigurationBox() {
+  const { experimentConfig } = useExperiments();
   const rows = useMemo(
     () =>
       experimentConfig?.environmentConfig.metaAgentsConfigs.sort(
@@ -17,6 +14,7 @@ export default function AgentConfigurationBox({
       ) ?? [],
     [experimentConfig]
   );
+
 
   const columns: GridColDef[] = [
     {
@@ -47,7 +45,7 @@ export default function AgentConfigurationBox({
       width: 500,
       renderCell: ({ value }) => (
         <span>
-          {value
+          {value// @ts-ignore
             .map(({ name, probability }) => `${name} (${probability}%)`)
             .join(" | ")}
         </span>

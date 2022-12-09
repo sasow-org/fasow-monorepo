@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import MetaExperimentConfig from "@fasow/backend/src/fasow/config/metaconfig/MetaExperimentConfig";
 import { Box, TextField, Typography } from "@mui/material";
 

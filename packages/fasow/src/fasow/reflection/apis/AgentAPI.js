@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var main_1 = require("../../../main");
 var StructureHandler_1 = require("../StructureHandler");
 /*
@@ -67,11 +67,11 @@ var AgentAPI = /** @class */ (function () {
             // console.log("Name: ", key.name);
             outputState.push({
                 type: key.name,
-                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps),
+                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, excludedProps)
             });
         });
         return outputState;
     };
     return AgentAPI;
 }());
-exports.default = AgentAPI;
+exports["default"] = AgentAPI;

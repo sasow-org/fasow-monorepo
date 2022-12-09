@@ -159,9 +159,10 @@ var ITowerHandler = /** @class */ (function () {
     ITowerHandler.prototype.getExperimentConfig = function () {
         return this.ExperimentAPI.getExperimentConfig();
     };
-    ITowerHandler.prototype.createExperiment = function (type) {
-        return this.ExperimentAPI.createExperiment(type);
-    };
+    /*
+    createExperiment(type: typeof Experiment): Experiment {
+      return this.ExperimentAPI.createExperiment(type);
+    } */
     ITowerHandler.prototype.createSelectedExperiment = function () {
         return this.ExperimentAPI.createSelectedExperiment();
     };

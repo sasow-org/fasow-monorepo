@@ -23,7 +23,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Experiment_1 = require("../../fasow/abm/Experiment");
 var AgentState_1 = require("../../fasow/abm/interfaces/Agent/AgentState");
 var ActionRead_1 = require("../../fasow/abm/wom/custom-actions/ActionRead");
@@ -46,15 +46,15 @@ var ExperimentAgentCombination = /** @class */ (function (_super) {
         var configRead = {
             id: 0,
             name: "default-read",
-            type: ActionRead_1.default,
-            probability: 50,
+            type: ActionRead_1["default"],
+            probability: 50
         };
         switch (name) {
             case "hub":
                 return {
                     id: 0,
                     name: "hub",
-                    type: TwitterAgent_1.default,
+                    type: TwitterAgent_1["default"],
                     percentage: percentage,
                     isSeed: seed,
                     state: state,
@@ -64,16 +64,16 @@ var ExperimentAgentCombination = /** @class */ (function (_super) {
                         {
                             id: 1,
                             name: "action-share-hub",
-                            type: ActionShare_1.default,
-                            probability: 19.3,
+                            type: ActionShare_1["default"],
+                            probability: 19.3
                         },
-                    ],
+                    ]
                 };
             case "leader":
                 return {
                     id: 1,
                     name: "leader",
-                    type: TwitterAgent_1.default,
+                    type: TwitterAgent_1["default"],
                     percentage: percentage,
                     isSeed: seed,
                     state: state,
@@ -83,15 +83,15 @@ var ExperimentAgentCombination = /** @class */ (function (_super) {
                         {
                             id: 1,
                             name: "action-share-leader",
-                            type: ActionShare_1.default,
-                            probability: 25.09,
+                            type: ActionShare_1["default"],
+                            probability: 25.09
                         },
-                    ],
+                    ]
                 };
             default:
                 return {
                     id: 2,
-                    type: TwitterAgent_1.default,
+                    type: TwitterAgent_1["default"],
                     percentage: percentage,
                     isSeed: seed,
                     state: state,
@@ -102,10 +102,10 @@ var ExperimentAgentCombination = /** @class */ (function (_super) {
                         {
                             id: 1,
                             name: "action-share-avr",
-                            type: ActionShare_1.default,
-                            probability: 19.3,
+                            type: ActionShare_1["default"],
+                            probability: 19.3
                         },
-                    ],
+                    ]
                 };
         }
     };
@@ -137,8 +137,8 @@ var ExperimentAgentCombination = /** @class */ (function (_super) {
         main_1.TowerHandler.setScenarioConfig({
             networkSize: 10000,
             maxTick: 20,
-            environmentType: EnvironmentTwitter_1.default,
-            metaAgentsConfigs: [avrConfig, hubConfig, leaderConfig],
+            environmentType: EnvironmentTwitter_1["default"],
+            metaAgentsConfigs: [avrConfig, hubConfig, leaderConfig]
         });
     };
     // eslint-disable-next-line class-methods-use-this
@@ -148,7 +148,7 @@ var ExperimentAgentCombination = /** @class */ (function (_super) {
     __decorate([
         (0, DataHandlerDecorators_1.ExperimentCount)("percentage-type"),
         __metadata("design:type", String)
-    ], ExperimentAgentCombination.prototype, "percentageTypes", void 0);
+    ], ExperimentAgentCombination.prototype, "percentageTypes");
     return ExperimentAgentCombination;
-}(Experiment_1.default));
-exports.default = ExperimentAgentCombination;
+}(Experiment_1["default"]));
+exports["default"] = ExperimentAgentCombination;

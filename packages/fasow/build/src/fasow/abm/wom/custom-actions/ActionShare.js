@@ -22,9 +22,6 @@ var ActionShare = /** @class */ (function (_super) {
     function ActionShare() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    /*
-    Maybe this action can named CalculateCanShare
-     */
     ActionShare.prototype.execute = function (agent) {
         var aux = agent;
         if (aux.state === AgentState_1.AgentState.READ) {

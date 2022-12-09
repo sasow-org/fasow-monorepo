@@ -5,5 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": " npx -p typescript tsc index.ts --declaration --experimentalDecorators --emitDecoratorMetadata"
+  },
+  "devDependencies": {
+    "json2csv": "^5.0.7"
   }
 }

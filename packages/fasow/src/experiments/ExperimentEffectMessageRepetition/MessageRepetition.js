@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Experiment_1 = require("../../fasow/abm/Experiment");
 var AgentState_1 = require("../../fasow/abm/interfaces/Agent/AgentState");
 var main_1 = require("../../main");
@@ -30,49 +30,49 @@ var MessageRepetition = /** @class */ (function (_super) {
     // eslint-disable-next-line class-methods-use-this
     MessageRepetition.prototype.Strategy = function () {
         // todo : check if the probabilities are correct
-        main_1.TowerHandler.registerNewAction(CanSaturatedActionShare_1.default);
-        main_1.TowerHandler.registerNewAction(CanSaturatedActionRead_1.default);
-        main_1.TowerHandler.registerNewAgent(EffectAgent_1.default);
-        main_1.TowerHandler.registerNewEnvironment(EnvironmentEffectTwitter_1.default);
+        main_1.TowerHandler.registerNewAction(CanSaturatedActionShare_1["default"]);
+        main_1.TowerHandler.registerNewAction(CanSaturatedActionRead_1["default"]);
+        main_1.TowerHandler.registerNewAgent(EffectAgent_1["default"]);
+        main_1.TowerHandler.registerNewEnvironment(EnvironmentEffectTwitter_1["default"]);
         var actionReadConfig = {
             id: 0,
             name: "read",
-            type: CanSaturatedActionRead_1.default,
-            probability: 6.3,
+            type: CanSaturatedActionRead_1["default"],
+            probability: 6.3
         };
         var actionShareConfig = {
             id: 1,
             name: "share",
-            type: CanSaturatedActionShare_1.default,
-            probability: 5,
+            type: CanSaturatedActionShare_1["default"],
+            probability: 5
         };
         var avrAgentConfig = {
             id: 0,
             followersPercentage: 0.01306,
             actionsConfigs: [actionReadConfig, actionShareConfig],
             name: "possible saturated agent",
-            type: EffectAgent_1.default,
+            type: EffectAgent_1["default"],
             percentage: 95,
             state: AgentState_1.AgentState.NOT_READ,
-            isSeed: false,
+            isSeed: false
         };
         var avrAgentConfigSeed = {
             id: 1,
             followersPercentage: 0.01306,
             actionsConfigs: [actionReadConfig, actionShareConfig],
             name: "possible saturated agent",
-            type: EffectAgent_1.default,
+            type: EffectAgent_1["default"],
             percentage: 5,
             isSeed: true,
-            state: AgentState_1.AgentState.READY_TO_SHARE,
+            state: AgentState_1.AgentState.READY_TO_SHARE
         };
         main_1.TowerHandler.setExperimentName("Effect of Message Repetition");
         main_1.TowerHandler.setExperimentDescription("This experiment is for analyze the effect of message repetition in twitter agents on wom marketing campaings");
         main_1.TowerHandler.setScenarioConfig({
             networkSize: 10000,
-            environmentType: EnvironmentEffectTwitter_1.default,
+            environmentType: EnvironmentEffectTwitter_1["default"],
             maxTick: 40,
-            metaAgentsConfigs: [avrAgentConfig, avrAgentConfigSeed],
+            metaAgentsConfigs: [avrAgentConfig, avrAgentConfigSeed]
         });
         main_1.TimeKeeper.setMaxRepetition(1);
     };
@@ -80,5 +80,5 @@ var MessageRepetition = /** @class */ (function (_super) {
         return new MessageRepetition();
     };
     return MessageRepetition;
-}(Experiment_1.default));
-exports.default = MessageRepetition;
+}(Experiment_1["default"]));
+exports["default"] = MessageRepetition;

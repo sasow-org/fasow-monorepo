@@ -38,7 +38,7 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         // who is the better seed ?
         // avr --> hub --> leader
-        _this.seedType = "";
+        _this.seedType = "hub";
         _this.seedFollowerPercentage = 0;
         _this.nonSeedPercentage = 95;
         _this.seedPercentage = 5;
@@ -49,7 +49,7 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
             id: 0,
             name: "default-read",
             type: ActionRead_1["default"],
-            probability: 0.5
+            probability: 50
         };
         switch (type) {
             case "hub":
@@ -75,20 +75,22 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
                     }];
         }
     };
-    ExperimentAgentCombinationBestSeed.prototype.run = function () {
-        var seedTypes = ["average", "hub", "leader"];
-        var followerPercentageByType = [0.057, 1.14225, 1.08];
-        for (var i = 0; i < seedTypes.length; i++) {
-            var type = seedTypes[i];
-            var followerPercentage = followerPercentageByType[i];
-            main_1.TimeKeeper.setMaxRepetition(1);
-            console.log("The selected seed type is --> ", type);
-            this.seedType = type;
-            this.seedFollowerPercentage = followerPercentage;
-            _super.prototype.run.call(this);
-            main_1.TimeKeeper.resetRepetitions();
+    /*
+        run() {
+            const seedTypes : string[] = ["average", "hub", "leader"];
+            const followerPercentageByType : number[] = [0.057, 1.14225, 1.08];
+            for(let i = 0; i < seedTypes.length; i++){
+                const type = seedTypes[i];
+                const followerPercentage = followerPercentageByType[i];
+                TimeKeeper.setMaxRepetition(1);
+                console.log("The selected seed type is --> ", type);
+                this.seedType = type;
+                this.seedFollowerPercentage = followerPercentage;
+                super.run();
+                TimeKeeper.resetRepetitions();
+            }
         }
-    };
+    */
     ExperimentAgentCombinationBestSeed.prototype.Strategy = function () {
         var nonSeedConfig = {
             id: 0,
@@ -97,27 +99,39 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
             type: TwitterAgent_1["default"],
             percentage: this.nonSeedPercentage,
             state: AgentState_1.AgentState.NOT_READ,
-            followersPercentage: 1.14225,
+            followersPercentage: 0.057,
             actionsConfigs: ExperimentAgentCombinationBestSeed.getActionsConfig("average")
         };
-        var seedConfig = {
+        /*
+        const seedConfig : MetaAgentConfig = {
             id: 1,
             name: this.seedType,
-            type: TwitterAgent_1["default"],
+            type: TwitterAgent,
             percentage: this.seedPercentage,
-            state: AgentState_1.AgentState.READY_TO_SHARE,
+            state: AgentState.READY_TO_SHARE,
             followersPercentage: this.seedFollowerPercentage,
             isSeed: true,
             actionsConfigs: ExperimentAgentCombinationBestSeed.getActionsConfig(this.seedType)
+        } */
+        var seedConfig = {
+            id: 1,
+            name: "hub",
+            isSeed: true,
+            type: TwitterAgent_1["default"],
+            percentage: this.seedPercentage,
+            state: AgentState_1.AgentState.READY_TO_SHARE,
+            followersPercentage: 1.14225,
+            actionsConfigs: ExperimentAgentCombinationBestSeed.getActionsConfig("hub")
         };
         main_1.TowerHandler.setExperimentName("best seed type ?");
         main_1.TowerHandler.setExperimentDescription("Who are the best seed type ?");
         main_1.TowerHandler.setScenarioConfig({
-            networkSize: 10000,
+            networkSize: 1000,
             maxTick: 20,
             environmentType: EnvironmentTwitter_1["default"],
             metaAgentsConfigs: [nonSeedConfig, seedConfig]
         });
+        main_1.TimeKeeper.setMaxRepetition(2);
     };
     ExperimentAgentCombinationBestSeed.prototype.createExperiment = function () {
         return new ExperimentAgentCombinationBestSeed();

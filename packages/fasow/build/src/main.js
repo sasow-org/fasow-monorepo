@@ -23,13 +23,8 @@ exports.TimeKeeper = fasow.getTimeKeeper();
 fasow.registerNewExperiment(MessageRepetition_1["default"]);
 fasow.registerNewExperiment(ExperimentAgentCombination_1["default"]);
 fasow.registerNewExperiment(ExperimentAgentCombinationBestSeed_1["default"]);
-// fasow.selectExperimentByName("ExperimentAgentCombinationBestSeed");
-// fasow.initializeSelectedExperiment();
-// fasow.runSelectedExperiment();
-// fasow.selectExperimentByName("MessageRepetition")
-// fasow.initializeSelectedExperiment();
-// console.log(fasow.getExperimentConfig());
-// fasow.runExperimentByName("ExperimentAgentCombination");
+fasow.selectExperimentByName("ExperimentAgentCombinationBestSeed");
+fasow.initializeSelectedExperiment();
+fasow.runSelectedExperiment();
 // console.log(fasow.getState());
-// fasow.runExperiment(MessageRepetition);
 exports["default"] = fasow;

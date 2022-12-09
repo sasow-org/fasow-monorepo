@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var ActionAPI_1 = require("../apis/ActionAPI");
 var AgentAPI_1 = require("../apis/AgentAPI");
 var EnvironmentAPI_1 = require("../apis/EnvironmentAPI");
@@ -7,10 +7,10 @@ var ExperimentAPI_1 = require("../apis/ExperimentAPI");
 var ITowerHandler = /** @class */ (function () {
     function ITowerHandler() {
         // private timeKeeper: TimeKeeper = new TimeKeeper();
-        this.ActionAPI = new ActionAPI_1.default();
-        this.AgentAPI = new AgentAPI_1.default();
-        this.EnvironmentAPI = new EnvironmentAPI_1.default();
-        this.ExperimentAPI = new ExperimentAPI_1.default();
+        this.ActionAPI = new ActionAPI_1["default"]();
+        this.AgentAPI = new AgentAPI_1["default"]();
+        this.EnvironmentAPI = new EnvironmentAPI_1["default"]();
+        this.ExperimentAPI = new ExperimentAPI_1["default"]();
     }
     // todo : add all the others methods per API or introspection layer
     /* Essential API
@@ -188,6 +188,6 @@ var ITowerHandler = /** @class */ (function () {
     };
     return ITowerHandler;
 }());
-exports.default = ITowerHandler;
+exports["default"] = ITowerHandler;
 // const TowerHandler: ITowerHandler = new ITowerHandler();
 // export default TowerHandler;

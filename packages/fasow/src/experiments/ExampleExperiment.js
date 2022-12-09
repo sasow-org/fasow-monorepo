@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Experiment_1 = require("../fasow/abm/Experiment");
 var AgentState_1 = require("../fasow/abm/interfaces/Agent/AgentState");
 var ActionRead_1 = require("../fasow/abm/wom/custom-actions/ActionRead");
@@ -34,7 +34,7 @@ var ExampleExperiment = /** @class */ (function (_super) {
             name: "seed",
             isSeed: true,
             state: AgentState_1.AgentState.READY_TO_SHARE,
-            type: TwitterAgent_1.default,
+            type: TwitterAgent_1["default"],
             percentage: 5,
             followersPercentage: 3,
             followingsPercentage: 0,
@@ -42,23 +42,23 @@ var ExampleExperiment = /** @class */ (function (_super) {
                 {
                     id: 0,
                     name: "read1",
-                    type: ActionRead_1.default,
-                    probability: 5,
+                    type: ActionRead_1["default"],
+                    probability: 5
                 },
                 {
                     id: 1,
                     name: "share",
-                    type: ActionShare_1.default,
-                    probability: 5,
+                    type: ActionShare_1["default"],
+                    probability: 5
                 },
-            ],
+            ]
         };
         var agent2 = {
             id: 1,
             name: "non-seeds",
             isSeed: false,
             state: AgentState_1.AgentState.NOT_READ,
-            type: TwitterAgent_1.default,
+            type: TwitterAgent_1["default"],
             percentage: 95,
             followingsPercentage: 3,
             followersPercentage: 3,
@@ -66,22 +66,22 @@ var ExampleExperiment = /** @class */ (function (_super) {
                 {
                     id: 0,
                     name: "read1",
-                    type: ActionRead_1.default,
-                    probability: 5,
+                    type: ActionRead_1["default"],
+                    probability: 5
                 },
                 {
                     id: 1,
                     name: "share",
-                    type: ActionShare_1.default,
-                    probability: 5,
+                    type: ActionShare_1["default"],
+                    probability: 5
                 },
-            ],
+            ]
         };
         main_1.TowerHandler.setScenarioConfig({
             networkSize: 1000,
             maxTick: 10,
-            environmentType: EnvironmentTwitter_1.default,
-            metaAgentsConfigs: [agent1, agent2],
+            environmentType: EnvironmentTwitter_1["default"],
+            metaAgentsConfigs: [agent1, agent2]
         });
         main_1.TowerHandler.setExperimentName("Experiment-Example");
         main_1.TowerHandler.setExperimentMaxRepetitions(2);
@@ -92,5 +92,5 @@ var ExampleExperiment = /** @class */ (function (_super) {
         return new ExampleExperiment();
     };
     return ExampleExperiment;
-}(Experiment_1.default));
-exports.default = ExampleExperiment;
+}(Experiment_1["default"]));
+exports["default"] = ExampleExperiment;

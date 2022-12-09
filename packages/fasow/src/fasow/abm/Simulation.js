@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var main_1 = require("../../main");
 /**
  * The Simulation class handle the initialization of the Environment and start it
@@ -31,4 +31,4 @@ var Simulation = /** @class */ (function () {
     };
     return Simulation;
 }());
-exports.default = Simulation;
+exports["default"] = Simulation;

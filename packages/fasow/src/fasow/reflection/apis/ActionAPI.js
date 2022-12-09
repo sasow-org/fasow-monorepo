@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var StructureHandler_1 = require("../StructureHandler");
 /*
 Esta capa permite crear nuevas acciones que pueden ser ejecutadas por los agentes.
@@ -73,11 +73,11 @@ var ActionAPI = /** @class */ (function () {
             // console.log("Name: ", key);
             outputState.push({
                 type: key,
-                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, []),
+                properties: (0, StructureHandler_1.getTypesOfObject)(expectedObject, [])
             });
         });
         return outputState;
     };
     return ActionAPI;
 }());
-exports.default = ActionAPI;
+exports["default"] = ActionAPI;

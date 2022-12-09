@@ -1,3 +1,5 @@
+// @ts-ignore
+import { Parser } from "json2csv";
 import { TimeKeeper, TowerHandler } from "../../main";
 import Agent from "../abm/Agent";
 import Experiment from "../abm/Experiment";
@@ -9,7 +11,6 @@ import {
   AccumEnvironmentObjectKeys,
   CountExperimentsKeys,
 } from "./decorators/DataHandlerDecorators";
-import { Parser } from "json2csv";
 
 // Imports to WriteFiles
 // const fs = require("fs");

@@ -23,7 +23,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Experiment_1 = require("../../fasow/abm/Experiment");
 var main_1 = require("../../main");
 var ActionRead_1 = require("../../fasow/abm/wom/custom-actions/ActionRead");
@@ -48,30 +48,30 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
         var configRead = {
             id: 0,
             name: "default-read",
-            type: ActionRead_1.default,
-            probability: 50,
+            type: ActionRead_1["default"],
+            probability: 50
         };
         switch (type) {
             case "hub":
                 return [configRead, {
                         id: 1,
                         name: "read-".concat(type),
-                        type: ActionShare_1.default,
-                        probability: 19.3,
+                        type: ActionShare_1["default"],
+                        probability: 19.3
                     }];
             case "leader":
                 return [configRead, {
                         id: 1,
                         name: "read-".concat(type),
-                        type: ActionShare_1.default,
-                        probability: 25.09,
+                        type: ActionShare_1["default"],
+                        probability: 25.09
                     }];
             default:
                 return [configRead, {
                         id: 1,
                         name: "read-".concat(type),
-                        type: ActionShare_1.default,
-                        probability: 19.3,
+                        type: ActionShare_1["default"],
+                        probability: 19.3
                     }];
         }
     };
@@ -96,7 +96,7 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
             id: 0,
             name: "average",
             isSeed: false,
-            type: TwitterAgent_1.default,
+            type: TwitterAgent_1["default"],
             percentage: this.nonSeedPercentage,
             state: AgentState_1.AgentState.NOT_READ,
             followersPercentage: 0.057,
@@ -117,7 +117,7 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
             id: 1,
             name: "hub",
             isSeed: true,
-            type: TwitterAgent_1.default,
+            type: TwitterAgent_1["default"],
             percentage: this.seedPercentage,
             state: AgentState_1.AgentState.READY_TO_SHARE,
             followersPercentage: 1.14225,
@@ -128,8 +128,8 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
         main_1.TowerHandler.setScenarioConfig({
             networkSize: 1000,
             maxTick: 20,
-            environmentType: EnvironmentTwitter_1.default,
-            metaAgentsConfigs: [nonSeedConfig, seedConfig],
+            environmentType: EnvironmentTwitter_1["default"],
+            metaAgentsConfigs: [nonSeedConfig, seedConfig]
         });
         main_1.TimeKeeper.setMaxRepetition(2);
     };
@@ -139,7 +139,7 @@ var ExperimentAgentCombinationBestSeed = /** @class */ (function (_super) {
     __decorate([
         (0, DataHandlerDecorators_1.ExperimentCount)("seed-type"),
         __metadata("design:type", String)
-    ], ExperimentAgentCombinationBestSeed.prototype, "seedType", void 0);
+    ], ExperimentAgentCombinationBestSeed.prototype, "seedType");
     return ExperimentAgentCombinationBestSeed;
-}(Experiment_1.default));
-exports.default = ExperimentAgentCombinationBestSeed;
+}(Experiment_1["default"]));
+exports["default"] = ExperimentAgentCombinationBestSeed;
