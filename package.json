@@ -12,8 +12,8 @@
     "build-backend": "cd packages/fasow && npx -p typescript tsc index.ts --declaration --experimentalDecorators --emitDecoratorMetadata --outDir build",
     "debug-backend": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata packages/fasow/src/main.ts && node packages/fasow/src/main.js",
     "build-backend-start-debug": "yarn build-backend && yarn start",
-    "build-production": "yarn build-backend && yarn build",
-    "deploy": "cd packages/client && yarn build-backend && yarn build && gh-pages -b prod -d build"
+    "build-production": "yarn build",
+    "deploy": "yarn build-production && gh-pages -b prod -d build"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
