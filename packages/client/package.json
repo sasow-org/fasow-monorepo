@@ -18,6 +18,7 @@
     "@types/react-dom": "^18.0.6",
     "console-feed": "^3.4.0",
     "gh-pages": "^4.0.0",
+    "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
