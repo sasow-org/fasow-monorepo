@@ -22,9 +22,9 @@ export const TimeKeeper = fasow.getTimeKeeper();
 fasow.registerNewExperiment(MessageRepetition);
 fasow.registerNewExperiment(ExperimentAgentCombination);
 fasow.registerNewExperiment(ExperimentAgentCombinationBestSeed);
-fasow.selectExperimentByName("ExperimentAgentCombinationBestSeed");
-fasow.initializeSelectedExperiment();
-fasow.runSelectedExperiment();
+// fasow.selectExperimentByName("ExperimentAgentCombinationBestSeed");
+// fasow.initializeSelectedExperiment();
+// fasow.runSelectedExperiment();
 // console.log(fasow.getState());
 
 export default fasow;

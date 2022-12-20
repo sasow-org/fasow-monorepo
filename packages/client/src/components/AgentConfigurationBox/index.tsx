@@ -7,6 +7,7 @@ import {useExperiments} from "../../hooks/useFasow";
 
 export default function AgentConfigurationBox() {
   const { experimentConfig } = useExperiments();
+
   const rows = useMemo(
     () =>
       experimentConfig?.environmentConfig.metaAgentsConfigs.sort(

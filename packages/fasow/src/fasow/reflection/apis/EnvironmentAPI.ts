@@ -2,7 +2,6 @@ import type Environment from "../../abm/Environment";
 import MetaAgentConfig from "../../config/metaconfig/MetaAgentConfig";
 import MetaEnvironmentConfig from "../../config/metaconfig/MetaEnvironmentConfig";
 import { getTypesOfObject } from "../StructureHandler";
-import * as ReadLine from "readline";
 
 /*
 Esta capa es el nivel siguiente de Experiment.
@@ -49,16 +48,16 @@ export default class EnvironmentAPI {
       // eslint-disable-next-line new-cap
       new newEnvironmentType()
     ); */
-    if (!this.environmentFactories.has(newEnvironmentType.name)) {
+    // if (!this.environmentFactories.has(newEnvironmentType.name)) {
       this.environmentFactories.set(
         newEnvironmentType.name,
         newEnvironmentType
       );
-    } else {
-      throw Error(
-        `The referenced type '${newEnvironmentType}' has really been added`
-      );
-    }
+    // } else {
+    //   throw Error(
+    //    `The referenced type '${newEnvironmentType}' has really been added`
+   //   );
+    // }
   }
 
   private getEnvironment(

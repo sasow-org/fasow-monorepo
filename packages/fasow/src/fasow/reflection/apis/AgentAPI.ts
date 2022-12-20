@@ -26,11 +26,11 @@ export default class AgentAPI {
   }
 
   registerNewAgent(type: typeof Agent) {
-    if (!this.agentsFactories.has(type.name)) {
+    // if (!this.agentsFactories.has(type.name)) {
       this.agentsFactories.set(type.name, type);
-    } else {
-      throw Error(`The referenced type '${type}' has already been added`);
-    }
+    // } else {
+    //  throw Error(`The referenced type '${type}' has already been added`);
+    // }
   }
 
   registerNewMetaAgentConfig(agentConfig: MetaAgentConfig) {

@@ -12,72 +12,10 @@ import EnvironmentAPI from "../apis/EnvironmentAPI";
 import ExperimentAPI from "../apis/ExperimentAPI";
 
 export default class ITowerHandler {
-  // private timeKeeper: TimeKeeper = new TimeKeeper();
   private ActionAPI: ActionAPI = new ActionAPI();
   private AgentAPI: AgentAPI = new AgentAPI();
   private EnvironmentAPI: EnvironmentAPI = new EnvironmentAPI();
   private ExperimentAPI: ExperimentAPI = new ExperimentAPI();
-  // todo : add all the others methods per API or introspection layer
-
-  /* Essential API
-
-  getTick(): number {
-    return this.timeKeeper.getTick();
-  }
-
-  setTick(tick: number): number {
-    return this.timeKeeper.setTick(tick);
-  }
-
-  setMaxTick(periods: number) {
-    this.timeKeeper.setMaxTick(periods);
-  }
-
-  nextTick(): number {
-    return this.timeKeeper.nextTick();
-  }
-
-  canNextTick(): boolean {
-    return this.timeKeeper.canNextTick();
-  }
-
-  getMaxTick(): number {
-    return this.timeKeeper.getMaxTick();
-  }
-
-  getRepetition(): number {
-    return this.timeKeeper.getRepetition();
-  }
-
-  getMaxRepetition(): number {
-    return this.timeKeeper.getMaxRepetition();
-  }
-
-  canNextRepetition(): boolean {
-    return this.timeKeeper.canNextRepetition();
-  }
-
-  nextRepetition(): number {
-    return this.timeKeeper.nextRepetition();
-  }
-
-  setMaxRepetition(maxRepetitions: number) {
-    console.log(
-      "Setting up MaxRepetitions from (",
-      this.getMaxRepetition(),
-      ") to (",
-      maxRepetitions,
-      "). "
-    );
-    this.timeKeeper.setMaxRepetition(maxRepetitions);
-  }
-
-  setRepetition(repetition: number) {
-    this.timeKeeper.setRepetition(repetition);
-  }
-  */
-
-  /* Essential API */
 
   /* Action API */
 

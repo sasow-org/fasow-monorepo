@@ -115,6 +115,10 @@ export default class ExperimentAgentCombination extends Experiment {
   }
 
   Strategy(): void {
+    TowerHandler.registerNewAgent(TwitterAgent);
+    TowerHandler.registerNewAction(ActionRead);
+    TowerHandler.registerNewAction(ActionShare);
+    TowerHandler.registerNewEnvironment(EnvironmentTwitter);
     const avrConfig: MetaAgentConfig = ExperimentAgentCombination.getMetaConfig(
       "average",
       this.percentageAvr,

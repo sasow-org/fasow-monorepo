@@ -6,7 +6,7 @@ import DataHandlerOutputBox from "./components/DataHandlerOutputBox";
 import ExperimentConfigurationBox from "./components/ExperimentConfigurationBox";
 import HomeBox from "./components/HomeBox";
 import NavBar from "./components/NavBar";
-import {useRunExperiment } from "./hooks/useFasow";
+import {useRunExperiment} from "./hooks/useFasow";
 import "./index.css";
 
 const theme = createTheme({
@@ -43,7 +43,7 @@ function App() {
             </Grid>
             <Grid item xs={6} sx={{ height: "50%" }}>
               <HomeBox title="Agent configuration">
-                <AgentConfigurationBox/>
+                <AgentConfigurationBox />
               </HomeBox>
             </Grid>
             <Grid item xs={12} sx={{ height: "50%" }}>
@@ -58,7 +58,7 @@ function App() {
         color="primary"
         variant="extended"
         aria-label="add"
-        onClick={runExperiment}
+        onClick={() => runExperiment()}
         sx={{ position: "absolute", bottom: 108, right: 72 }}
       >
         <PlayArrow sx={{ mr: 1 }} />

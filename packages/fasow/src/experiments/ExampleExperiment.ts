@@ -9,6 +9,10 @@ import { TowerHandler } from "../main";
 export default class ExampleExperiment extends Experiment {
   // eslint-disable-next-line class-methods-use-this
   Strategy(): void {
+    TowerHandler.registerNewAgent(TwitterAgent);
+    TowerHandler.registerNewAction(ActionRead);
+    TowerHandler.registerNewAction(ActionShare);
+    TowerHandler.registerNewEnvironment(EnvironmentTwitter);
     const agent1 = {
       id: 0,
       name: "seed",

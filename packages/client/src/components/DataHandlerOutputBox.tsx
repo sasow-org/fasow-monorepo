@@ -1,50 +1,26 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Result } from "src/hooks/useFasow";
 
-const columns: GridColDef[] = [
-  {
-    field: "repetition",
-    headerName: "Repetition",
-    width: 150,
-  },
-  {
-    field: "tick",
-    headerName: "Tick",
-    width: 150,
-  },
-  {
-    field: "NOT_READ",
-    headerName: "Not read",
-    width: 150,
-  },
-  {
-    field: "READ",
-    headerName: "Read",
-    width: 150,
-  },
-  {
-    field: "READY_TO_SHARE",
-    headerName: "Ready to share",
-    width: 150,
-  },
-  {
-    field: "SHARED",
-    headerName: "Shared",
-    width: 150,
-  },
-  {
-    field: "percentage-type",
-    headerName: "Value",
-    width: 300,
-  },
-];
 
 export default function DataHandlerOutputBox({
   results,
 }: {
-  results: Result[];
+  results: any[];
 }) {
+  function getColumns( output : any[] ) : GridColDef[] {
+    const columns : GridColDef[] = [];
+    if(output.length>0){
+      Object.keys(output[0]).forEach(key => {
+        columns.push({
+          field: key,
+          headerName: key,
+          width: 150
+        })
+      });
+    }
+    return columns;
+  }
+  
   return (
     <Box sx={{ display: "flex", flex: 1, flexDirection: "column" }}>
       <Typography variant="subtitle2" paddingBottom={2} color="GrayText">
@@ -52,7 +28,7 @@ export default function DataHandlerOutputBox({
       </Typography>
       <DataGrid
         rows={results}
-        columns={columns}
+        columns={getColumns(results)}
         // pageSize={5}
         // rowsPerPageOptions={[5]}
         // checkboxSelection

@@ -126,8 +126,9 @@ export default class FASOW {
    * experiments by name given by fasow.getState().
    * @param experiment
    */
-  selectExperimentByName(experiment: string) {
+  async selectExperimentByName(experiment: string) {
     this.towerHandler.selectExperimentByName(experiment);
+    this.experiment = await this.initializeSelectedExperiment();
   }
 
   /**
@@ -135,6 +136,7 @@ export default class FASOW {
    * the execution would can be stopped for Null or Undefined reference.
    */
   runSelectedExperiment() {
+
     this.privateRunExperiment();
     // todo : check if any exception is thrown when running run with no experiment selected
   }
@@ -190,6 +192,7 @@ export default class FASOW {
 
   initializeSelectedExperiment(): Experiment {
     this.experiment = this.towerHandler.createSelectedExperiment();
+    this.experiment.executeStrategy();
     this.experiment.initialize();
     return this.experiment;
   }

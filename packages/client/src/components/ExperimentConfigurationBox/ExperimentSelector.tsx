@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import {ChangeEvent, useState} from "react";
 
 import { Box, TextField, Typography } from "@mui/material";
 
@@ -11,8 +11,10 @@ export default function ExperimentSelector({
   experiments,
   setExperiment,
 }: IProps) {
+    const [selectedExperiment, setSelectedExperiment] = useState("ExampleExperiment");
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setExperiment(event.target.value);
+      setSelectedExperiment(event.target.value);
+      setExperiment(selectedExperiment);
   };
 
   return (
@@ -22,8 +24,6 @@ export default function ExperimentSelector({
         id="outlined-select-currency-native"
         select
         label="Experiment to Simulate"
-        // value={selectedExperiment}
-        // value={experimentConfig.experimentType}
         onChange={handleChange}
         SelectProps={{
           native: true,
