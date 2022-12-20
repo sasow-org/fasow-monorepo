@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e6b1dca-5b7c-4f00-82ac-2b1e9e7c5c16" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/commit-prod.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/commit-prod.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/fasow/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/.eslintrc.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,17 +37,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dieku/Documents/GitHub/sasow-org.github.io&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\dieku\\Documents\\GitHub\\fasow-monorepo\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/dieku/Documents/GitHub/sasow-org.github.io",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "C:\\Users\\Equipo\\Documents\\GitHub\\fasow-monorepo\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\config\metaconfig" />
@@ -192,6 +194,7 @@
       <workItem from="1670341601445" duration="1290000" />
       <workItem from="1670557571708" duration="43000" />
       <workItem from="1670557773309" duration="7822000" />
+      <workItem from="1671503996332" duration="1373000" />
     </task>
     <servers />
   </component>
@@ -199,158 +202,99 @@
     <option name="version" value="3" />
     <option name="exactExcludedFiles">
       <list>
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Environment.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Agent.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Simulation.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Action.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/main.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/Observer/Subject.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Action/IActionCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/AgentState.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/IAgentCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionShare.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/Observer/Observer.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Environment/IEnvironmentCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentStrategy.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/index.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/data/MatrixData.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionRead.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IObserver.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/interfaces/IObservable.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaAgentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaActionConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaExperimentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/data/RowData.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/TwitterAgent.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/EnvironmentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/IDataHandler.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ExperimentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/AgentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/SimulationConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ActionConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/decorators/DataHandlerDecorators.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/main.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Action.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Simulation.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Agent.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Environment.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/IDataHandler.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ActionConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/SimulationConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/AgentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ExperimentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/EnvironmentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaExperimentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaActionConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaAgentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/TwitterAgent.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/AgentAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ActionAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/decorators/DataHandlerDecorators.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionRead.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionShare.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/IAgentCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/AgentState.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Action/IActionCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentStrategy.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Environment/IEnvironmentCreator.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/Observer/Observer.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/Observer/Subject.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EffectAgent.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionRead.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionShare.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/StructureHandler.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaEnvironmentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/facebook/FacebookAgent.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/timekepper/ITimeKeeper.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/StructureHandler.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/AgentAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ActionAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/StructureHandler.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/timekepper/ITimeKeeper.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EffectAgent.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionRead.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionShare.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaEnvironmentConfig.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/facebook/FacebookAgent.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/index.js" />
-        <option value="$PROJECT_DIR$/packages/fasow/index.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/main.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Agent.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Environment.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Simulation.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Action.d.ts" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/StructureHandler.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/timekeeper/ITimeKeeper.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/IDataHandler.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionRead.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionShare.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EffectAgent.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ExperimentConfig.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/AgentConfig.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/SimulationConfig.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ActionConfig.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/EnvironmentConfig.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaAgentConfig.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaEnvironmentConfig.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaExperimentConfig.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaActionConfig.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/TwitterAgent.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/facebook/FacebookAgent.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/AgentAPI.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ActionAPI.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/decorators/DataHandlerDecorators.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionRead.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionShare.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/IAgentCreator.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/AgentState.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Action/IActionCreator.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/Observer/Observer.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentStrategy.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentCreator.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Action/IActionCreator.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/AgentState.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Environment/IEnvironmentCreator.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/IAgentCreator.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionRead.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionShare.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ActionAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/AgentAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/decorators/DataHandlerDecorators.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaEnvironmentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaActionConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaExperimentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ExperimentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/facebook/FacebookAgent.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/TwitterAgent.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaAgentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionShare.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionRead.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/AgentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/SimulationConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ActionConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/EnvironmentConfig.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/index.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/IDataHandler.js" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentStrategy.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentCreator.d.ts" />
-        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Environment/IEnvironmentCreator.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/StructureHandler.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionRead.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EffectAgent.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EffectAgent.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/timekeeper/ITimeKeeper.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionShare.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Action.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Simulation.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionRead.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ActionAPI.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Agent.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/facebook/FacebookAgent.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Simulation.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/EnvironmentConfig.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Environment.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.d.ts" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/Observer/Subject.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/AgentState.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/IDataHandler.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ActionConfig.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/main.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/AgentConfig.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/IAgentCreator.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionShare.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/TwitterAgent.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Action/IActionCreator.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/index.js" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaAgentConfig.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaActionConfig.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/main.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ExperimentConfig.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/AgentAPI.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentCreator.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Agent.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Action.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaExperimentConfig.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/decorators/DataHandlerDecorators.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/SimulationConfig.d.ts" />
         <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/Observer/Observer.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Environment/IEnvironmentCreator.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaEnvironmentConfig.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.d.ts" />
+        <option value="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Environment.d.ts" />
       </list>
     </option>
   </component>
