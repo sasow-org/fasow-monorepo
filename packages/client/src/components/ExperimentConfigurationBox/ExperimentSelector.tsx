@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 
 import { Box, TextField, Typography } from "@mui/material";
 
@@ -11,7 +11,16 @@ export default function ExperimentSelector({
   experiments,
   setExperiment,
 }: IProps) {
+    const [init, setInit] = useState(false);
     const [selectedExperiment, setSelectedExperiment] = useState("ExampleExperiment");
+
+    useEffect(() => {
+        if(!init){
+            setSelectedExperiment("ExampleExperiment");
+            setExperiment(selectedExperiment);
+            setInit(true);
+        }
+    },[init, selectedExperiment, setExperiment, setSelectedExperiment])
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       setSelectedExperiment(event.target.value);
       setExperiment(selectedExperiment);

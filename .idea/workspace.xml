@@ -6,177 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9e6b1dca-5b7c-4f00-82ac-2b1e9e7c5c16" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/client/src/components/AgentConfigurationBox/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/components/AgentConfigurationBox/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/client/src/components/DataHandlerOutputBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/components/DataHandlerOutputBox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/ExperimentForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/ExperimentForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/ExperimentSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/ExperimentSelector.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/client/src/hooks/useFasow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/hooks/useFasow.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExampleExperiment.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExampleExperiment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionRead.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionRead.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionShare.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionShare.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/EffectAgent.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/EffectAgent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/FASOW.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/FASOW.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Action.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Action.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Agent.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Agent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Environment.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Environment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Experiment.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Experiment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Simulation.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/Simulation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Action/IActionCreator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Action/IActionCreator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Agent/AgentState.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Agent/AgentState.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Agent/IAgentCreator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Agent/IAgentCreator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Agent/Observer/Observer.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Agent/Observer/Observer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Agent/Observer/Subject.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Agent/Observer/Subject.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Environment/IEnvironmentCreator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Environment/IEnvironmentCreator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Experiment/IExperimentCreator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Experiment/IExperimentCreator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Experiment/IExperimentStrategy.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/interfaces/Experiment/IExperimentStrategy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/wom/custom-actions/ActionRead.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/wom/custom-actions/ActionRead.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/wom/custom-actions/ActionShare.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/abm/wom/custom-actions/ActionShare.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/ActionConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/ActionConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/AgentConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/AgentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/EnvironmentConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/EnvironmentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/ExperimentConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/ExperimentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/SimulationConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/config/SimulationConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaActionConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaActionConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaAgentConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaAgentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaEnvironmentConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaEnvironmentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaExperimentConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaExperimentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaScenarioConfig.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/config/metaconfig/MetaScenarioConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/datahandler/IDataHandler.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/datahandler/IDataHandler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/datahandler/decorators/DataHandlerDecorators.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/datahandler/decorators/DataHandlerDecorators.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/StructureHandler.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/StructureHandler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/ActionAPI.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/ActionAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/AgentAPI.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/AgentAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/EnvironmentAPI.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/EnvironmentAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/ExperimentAPI.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/ExperimentAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/ScenarioAPI.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/apis/ScenarioAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/tower/ITowerHandler.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/reflection/tower/ITowerHandler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/facebook/FacebookAgent.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/facebook/FacebookAgent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/twitter/EnvironmentTwitter.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/twitter/EnvironmentTwitter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/twitter/TwitterAgent.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/scenarios/twitter/TwitterAgent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/timekeeper/ITimeKeeper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/timekeeper/ITimeKeeper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/timekepper/EssentialAPI.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/timekepper/EssentialAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/timekepper/ITimeKeeper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/fasow/timekepper/ITimeKeeper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/main.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/build/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiments/ExampleExperiment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombination.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentAgentCombinatio/ExperimentAgentCombinationBestSeed.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionRead.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/CanSaturatedActionShare.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EffectAgent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/EnvironmentEffectTwitter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/experiments/ExperimentEffectMessageRepetition/MessageRepetition.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/FASOW.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Action.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Agent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Environment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Experiment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/Simulation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Action/IActionCreator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/AgentState.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/IAgentCreator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/Observer/Observer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Agent/Observer/Subject.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Environment/IEnvironmentCreator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentCreator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/interfaces/Experiment/IExperimentStrategy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionRead.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/abm/wom/custom-actions/ActionShare.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ActionConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/AgentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/EnvironmentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/ExperimentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/config/SimulationConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaActionConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaAgentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaEnvironmentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/config/metaconfig/MetaExperimentConfig.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/IDataHandler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/datahandler/decorators/DataHandlerDecorators.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/StructureHandler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ActionAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ActionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ActionAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/AgentAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/AgentAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/AgentAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/EnvironmentAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/apis/ExperimentAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/fasow/reflection/tower/ITowerHandler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/facebook/FacebookAgent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/EnvironmentTwitter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/scenarios/twitter/TwitterAgent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/fasow/timekeeper/ITimeKeeper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/fasow/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/fasow/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +61,7 @@
       <recent name="C:\Users\dieku\Documents\GitHub\fasow-monorepo\packages\fasow\src\fasow\reflection\apis" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.start (1)">
     <configuration name="build (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/packages/client/package.json" />
       <command value="run" />
@@ -272,9 +104,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
-        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.build (1)" />
       </list>
     </recent_temporary>
@@ -352,7 +184,7 @@
       <workItem from="1670341601445" duration="1290000" />
       <workItem from="1670557571708" duration="43000" />
       <workItem from="1670557773309" duration="7822000" />
-      <workItem from="1671503996332" duration="16975000" />
+      <workItem from="1671503996332" duration="18297000" />
     </task>
     <servers />
   </component>

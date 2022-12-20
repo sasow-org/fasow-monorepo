@@ -20,7 +20,7 @@ export const useExperiments = () => {
     const config = fasowInstance.getExperimentConfig();
     setExperimentConfig({ ...config });
   };
-  setExperimentConfig(fasowInstance.getExperimentConfig);
+
   return {
     experiments: formattedExperiments,
     setExperiment,
