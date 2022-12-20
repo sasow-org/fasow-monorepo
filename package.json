@@ -8,18 +8,15 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "yarn build-backend && cd packages/client && yarn start",
-    "build": "npx lerna run build",
-    "build-backend": "cd packages/fasow && npx -p typescript tsc index.ts --declaration --experimentalDecorators --emitDecoratorMetadata --outDir build",
-    "tesBuild": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata packages/fasow/src/main.ts && ",
-    "debug-backend": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata packages/fasow/src/main.ts && node packages/fasow/src/main.js",
-    "gh-pages-upload": "gh-pages -b prod -d packages/client/build"
+    "start" : "cd packages/client && yarn start",
+    "build": "cd packages/client && yarn build",
+    "build-and-deploy": "yarn build && gh-pages -b prod -d dist "
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
-    "eslint": "^8.23.1",
+    "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-node": "^0.3.6",

@@ -15,9 +15,7 @@ export default class ExperimentAgentCombinationBestSeed extends Experiment {
     // avr --> hub --> leader
     @ExperimentCount("seed-type")
     public seedType : string = "hub";
-
     public seedFollowerPercentage: number= 0;
-
     public nonSeedPercentage = 95;
     public seedPercentage = 5;
 
@@ -52,24 +50,12 @@ export default class ExperimentAgentCombinationBestSeed extends Experiment {
                 }]
         }
     }
-/*
-    run() {
-        const seedTypes : string[] = ["average", "hub", "leader"];
-        const followerPercentageByType : number[] = [0.057, 1.14225, 1.08];
-        for(let i = 0; i < seedTypes.length; i++){
-            const type = seedTypes[i];
-            const followerPercentage = followerPercentageByType[i];
-            TimeKeeper.setMaxRepetition(1);
-            console.log("The selected seed type is --> ", type);
-            this.seedType = type;
-            this.seedFollowerPercentage = followerPercentage;
-            super.run();
-            TimeKeeper.resetRepetitions();
-        }
-    }
-*/
-    Strategy(): void {
 
+    Strategy(): void {
+        TowerHandler.registerNewAgent(TwitterAgent);
+        TowerHandler.registerNewAction(ActionRead);
+        TowerHandler.registerNewAction(ActionShare);
+        TowerHandler.registerNewEnvironment(EnvironmentTwitter);
         const nonSeedConfig : MetaAgentConfig = {
           id:0,
           name:"average",
@@ -80,18 +66,6 @@ export default class ExperimentAgentCombinationBestSeed extends Experiment {
             followersPercentage: 0.057,
             actionsConfigs: ExperimentAgentCombinationBestSeed.getActionsConfig("average")
         };
-        /*
-        const seedConfig : MetaAgentConfig = {
-            id: 1,
-            name: this.seedType,
-            type: TwitterAgent,
-            percentage: this.seedPercentage,
-            state: AgentState.READY_TO_SHARE,
-            followersPercentage: this.seedFollowerPercentage,
-            isSeed: true,
-            actionsConfigs: ExperimentAgentCombinationBestSeed.getActionsConfig(this.seedType)
-        } */
-
         const seedConfig : MetaAgentConfig = {
             id: 1,
             name: "hub",

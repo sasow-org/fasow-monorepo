@@ -25,8 +25,8 @@ export default abstract class Experiment
    * Run the Experiment,initializing the model and starting the simulation
    * */
   run() {
-    this.initialize();
     TimeKeeper.setRepetition(0);
+    this.initialize();
     console.log(
       "Ended Initialization --> On Experiment.run(), currentRepetition  is: ",
       TimeKeeper.getRepetition()+1,
@@ -61,7 +61,6 @@ export default abstract class Experiment
    */
   initialize() {
     console.log("Starting initialization...")
-    this.executeStrategy();
     if (TimeKeeper.canNextRepetition()) {
       this.loadConfig();
       this.simulation.initialize(TimeKeeper.getRepetition());

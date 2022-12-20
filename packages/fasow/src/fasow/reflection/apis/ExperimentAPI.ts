@@ -50,13 +50,13 @@ export default class IExperimentAPI {
     // todo : maybe you need to handle what happen if you try to add some experiment and that already has been added
     // @ts-ignore
     // eslint-disable-next-line new-cap
-    if (!this.experimentList.has(exp)) {
+    // if (!this.experimentList.has(exp)) {
       this.experimentList.set(exp.name, exp);
-      return;
-    }
-    throw Error(
-      `The referenced Experiment type '${exp}' has already been added`
-    );
+    //  return;
+    // }
+    // throw Error(
+    //   `The referenced Experiment type '${exp}' has already been added`
+    // );
   }
 
   /* Strategy Handlers */

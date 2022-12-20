@@ -29,13 +29,13 @@ export default class ActionAPI {
     // const someAction : Action = Reflect.construct(newActionType,[]);
     // this.actionFactories.set(newActionType, someAction);
     // this.actionFactories.push(newActionType)
-    if (!this.actionFactories.has(newActionType.name)) {
+    // if (!this.actionFactories.has(newActionType.name)) {
       this.actionFactories.set(newActionType.name, newActionType);
-    } else {
-      throw Error(
-        `The referenced type '${newActionType}' has really been added`
-      );
-    }
+    // } else {
+    //   throw Error(
+    //     `The referenced type '${newActionType}' has really been added`
+    //  );
+    // }
   }
 
   registerMetaActionConfig(actionConfig: MetaActionConfig) {
