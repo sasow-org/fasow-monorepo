@@ -19,7 +19,7 @@ module.exports = {
         match.loader.include = include.concat(packages);
       }
 
-      return webpackConfig;
+      return { ...webpackConfig, mode: "development" };
     },
   },
 };
