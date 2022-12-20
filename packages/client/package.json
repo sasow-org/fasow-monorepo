@@ -74,7 +74,8 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "webpack --mode=development",
+    "build-win": "set NODE_ENV=development& webpack",
+    "build-unix": "NODE_ENV=development webpack",
     "test": "craco test"
   },
   "browserslist": {

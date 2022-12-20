@@ -9,8 +9,10 @@
   ],
   "scripts": {
     "start" : "cd packages/client && yarn start",
-    "build": "cd packages/client && yarn build",
-    "build-and-deploy": "yarn build && gh-pages -b prod -d dist "
+    "build-win": "cd packages/client && yarn build-win",
+    "build-unix" : "cd packages/client && yarn build-unix",
+    "build-and-deploy-win": "yarn build-win && gh-pages -b prod -d packages/client/dist",
+    "build-and-deploy-unix": "yarn build-unix && gh-pages -b prod -d packages/client/dist"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
