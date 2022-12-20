@@ -3,10 +3,13 @@ import {  useMemo } from "react";
 // import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, Switch, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import {useExperiments} from "../../hooks/useFasow";
+import MetaExperimentConfig from "@fasow/backend/src/fasow/config/metaconfig/MetaExperimentConfig";
 
-export default function AgentConfigurationBox() {
-  const { experimentConfig } = useExperiments();
+interface IProps {
+  experimentConfig: MetaExperimentConfig | undefined;
+}
+
+export default function AgentConfigurationBox({experimentConfig}: IProps) {
 
   const rows = useMemo(
     () =>

@@ -1,11 +1,21 @@
 import { Box, Typography } from "@mui/material";
 
+import MetaExperimentConfig from "@fasow/backend/src/fasow/config/metaconfig/MetaExperimentConfig";
 import ExperimentForm from "./ExperimentForm";
 import ExperimentSelector from "./ExperimentSelector";
-import {useExperiments} from "../../hooks/useFasow";
 
-export default function ExperimentConfigurationBox() {
-    const { experimentConfig, experiments, setExperiment } = useExperiments();
+interface IProps {
+    experiments: any[];
+    setExperiment: (name: string) => void;
+    experimentConfig: MetaExperimentConfig | undefined;
+}
+
+export default function ExperimentConfigurationBox({
+    experiments,
+    setExperiment,
+    experimentConfig
+}: IProps) {
+
   return (
     <Box>
       <Typography variant="subtitle2" paddingBottom={2} color="GrayText">

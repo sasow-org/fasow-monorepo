@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9e6b1dca-5b7c-4f00-82ac-2b1e9e7c5c16" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/ExperimentForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/ExperimentForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/ExperimentSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/ExperimentSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/client/src/hooks/useFasow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/hooks/useFasow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/src/components/AgentConfigurationBox/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/components/AgentConfigurationBox/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/client/src/components/ExperimentConfigurationBox/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +184,7 @@
       <workItem from="1670341601445" duration="1290000" />
       <workItem from="1670557571708" duration="43000" />
       <workItem from="1670557773309" duration="7822000" />
-      <workItem from="1671503996332" duration="18297000" />
+      <workItem from="1671503996332" duration="18837000" />
     </task>
     <servers />
   </component>
