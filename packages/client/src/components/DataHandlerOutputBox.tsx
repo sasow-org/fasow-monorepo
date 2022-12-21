@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import {DataGrid, GridColDef, GridToolbar} from "@mui/x-data-grid";
 
 
 export default function DataHandlerOutputBox({
@@ -34,6 +34,7 @@ export default function DataHandlerOutputBox({
         // checkboxSelection
         getRowId={() => Math.random().toString()}
         disableSelectionOnClick
+        components={{Toolbar: GridToolbar}}
       />
     </Box>
   );
