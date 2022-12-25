@@ -15,6 +15,7 @@ export default function ExperimentSelector({
     const [selectedExperiment, setSelectedExperiment] = useState("ExampleExperiment");
 
     useEffect(() => {
+        console.log({init})
         if(!init){
             setSelectedExperiment("ExampleExperiment");
             setExperiment(selectedExperiment);
@@ -23,8 +24,9 @@ export default function ExperimentSelector({
     },[init, selectedExperiment, setExperiment, setSelectedExperiment])
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       setSelectedExperiment(event.target.value);
-      setExperiment(selectedExperiment);
+      setExperiment(event.target.value);
   };
+
 
   return (
     <Box sx={{ marginBottom: 2 }}>

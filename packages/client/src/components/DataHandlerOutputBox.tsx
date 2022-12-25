@@ -14,7 +14,7 @@ export default function DataHandlerOutputBox({
         columns.push({
           field: key,
           headerName: key,
-          width: 150
+          width: 250
         })
       });
     }
