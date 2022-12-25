@@ -10,9 +10,10 @@ import { TimeKeeper, TowerHandler } from "../../main";
 import { ExperimentCount } from "../../fasow/datahandler/decorators/DataHandlerDecorators";
 
 export default class ExperimentAgentCombination extends Experiment {
-  public percentageAvr: number = 0;
-  public finalPercentageHub: number = 0;
-  public finalPercentageLeader: number = 0;
+  public percentageAvr: number = 95;
+  public finalPercentageHub: number = 2.5;
+  public finalPercentageLeader: number = 2.5;
+  public seedPercentage: number = 5;
 
   @ExperimentCount("percentage-type") public percentageTypes: string = "";
 
@@ -101,10 +102,9 @@ export default class ExperimentAgentCombination extends Experiment {
         "Leader: ",
         percentageLeaderOfSeed
       );
-      const seedPercentage: number = 5;
-      this.finalPercentageHub = (percentageHubOfSeed * seedPercentage) / 100;
+      this.finalPercentageHub = (percentageHubOfSeed * this.seedPercentage) / 100;
       this.finalPercentageLeader =
-        (percentageLeaderOfSeed * seedPercentage) / 100;
+        (percentageLeaderOfSeed * this.seedPercentage) / 100;
       this.percentageAvr = 95;
       this.percentageTypes = `Hub: ${this.finalPercentageHub} Leader: ${this.finalPercentageLeader} Average: ${this.percentageAvr}`;
       console.log("Finals Agents Percentages: ");
