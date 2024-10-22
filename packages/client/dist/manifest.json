@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "FASOW",
+  "name": "FASOW: Flexible Agent Simulator for Open WOM",
   "icons": [
     {
       "src": "favicon.ico",

@@ -10,6 +10,21 @@ import NavBar from "./components/NavBar";
 import {useExperiments, useRunExperiment} from "./hooks/useFasow";
 import "./index.css";
 
+// @ts-ignore
+import img1 from "./resources/tutorial_imgs/1.png";
+// @ts-ignore
+import img2 from "./resources/tutorial_imgs/2.png";
+// @ts-ignore
+import img3 from "./resources/tutorial_imgs/3.png";
+// @ts-ignore
+import img4 from "./resources/tutorial_imgs/4.png";
+// @ts-ignore
+import img5 from "./resources/tutorial_imgs/5.png";
+// @ts-ignore
+import img6 from "./resources/tutorial_imgs/6.png";
+// @ts-ignore
+import img7 from "./resources/tutorial_imgs/7.png";
+
 import HowItWorks from "./components/HowItWorksModal/HowItWorks";
 
 const theme = createTheme({
@@ -36,15 +51,15 @@ function App() {
   const [open, setOpen] = useState(false);
 
   const tutorialStepImagesSource = [
-      {img: "../resources/tutorial_imgs/1.png", description: "Flexible Agent Simulator for Open WOM: FASOW Console, is the console for the FASOW framework that allow us to select " +
+      {img: img1, description: "Flexible Agent Simulator for Open WOM: FASOW Console, is the console for the FASOW framework that allow us to select " +
           "the different Agent-Based models that are loaded on FASOW. "},
-      {img: "../resources/tutorial_imgs/2.png", description: "To use the FASOW Console, you must to select" +
+      {img: img2, description: "To use the FASOW Console, you must to select" +
           "some of the available experiments"},
-      {img: "../resources/tutorial_imgs/3.png", description: "Like Example Experiment, Message Repetition,  ExperimentAgentCombination and ExperimentAgentCombinationBestSeed."},
-      {img: "../resources/tutorial_imgs/4.png", description: "When some model is selected then their data configuration is loaded and the model is initialized."},
-      {img: "../resources/tutorial_imgs/5.png", description: "On the right side we can see the MetaAgent Configurations with their actions."},
-      {img: "../resources/tutorial_imgs/6.png", description: "And in the right down edge we can found the RUN Experiment button, and if we run it"},
-      {img: "../resources/tutorial_imgs/7.png", description: "We can visualize the output of the simulation on the DataHandler section."}
+      {img: img3, description: "Like Example Experiment, Message Repetition,  ExperimentAgentCombination and ExperimentAgentCombinationBestSeed."},
+      {img: img4, description: "When some model is selected then their data configuration is loaded and the model is initialized."},
+      {img: img5, description: "On the right side we can see the MetaAgent Configurations with their actions."},
+      {img: img6, description: "And in the right down edge we can found the RUN Experiment button, and if we run it"},
+      {img: img7, description: "We can visualize the output of the simulation on the DataHandler section."}
     ]
 
   return (
@@ -87,7 +102,7 @@ function App() {
         onClick={() => setOpen(true)}
         sx={{ position: "absolute", bottom: 60, right: 72 }}
       >
-        How It Works?
+        How does FASOW work?
       </Fab>
 
       <HowItWorks
